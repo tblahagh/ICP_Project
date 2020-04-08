@@ -1,0 +1,218 @@
+<?xml version="1.0" ?>
+<map width="500" height="400">
+    <points>
+        <point id="1" x="20" y="20"/>
+        <point id="2" x="30" y="20"/>
+        <point id="3" x="40" y="20"/>
+        <point id="4" x="50" y="20"/>
+        <point id="5" x="20" y="30"/>
+        <point id="6" x="30" y="30"/>
+        <point id="7" x="40" y="30"/>
+        <point id="8" x="50" y="30"/>
+        <point id="9" x="20"  y="40"/>
+        <point id="10" x="30" y="40"/>
+        <point id="11" x="40" y="40"/>
+        <point id="12" x="50" y="40"/>
+    </points>
+    <streets>
+        <street id="1" name="St. no 1" start="1" end="2"/>
+        <street id="2" name="St. no 2" start="2" end="3"/>
+        <street id="3" name="St. no 3" start="3" end="4"/>
+        <street id="4" name="St. no 4" start="1" end="5"/>
+        <street id="5" name="St. no 5" start="2" end="6"/>
+        <street id="6" name="St. no 6" start="2" end="7"/>
+        <street id="7" name="St. no 7" start="3" end="7"/>
+        <street id="8" name="St. no 8" start="4" end="8"/>
+        <street id="9" name="St. no 9" start="5" end="6"/>
+        <street id="10" name="St. no 10" start="7" end="8"/>
+        <street id="11" name="St. no 11" start="5" end="9"/>
+        <street id="12" name="St. no 12" start="6" end="10"/>
+        <street id="13" name="St. no 13" start="7" end="10"/>
+        <street id="14" name="St. no 14" start="7" end="11"/>
+        <street id="15" name="St. no 15" start="8" end="12"/>
+        <street id="16" name="St. no 16" start="9" end="10"/>
+        <street id="17" name="St. no 17" start="10" end="11"/>
+        <street id="18" name="St. no 18" start="11" end="12"/>
+        <street id="19" name="St. no 19" start="12" end="7"/>
+        <street id="20" name="St. no 20" start="5" end="2"/>
+    </streets>
+    <busstops>
+        <busstop id="1" street="1" position="0.5"/>
+        <busstop id="2" street="2" position="0.5"/>
+        <busstop id="3" street="3" position="0.5"/>
+        <busstop id="4" street="6" position="0.5"/>
+        <busstop id="5" street="9" position="0.5"/>
+        <busstop id="6" street="10" position="0.5"/>
+        <busstop id="7" street="12" position="0.5"/>
+        <busstop id="8" street="15" position="0.5"/>
+        <busstop id="9" street="16" position="0.5"/>
+        <busstop id="10" street="17" position="0.5"/>
+        <busstop id="11" street="19" position="0.5"/>
+        <busstop id="12" street="20" position="0.5"/>
+    </busstops>
+    <buslines>
+        <busline id="1" name="Bus no. 1" >
+           <busstops>
+                <busstop busstopid="1"/>
+                <busstop busstopid="2"/>
+                <busstop busstopid="3"/>
+                <busstop busstopid="6"/>
+                <busstop busstopid="9"/>
+           </busstops>
+            <path>
+                <street streetid="1"/>
+                <street streetid="2"/>
+                <street streetid="3"/>
+                <street streetid="8"/>
+                <street streetid="10"/>
+                <street streetid="13"/>
+                <street streetid="16"/>
+            </path>
+        </busline>
+        <busline id="2" name="Bus no. 2">
+            <busstops>
+                <busstop busstopid="8"/>
+                <busstop busstopid="10"/>
+                <busstop busstopid="9"/>
+                <busstop busstopid="5"/>
+                <busstop busstopid="1"/>
+            </busstops>
+            <path>
+                <street streetid="15"/>
+                <street streetid="18"/>
+                <street streetid="17"/>
+                <street streetid="16"/>
+                <street streetid="11"/>
+                <street streetid="9"/>
+                <street streetid="5"/>
+                <street streetid="1"/>
+            </path>
+        </busline>
+    </buslines>
+
+    <timetables>
+        <timetable id="1" busline="1">
+            <day value="0">
+                <timeset id="1">
+                    <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="2">
+                    <time hours="12" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="2" minutes="10" seconds="0"/>
+                </timeset>
+            
+            </day>
+             <day value="1">
+                <timeset id="3">
+                   <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="4">
+                    <time hours="12" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="13" minutes="20" seconds="0"/>
+                </timeset>
+            
+            </day>
+             <day value="2">
+                <timeset id="5">
+                  <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="6">
+         <time hours="13" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="2" minutes="10" seconds="0"/>
+                </timeset>
+            
+            </day>
+            <day value="3">
+                <timeset id="7">
+              <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="8">
+                      <time hours="12" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="2" minutes="10" seconds="0"/>
+                </timeset>
+            
+            </day>
+            <day value="4">
+                <timeset id="9">
+                      <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="10">
+                    <time hours="12" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="2" minutes="10" seconds="0"/>
+                </timeset>
+            
+            </day>
+            <day value="5">
+                <timeset id="11">
+          <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="12">
+                   <time hours="12" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="2" minutes="10" seconds="0"/>
+                </timeset>
+            
+            </day>
+            <day value="6">
+                <timeset id="13">
+                       <time hours="10" minutes="40" seconds="0"/>
+                    <time hours="13" minutes="50" seconds="0"/>
+                    <time hours="15" minutes="55" seconds="0"/>
+                    <time hours="18" minutes="58" seconds="0"/>
+                    <time hours="0" minutes="10" seconds="0"/>
+                </timeset>
+                <timeset id="14">
+                <time hours="12" minutes="40" seconds="0"/>
+                    <time hours="15" minutes="50" seconds="0"/>
+                    <time hours="17" minutes="55" seconds="0"/>
+                    <time hours="20" minutes="58" seconds="0"/>
+                    <time hours="2" minutes="10" seconds="0"/>
+                </timeset>
+            
+            </day>
+        </timetable>
+      
+    </timetables>
+</map>
+
