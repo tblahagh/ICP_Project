@@ -4,31 +4,48 @@
 #include "Models/mapmodel.h"
 #include "Models/streetmodel.h"
 #include "Models/pointmodel.h"
+#include "Models/pathmodel.h"
 #include "Models/busstopmodel.h"
 #include "Models/buslinemodel.h"
-#include "Models/timesetmodel.h"
 #include "Models/timetablemodel.h"
 #include "tinyxml/tinystr.h"
 #include "tinyxml/tinyxml.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 // class representing creator of the map
+
+using namespace std;
+
+class MapModel;
+class StreetModel;
+class PointModel;
+class BusStopModel;
+class BusLineModel;
+class TimeSetModel;
+class TimeTableModel;
+class PathModel;
+
 class MapCreator
 {
 public:
     // basic contructor
     MapCreator();
     // function parse XML file with name FILENAME and returns created map
-    MapModel CreateMap(string filename);
+    MapModel *CreateMap(string filename, MainWindow* _mainWindow);
 private:
 
     // function creates and returns points from XML
-    vector<PointModel*> CreatePoints(TiXmlNode *xml);
+    void CreatePoints(TiXmlNode *xml, MapModel* map);
     // function creates and returns streets from XML
-    vector<StreetModel*> CreateStreets(TiXmlNode* xml, const vector<PointModel*> points);
+    void CreateStreets(TiXmlNode* xml, MapModel* map);
     // function creates and returns bus stops from XML
-    vector<BusStopModel*> CreateBusStops(TiXmlNode* xml, const vector<StreetModel*> streets);
+    void CreateBusStops(TiXmlNode* xml, MapModel* map);
     // function creates and returns bus lines from XML
-    vector<BusLineModel*> CreateBusLines(TiXmlNode* xml, const vector<BusStopModel*> busStops, const vector<StreetModel*> streets);
+    void CreateBusLines(TiXmlNode* xml, MapModel* map);
     // function creates and returns time tables from XML
-    vector<TimeTableModel*> CreateTimeTables(TiXmlNode* xml, const vector<BusLineModel*> busLines);
+    void CreateTimeTables(TiXmlNode* xml, MapModel* map);
+
+
 };
 #endif // MAPCREATOR_H

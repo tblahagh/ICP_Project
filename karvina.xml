@@ -1,0 +1,378 @@
+<?xml version="1.0" ?>
+<map>
+    <points>
+        <point id="1" x="21" y="266"/>
+        <point id="2" x="17" y="192"/>
+        <point id="3" x="58" y="138"/>
+        <point id="4" x="134" y="116"/>
+        <point id="5" x="108" y="22"/>
+        <point id="6" x="0" y="57"/>
+        <point id="7" x="28" y="145"/>
+        <point id="8" x="173" y="251"/>
+        <point id="9" x="130" y="269"/>
+        <point id="10" x="60" y="318"/>
+        <point id="11" x="0" y="362"/>
+        <point id="12" x="52" y="358"/>
+        <point id="13" x="33" y="316"/>
+        <point id="14" x="264" y="79"/>
+        <point id="15" x="248" y="202"/>
+        <point id="16" x="219" y="257"/>
+        <point id="17" x="265" y="0"/>
+        <point id="18" x="334" y="0"/>
+        <point id="19" x="381" y="32"/>
+        <point id="20" x="406" y="101"/>
+        <point id="21" x="305" y="170"/>
+        <point id="22" x="300" y="104"/>
+        <point id="23" x="312" y="207"/>
+        <point id="24" x="354" y="267"/>
+        <point id="25" x="356" y="307"/>
+        <point id="26" x="267" y="310"/>
+        <point id="27" x="300" y="414"/>
+        <point id="28" x="336" y="462"/>
+        <point id="29" x="363" y="366"/>
+        <point id="30" x="511" y="529"/>
+        <point id="31" x="580" y="551"/>
+        <point id="32" x="536" y="304"/>
+        <point id="33" x="619" y="327"/>
+        <point id="34" x="603" y="254"/>
+        <point id="35" x="600" y="197"/>
+        <point id="36" x="556" y="137"/>
+        <point id="37" x="531" y="74"/>
+        <point id="38" x="493" y="48"/>
+        <point id="39" x="202" y="283"/>
+        <point id="40" x="214" y="310"/>
+        <point id="41" x="191" y="338"/>
+        <point id="42" x="212" y="400"/>
+        <point id="43" x="202" y="486"/>
+        <point id="44" x="221" y="544"/>
+        <point id="45" x="351" y="570"/>
+        <point id="46" x="152" y="283"/>
+    </points>
+    <streets>
+        <street id="1" name="Nadrazni" start="1" end="2"/>
+        <street id="2" name="Havirska" start="2" end="3"/>
+        <street id="3" name="Havirska" start="3" end="4"/>
+        <street id="4" name="tr. Osvobozeni" start="4" end="5"/>
+        <street id="5" name="U Bazantnice" start="5" end="6"/>
+        <street id="6" name="Na Vyhlidce" start="6" end="7"/>
+        <street id="7" name="Na Vyhlidce" start="3" end="7"/>
+        <street id="8" name="tr. Osvobozeni" start="4" end="8"/>
+        <street id="9" name="tr. 17. listopadu" start="8" end="9"/>
+        <street id="10" name="Ostravska" start="9" end="10"/>
+        <street id="11" name="Ostravska" start="10" end="11"/>
+        <street id="12" name="" start="10" end="12"/>
+        <street id="13" name="" start="10" end="13"/>
+        <street id="14" name="" start="12" end="13"/>
+        <street id="15" name="Nadrazni" start="1" end="13"/>
+        <street id="16" name="Havirska" start="4" end="14"/>
+        <street id="17" name="Rude armady" start="14" end="15"/>
+        <street id="18" name="Rude armady" start="15" end="16"/>
+        <street id="19" name="tr. 17. listopadu" start="8" end="16"/>
+        <street id="20" name="Rude armady" start="14" end="17"/>
+        <street id="21" name="Csl. armady" start="17" end="18"/>
+        <street id="22" name="Csl. armady" start="18" end="19"/>
+        <street id="23" name="Csl. armady" start="19" end="20"/>
+        <street id="24" name="Zizkova" start="20" end="21"/>
+        <street id="25" name="Zizkova" start="15" end="21"/>
+        <street id="26" name="Leonovova" start="21" end="22"/>
+        <street id="27" name="Leonovova" start="14" end="22"/>
+        <street id="28" name="tr. Tereskovove" start="21" end="23"/>
+        <street id="29" name="tr. Tereskovove" start="23" end="24"/>
+        <street id="30" name="tr. Tereskovove" start="24" end="25"/>
+        <street id="31" name="Borovskeho" start="25" end="26"/>
+        <street id="32" name="tr. 17. listopadu" start="16" end="26"/>
+        <street id="33" name="tr. 17. listopadu" start="26" end="27"/>
+        <street id="34" name="tr. 17. listopadu" start="27" end="28"/>
+        <street id="35" name="Kosmonautu" start="27" end="29"/>
+        <street id="36" name="Kosmonautu" start="25" end="29"/>
+        <street id="37" name="Polska" start="28" end="30"/>
+        <street id="38" name="Polska" start="30" end="31"/>
+        <street id="39" name="Borovskeho" start="25" end="32"/>
+        <street id="40" name="Borovskeho" start="32" end="33"/>
+        <street id="41" name="Mickiewiczova" start="33" end="34"/>
+        <street id="42" name="Mickiewiczova" start="34" end="35"/>
+        <street id="43" name="Mickiewiczova" start="35" end="36"/>
+        <street id="44" name="Mickiewiczova" start="36" end="37"/>
+        <street id="45" name="Mickiewiczova" start="37" end="38"/>
+        <street id="46" name="Zizkova" start="20" end="38"/>
+        <street id="47" name="Postovni" start="16" end="39"/>
+        <street id="48" name="Karola Sliwky" start="39" end="40"/> 
+        <street id="49" name="Karola Sliwky" start="40" end="41"/> 
+        <street id="50" name="Karola Sliwky" start="41" end="42"/> 
+        <street id="51" name="Lazenska" start="42" end="43"/> 
+        <street id="52" name="Lazenska" start="43" end="44"/>
+        <street id="53" name="tr. 17. listopadu" start="28" end="45"/>
+        <street id="54" name="Svatopluka Cecha" start="2" end="9"/>
+        <street id="55" name="Karola Sliwky" start="39" end="46"/>
+        <street id="56" name="Karola Sliwky" start="9" end="46"/>    
+    </streets>
+    <busstops>
+        <busstop id="1" name="Autobusove nadrazi" street="1" position="0"/>
+        <busstop id="2" name="CSAD" street="2" position="0.3"/>
+        <busstop id="3" name="Stadion hazene" street="3" position="0.7"/>
+        <busstop id="4" name="Urad prace" street="4" position="0.8"/>
+        <busstop id="5" name="U Bazantnice" street="5" position="0.6"/>
+        <busstop id="6" name="Gymnazium" street="6" position="0.7"/>
+        <busstop id="7" name="Osvobozeni" street="8" position="0.5"/>
+        <busstop id="8" name="Koupaliste" street="16" position="0.3"/>
+        <busstop id="9" name="Obchodni dum" street="19" position="0.5"/>
+        <busstop id="10" name="Pekarna" street="20" position="0.2"/>
+        <busstop id="11" name="Okruzni" street="21" position="0.6"/>
+        <busstop id="12" name="Skola" street="22" position="1"/>
+        <busstop id="13" name="Rehabilitacni sanatorium" street="23" position="0.9"/>
+        <busstop id="14" name="Poliklinika" street="24" position="0.8"/>
+        <busstop id="15" name="Kosmos" street="25" position="0.3"/>
+        <busstop id="16" name="Rest. Permon" street="27" position="0.3"/>
+        <busstop id="17" name="Urnovy haj" street="29" position="0.5"/>
+        <busstop id="18" name="Univerzita" street="32" position="0.8"/>
+        <busstop id="19" name="TESCO" street="34" position="0.7"/>
+        <busstop id="20" name="Nemocnice" street="35" position="0.2"/>
+        <busstop id="21" name="Kosmonautu" street="36" position="0.5"/>
+        <busstop id="22" name="Sidliste" street="37" position="0.1"/>
+        <busstop id="23" name="Hostinec" street="37" position="0.7"/>
+        <busstop id="24" name="Statni hranice" street="38" position="1"/>
+        <busstop id="25" name="Na kopci" street="39" position="0.3"/>
+        <busstop id="26" name="Hrbitov" street="39" position="0.7"/>
+        <busstop id="27" name="Scerba" street="40" position="1"/>
+        <busstop id="28" name="Pod lesem" street="42" position="1"/>
+        <busstop id="29" name="Rozhrani" street="44" position="0.4"/>
+        <busstop id="30" name="Tesarcik" street="45" position="0.9"/>
+        <busstop id="31" name="Postovni" street="47" position="0.5"/>
+        <busstop id="32" name="U Parku" street="48" position="1"/>
+        <busstop id="33" name="Hotel" street="51" position="0.5"/>
+        <busstop id="34" name="Lazne" street="52" position="1"/>
+    </busstops>
+    <buslines>
+        <busline id="511" name="Bus c. 511" >
+           <busstops>
+                <busstop busstopid="1" time="0"/>
+                <busstop busstopid="2" time="2"/> 
+                <busstop busstopid="3" time="1"/>   
+                <busstop busstopid="8" time="1"/>
+                <busstop busstopid="10" time="2"/>
+                <busstop busstopid="11" time="2"/>
+                <busstop busstopid="12" time="2"/>
+                <busstop busstopid="13" time="1"/>
+                <busstop busstopid="14" time="2"/>
+                <busstop busstopid="17" time="2"/>
+                <busstop busstopid="21" time="2"/>
+                <busstop busstopid="20" time="2"/>
+                <busstop busstopid="18" time="2"/>
+                <busstop busstopid="9" time="2"/>
+                <busstop busstopid="7" time="2"/>
+                <busstop busstopid="4" time="2"/>
+                <busstop busstopid="5" time="2"/>  
+                <busstop busstopid="6" time="1"/>
+           </busstops>
+            <path>
+                <street streetid="1"/>
+                <street streetid="2"/>
+                <street streetid="3"/>
+                <street streetid="16"/>
+                <street streetid="20"/>
+                <street streetid="21"/>
+                <street streetid="22"/>
+                <street streetid="23"/>
+                <street streetid="24"/>
+                <street streetid="28"/>
+                <street streetid="29"/>
+                <street streetid="30"/>
+                <street streetid="36"/>
+                <street streetid="35"/>
+                <street streetid="33"/>
+                <street streetid="32"/>
+                <street streetid="19"/>
+                <street streetid="8"/>
+                <street streetid="4"/>
+                <street streetid="5"/>
+                <street streetid="6"/>
+            </path>
+        </busline>
+        <busline id="512" name="Bus c. 512" >
+           <busstops>
+                <busstop busstopid="1" time="0"/>
+                <busstop busstopid="2" time="2"/> 
+                <busstop busstopid="6" time="1"/>
+                <busstop busstopid="5" time="2"/>  
+                <busstop busstopid="4" time="2"/>
+                <busstop busstopid="7" time="2"/>
+                <busstop busstopid="9" time="2"/>
+                <busstop busstopid="18" time="2"/>
+                <busstop busstopid="20" time="2"/>
+                <busstop busstopid="21" time="2"/>
+                <busstop busstopid="17" time="2"/>
+                <busstop busstopid="14" time="2"/>
+                <busstop busstopid="13" time="1"/>
+                <busstop busstopid="12" time="2"/>
+                <busstop busstopid="11" time="2"/>
+                <busstop busstopid="10" time="2"/>
+                <busstop busstopid="8" time="1"/>
+                <busstop busstopid="3" time="1"/>   
+           </busstops>
+            <path>
+                <street streetid="1"/>
+                <street streetid="2"/>
+                <street streetid="7"/>
+                <street streetid="6"/>
+                <street streetid="5"/>
+                <street streetid="4"/>
+                <street streetid="8"/>
+                <street streetid="19"/>
+                <street streetid="32"/>
+                <street streetid="33"/>
+                <street streetid="35"/>
+                <street streetid="36"/>
+                <street streetid="30"/>
+                <street streetid="29"/>
+                <street streetid="28"/>
+                <street streetid="24"/>
+                <street streetid="23"/>
+                <street streetid="22"/>
+                <street streetid="21"/>
+                <street streetid="20"/>
+                <street streetid="16"/>
+                <street streetid="3"/>
+                
+            </path>
+        </busline>
+    
+        <busline id="517" name="Bus c. 517" >
+           <busstops>
+                <busstop busstopid="1" time="0"/>
+                <busstop busstopid="2" time="1"/> 
+                <busstop busstopid="3" time="2"/>   
+                <busstop busstopid="8" time="1"/>
+                <busstop busstopid="10" time="1"/>
+                <busstop busstopid="11" time="2"/>
+                <busstop busstopid="12" time="2"/>
+                <busstop busstopid="13" time="2"/>
+                <busstop busstopid="14" time="1"/>
+                <busstop busstopid="15" time="1"/>
+                <busstop busstopid="31" time="2"/>
+                <busstop busstopid="32" time="2"/>
+                <busstop busstopid="33" time="1"/>
+                <busstop busstopid="34" time="2"/>  
+           </busstops>
+            <path>
+                <street streetid="1"/>
+                <street streetid="2"/>
+                <street streetid="3"/>
+                <street streetid="16"/>
+                <street streetid="20"/>
+                <street streetid="21"/>
+                <street streetid="22"/>
+                <street streetid="23"/>
+                <street streetid="24"/>
+                <street streetid="25"/>
+                <street streetid="18"/>
+                <street streetid="47"/>
+                <street streetid="48"/>
+                <street streetid="49"/>
+                <street streetid="50"/>
+                <street streetid="51"/>
+                <street streetid="52"/>
+                
+            </path>
+        </busline>
+    </buslines>
+    <timetables>
+        <timetable id="1" busline="511">
+        
+            <time hours="0" minutes="10" seconds="0"/>
+            <time hours="0" minutes="40" seconds="0"/>
+            <time hours="2" minutes="30" seconds="0"/>
+            <time hours="6" minutes="30" seconds="0"/>
+            <time hours="6" minutes="50" seconds="0"/>
+            <time hours="7" minutes="10" seconds="0"/>
+            <time hours="7" minutes="50" seconds="0"/>
+            <time hours="8" minutes="10" seconds="0"/>
+            <time hours="8" minutes="30" seconds="0"/>
+            <time hours="9" minutes="10" seconds="0"/>
+            <time hours="9" minutes="30" seconds="0"/>
+            <time hours="10" minutes="10" seconds="0"/>
+            <time hours="10" minutes="30" seconds="0"/>
+            <time hours="11" minutes="10" seconds="0"/>
+            <time hours="11" minutes="30" seconds="0"/>
+            <time hours="12" minutes="10" seconds="0"/>
+            <time hours="12" minutes="30" seconds="0"/>
+            <time hours="13" minutes="10" seconds="0"/>
+            <time hours="13" minutes="30" seconds="0"/>
+            <time hours="14" minutes="10" seconds="0"/>
+            <time hours="14" minutes="30" seconds="0"/>
+            <time hours="15" minutes="10" seconds="0"/>
+            <time hours="15" minutes="30" seconds="0"/>
+            <time hours="16" minutes="10" seconds="0"/>
+            <time hours="16" minutes="30" seconds="0"/>
+            <time hours="16" minutes="50" seconds="0"/>
+            <time hours="17" minutes="40" seconds="0"/>
+            <time hours="18" minutes="40" seconds="0"/>
+            <time hours="19" minutes="10" seconds="0"/>
+            <time hours="19" minutes="40" seconds="0"/>
+            <time hours="20" minutes="10" seconds="0"/>
+            <time hours="21" minutes="10" seconds="0"/>
+            <time hours="22" minutes="10" seconds="0"/>
+            <time hours="22" minutes="45" seconds="0"/>
+            <time hours="23" minutes="20" seconds="0"/>
+        </timetable>
+        <timetable id="2" busline="512">
+        
+            <time hours="3" minutes="00" seconds="0"/>
+            <time hours="4" minutes="00" seconds="0"/>
+            <time hours="4" minutes="30" seconds="0"/>
+            <time hours="5" minutes="00" seconds="0"/>
+            <time hours="5" minutes="30" seconds="0"/>
+            <time hours="6" minutes="30" seconds="0"/>
+            <time hours="6" minutes="50" seconds="0"/>
+            <time hours="7" minutes="25" seconds="0"/>
+            <time hours="7" minutes="50" seconds="0"/>
+            <time hours="8" minutes="10" seconds="0"/>
+            <time hours="8" minutes="50" seconds="0"/>
+            <time hours="9" minutes="10" seconds="0"/>
+            <time hours="9" minutes="50" seconds="0"/>
+            <time hours="10" minutes="10" seconds="0"/>
+            <time hours="10" minutes="50" seconds="0"/>
+            <time hours="11" minutes="10" seconds="0"/>
+            <time hours="11" minutes="50" seconds="0"/>
+            <time hours="12" minutes="10" seconds="0"/>
+            <time hours="12" minutes="50" seconds="0"/>
+            <time hours="13" minutes="05" seconds="0"/>
+            <time hours="13" minutes="25" seconds="0"/>
+            <time hours="13" minutes="50" seconds="0"/>
+            <time hours="14" minutes="50" seconds="0"/>
+            <time hours="15" minutes="50" seconds="0"/>
+            <time hours="16" minutes="10" seconds="0"/>
+            <time hours="16" minutes="50" seconds="0"/>
+            <time hours="17" minutes="10" seconds="0"/>
+            <time hours="18" minutes="35" seconds="0"/>
+            <time hours="19" minutes="35" seconds="0"/>
+            <time hours="20" minutes="20" seconds="0"/>
+            <time hours="21" minutes="35" seconds="0"/>
+            <time hours="22" minutes="35" seconds="0"/>
+        </timetable>
+        <timetable id="3" busline="517">
+        
+            <time hours="5" minutes="30" seconds="0"/>
+            <time hours="6" minutes="00" seconds="0"/>
+            <time hours="6" minutes="27" seconds="0"/>
+            <time hours="7" minutes="04" seconds="0"/>
+            <time hours="7" minutes="30" seconds="0"/>
+            <time hours="8" minutes="08" seconds="0"/>
+            <time hours="9" minutes="08" seconds="0"/>
+            <time hours="10" minutes="15" seconds="0"/>
+            <time hours="11" minutes="15" seconds="0"/>
+            <time hours="12" minutes="15" seconds="0"/>
+            <time hours="13" minutes="20" seconds="0"/>
+            <time hours="14" minutes="25" seconds="0"/>
+            <time hours="15" minutes="10" seconds="0"/>
+            <time hours="16" minutes="15" seconds="0"/>
+            <time hours="17" minutes="46" seconds="0"/>
+            <time hours="18" minutes="20" seconds="0"/>
+            <time hours="19" minutes="46" seconds="0"/>
+            <time hours="20" minutes="46" seconds="0"/>
+            
+        </timetable>      
+    </timetables>
+
+</map>
+
+

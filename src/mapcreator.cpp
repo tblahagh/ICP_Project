@@ -1,94 +1,102 @@
 #include "mapcreator.h"
 
+//********************************************************************************
+// konstruktory, destruktory
+//--------------------------------------------------------------------------------
 
-#include <fstream>
-#include <iostream>
-#include <string>
-using namespace std;
-// class representing creator of the map
+//-------------------------------------------------------------
+// konstruktor
 MapCreator::MapCreator()
 {
 
 }
 
+//********************************************************************************
+// výpočetní metody
+//--------------------------------------------------------------------------------
 
-vector<PointModel*> MapCreator::CreatePoints(TiXmlNode *xml)
+//-----------------------------------------------------------------
+// vytvoří seznam bodů
+void MapCreator::CreatePoints(TiXmlNode *xml, MapModel* map)
 {
-    vector<PointModel*> points;
     TiXmlNode* xmlPoint = nullptr;
     while ((xmlPoint = xml->IterateChildren(xmlPoint)) != nullptr)
     {
-        points.push_back(new PointModel(xmlPoint->ToElement()));
+        map->addPoint(new PointModel(xmlPoint->ToElement()));
     }
-    return points;
 }
-vector<StreetModel*> MapCreator::CreateStreets(TiXmlNode* xml, const vector<PointModel*> points)
+
+//-----------------------------------------------------------------
+// vytvoří seznam ulic
+void MapCreator::CreateStreets(TiXmlNode* xml, MapModel* map)
 {
-    vector<StreetModel*> streets;
     TiXmlNode *xmlStreet = nullptr;
     while ((xmlStreet = xml->IterateChildren(xmlStreet)) != nullptr)
     {
-       StreetModel* street = new StreetModel(xmlStreet->ToElement(), points);
-       streets.push_back(street);
+       StreetModel* street = new StreetModel(xmlStreet->ToElement(), map->getPoints());
+       map->addStreet(street);
     }
-    return streets;
 }
 
-
-vector<BusStopModel*> MapCreator::CreateBusStops(TiXmlNode* xml, const vector<StreetModel*> streets)
+//---------------------------------------------------------------
+// vytvoří seznam zastávek
+void MapCreator::CreateBusStops(TiXmlNode* xml, MapModel* map)
 {
-    vector<BusStopModel*> busStops;
     TiXmlNode* xmlBusStop = nullptr;
     while ((xmlBusStop = xml->IterateChildren(xmlBusStop)) != nullptr)
     {
         TiXmlElement* xmlBusStopElement = xmlBusStop->ToElement();
-        BusStopModel* busStop = new BusStopModel(xmlBusStopElement, streets);
-        busStops.push_back(busStop);
+        BusStopModel* busStop = new BusStopModel(xmlBusStopElement, map->getStreets());
+        map->addBusStop(busStop);
     }
-    return busStops;
 }
-vector<BusLineModel*> MapCreator::CreateBusLines(TiXmlNode* xml, const vector<BusStopModel*> busStops, const vector<StreetModel*> streets)
+
+//--------------------------------------------------------------
+// vytvoří seznam autobusových linek
+void MapCreator::CreateBusLines(TiXmlNode* xml, MapModel* map)
 {
-    vector<BusLineModel*> busLines;
     TiXmlNode *xmlBusLine = nullptr;
     while ((xmlBusLine = xml->IterateChildren(xmlBusLine)) != nullptr)
     {  
-        BusLineModel* busLine = new BusLineModel(xmlBusLine->ToElement(), busStops, streets);
-        busLines.push_back(busLine);
+        BusLineModel* busLine = new BusLineModel(xmlBusLine->ToElement(), map->getBusStops(), map->getStreets());
+        map->addBusLine(busLine);
     }
-    return busLines;
+
 }
 
-vector<TimeTableModel*> MapCreator::CreateTimeTables(TiXmlNode* xml, const vector<BusLineModel*> busLines)
+
+//----------------------------------------------------------------
+// vytvoří seznam jízdních řádů
+void MapCreator::CreateTimeTables(TiXmlNode* xml, MapModel* map)
 {
-    vector<TimeTableModel*> timeTables ={};
     TiXmlNode* xmlTimeTable = nullptr;
     while ((xmlTimeTable = xml->IterateChildren(xmlTimeTable)) != nullptr)
     {
-        TimeTableModel* timeTable = new TimeTableModel(xmlTimeTable->ToElement(), busLines);
-        timeTables.push_back(timeTable);
+        TimeTableModel* timeTable = new TimeTableModel(xmlTimeTable->ToElement(), map->getBusLines());
+        map->addTimeTable(timeTable);
     }
-    return timeTables;
+
 }
-MapModel MapCreator::CreateMap(string filename)
+
+//-------------------------------------------------------------------
+// vytvoří mapu
+MapModel *MapCreator::CreateMap(string filename, MainWindow* _mainWindow)
 {
+    if(_mainWindow == NULL) throw new QString("Nepodařilo se vytvořit mapu");
     TiXmlDocument document(filename.c_str());
-    MapModel map = MapModel();
+    MapModel *map = new MapModel(_mainWindow);
     bool load = document.LoadFile();
- //   TiXmlNode * child = nullptr;
     if (load == true)
     {
         TiXmlElement* xmlMap = document.RootElement();
-        if (xmlMap->QueryIntAttribute("width", &map.width) != TIXML_SUCCESS)
-            cerr << "Could not resolve width" << endl;
-        if (xmlMap->QueryIntAttribute("height", &map.height) != TIXML_SUCCESS)
-            cerr << "Could not resolve height" << endl;
-        map.Points = CreatePoints(xmlMap->FirstChild("points"));
-        map.Streets = CreateStreets(xmlMap->FirstChild("streets"), map.Points);
-        map.BusStops = CreateBusStops(xmlMap->FirstChild("busstops"), map.Streets);
-        map.BusLines = CreateBusLines(xmlMap->FirstChild("buslines"), map.BusStops, map.Streets);
-        map.TimeTables = CreateTimeTables(xmlMap->FirstChild("timetables"), map.BusLines);
+        CreatePoints(xmlMap->FirstChild("points"), map);
+        CreateStreets(xmlMap->FirstChild("streets"), map);
+        CreateBusStops(xmlMap->FirstChild("busstops"), map);
+        CreateBusLines(xmlMap->FirstChild("buslines"), map);
+        CreateTimeTables(xmlMap->FirstChild("timetables"), map);
+
     }
+    else throw new QString("Nepodařilo se načíst soubor.");
     return map;
 
 }

@@ -1,6 +1,7 @@
 #ifndef TIMELIB_H
 #define TIMELIB_H
 #include <time.h>
+#include <QString>
 // simple library for working with time
 
 // converts TIME to seconds
@@ -14,4 +15,9 @@ int CompareTime(tm time1, tm time2);
 tm SubtractTime(tm time1, tm time2);
 // returns present time
 tm TimeNow();
+bool IsTimeBetween(tm time1, tm time2, tm time);
+
+void IsCorrectTime(tm time);
+
+QString timeNumberToStr(int i);
 #endif // TIMELIB_H

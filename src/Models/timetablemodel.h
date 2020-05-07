@@ -2,7 +2,6 @@
 #define TIMETABLEMODEL_H
 
 #include "basemodel.h"
-#include "timesetmodel.h"
 #include "buslinemodel.h"
 #include "busmodel.h"
 #include <vector>
@@ -11,16 +10,19 @@ using namespace std;
 class TimeTableModel : public BaseModel
 {
 public:
-    // vector of time sets of this time table
-    vector<vector<TimeSetModel*>> TimeSets;
-    // pointer to bus line, which is related to time table
-    BusLineModel* BusLine;
+
     // basic contructor
-    TimeTableModel(unsigned int id = 0, BusLineModel* busLine = nullptr, vector<vector<TimeSetModel*>> timeSets = {});
+    TimeTableModel(unsigned int id = 0, BusLineModel* busLine = nullptr, vector<tm> startTimes = {});
     // constructor for creating object from xml
     TimeTableModel(TiXmlElement* xml, vector<BusLineModel*> busLines);
     // destructor
     ~TimeTableModel();
+
+    vector<tm> getStartTimes();
+    BusLineModel* getBusLine();
+
+    void isCorrect();
+/*
     // returns all active buses of this time table
     vector<BusModel> GetActiveBuses();
     // returns bus stop from BusLine with indexed by INDEX
@@ -30,11 +32,15 @@ public:
     // returns all todays time sets
     vector<TimeSetModel*> GetTodayTimeSets();
     // returns all todays active time sets
-    vector<TimeSetModel*> GetTodayActualTimeSets();
+    vector<TimeSetModel*> GetTodayActualTimeSets();*/
     // debug function for printing models content on stdout
     virtual void Print(int indent) override;
 
-
+private:
+    // vector of time sets of this time table
+    vector<tm> StartTimes;
+    // pointer to bus line, which is related to time table
+    BusLineModel* BusLine;
 };
 
 #endif // TIMETABLEMODEL_H

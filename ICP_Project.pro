@@ -20,12 +20,23 @@ SOURCES += \
     src/Models/buslinemodel.cpp \
     src/Models/busmodel.cpp \
     src/Models/busstopmodel.cpp \
+    src/Models/clockmodel.cpp \
     src/Models/mapmodel.cpp \
+    src/Models/pathmodel.cpp \
     src/Models/pointmodel.cpp \
     src/Models/streetmodel.cpp \
-    src/Models/timesetmodel.cpp \
     src/Models/timetablemodel.cpp \
     src/TimeLib.cpp \
+    src/Views/busdetailview.cpp \
+    src/Views/busstopdetailview.cpp \
+    src/Views/busstopview.cpp \
+    src/Views/busview.cpp \
+    src/Views/clockdetailview.cpp \
+    src/Views/clockview.cpp \
+    src/Views/detourdetailview.cpp \
+    src/Views/mapview.cpp \
+    src/Views/streetdetailview.cpp \
+    src/Views/streetview.cpp \
     src/main.cpp \
     src/mainwindow.cpp \
     src/mapcreator.cpp \
@@ -39,12 +50,23 @@ HEADERS += \
     src/Models/buslinemodel.h \
     src/Models/busmodel.h \
     src/Models/busstopmodel.h \
+    src/Models/clockmodel.h \
     src/Models/mapmodel.h \
+    src/Models/pathmodel.h \
     src/Models/pointmodel.h \
     src/Models/streetmodel.h \
-    src/Models/timesetmodel.h \
     src/Models/timetablemodel.h \
     src/TimeLib.h \
+    src/Views/busdetailview.h \
+    src/Views/busstopdetailview.h \
+    src/Views/busstopview.h \
+    src/Views/busview.h \
+    src/Views/clockdetailview.h \
+    src/Views/clockview.h \
+    src/Views/detourdetailview.h \
+    src/Views/mapview.h \
+    src/Views/streetdetailview.h \
+    src/Views/streetview.h \
     src/mainwindow.h \
     src/mapcreator.h \
     src/tinyxml/tinystr.h \

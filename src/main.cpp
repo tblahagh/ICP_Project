@@ -1,14 +1,14 @@
 #include "mainwindow.h"
 #include "src/mapcreator.h"
 #include "src/Models/mapmodel.h"
+#include "src/Views/streetview.h"
 #include <QApplication>
 
 int main(int argc, char *argv[])
 {
-    MapCreator creator = MapCreator();
-    MapModel map = creator.CreateMap("file.xml");
-    QApplication a(argc, argv);
+    QApplication app(argc, argv);
     MainWindow w;
     w.show();
-    return a.exec();
+    return app.exec();
+
 }

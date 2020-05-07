@@ -1,18 +1,18 @@
 <?xml version="1.0" ?>
 <map width="500" height="400">
     <points>
-        <point id="1" x="20" y="20"/>
-        <point id="2" x="30" y="20"/>
-        <point id="3" x="40" y="20"/>
-        <point id="4" x="50" y="20"/>
-        <point id="5" x="20" y="30"/>
-        <point id="6" x="30" y="30"/>
-        <point id="7" x="40" y="30"/>
-        <point id="8" x="50" y="30"/>
-        <point id="9" x="20"  y="40"/>
-        <point id="10" x="30" y="40"/>
-        <point id="11" x="40" y="40"/>
-        <point id="12" x="50" y="40"/>
+        <point id="1" x="0" y="0"/>
+        <point id="2" x="10" y="0"/>
+        <point id="3" x="20" y="0"/>
+        <point id="4" x="30" y="0"/>
+        <point id="5" x="0" y="10"/>
+        <point id="6" x="10" y="10"/>
+        <point id="7" x="20" y="10"/>
+        <point id="8" x="30" y="10"/>
+        <point id="9" x="0"  y="20"/>
+        <point id="10" x="10" y="20"/>
+        <point id="11" x="20" y="20"/>
+        <point id="12" x="30" y="20"/>
     </points>
     <streets>
         <street id="1" name="St. no 1" start="1" end="2"/>
@@ -37,18 +37,18 @@
         <street id="20" name="St. no 20" start="5" end="2"/>
     </streets>
     <busstops>
-        <busstop id="1" street="1" position="0.5"/>
-        <busstop id="2" street="2" position="0.5"/>
-        <busstop id="3" street="3" position="0.5"/>
-        <busstop id="4" street="6" position="0.5"/>
-        <busstop id="5" street="9" position="0.5"/>
-        <busstop id="6" street="10" position="0.5"/>
-        <busstop id="7" street="12" position="0.5"/>
-        <busstop id="8" street="15" position="0.5"/>
-        <busstop id="9" street="16" position="0.5"/>
-        <busstop id="10" street="17" position="0.5"/>
-        <busstop id="11" street="19" position="0.5"/>
-        <busstop id="12" street="20" position="0.5"/>
+        <busstop id="1" name="Stop no 1" street="1" position="0.5"/>
+        <busstop id="2" name="Stop no 2" street="2" position="0.5"/>
+        <busstop id="3" name="Stop no 3" street="3" position="0.5"/>
+        <busstop id="4" name="Stop no 4" street="6" position="0.5"/>
+        <busstop id="5" name="Stop no 5" street="9" position="0.5"/>
+        <busstop id="6" name="Stop no 6" street="10" position="0.5"/>
+        <busstop id="7" name="Stop no 7" street="12" position="0.5"/>
+        <busstop id="8" name="Stop no 8" street="15" position="0.5"/>
+        <busstop id="9" name="Stop no 9" street="16" position="0.5"/>
+        <busstop id="10" name="Stop no 10" street="17" position="0.5"/>
+        <busstop id="11" name="Stop no 11" street="19" position="0.5"/>
+        <busstop id="12" name="Stop no 12" street="20" position="0.5"/>
     </busstops>
     <buslines>
         <busline id="1" name="Bus no. 1" >
@@ -196,11 +196,11 @@
             </day>
             <day value="6">
                 <timeset id="13">
-                       <time hours="10" minutes="40" seconds="0"/>
-                    <time hours="13" minutes="50" seconds="0"/>
-                    <time hours="15" minutes="55" seconds="0"/>
-                    <time hours="18" minutes="58" seconds="0"/>
-                    <time hours="0" minutes="10" seconds="0"/>
+                       <time hours="19" minutes="05" seconds="0"/>
+                    <time hours="19" minutes="11" seconds="0"/>
+                    <time hours="19" minutes="26" seconds="0"/>
+                    <time hours="19" minutes="28" seconds="0"/>
+                    <time hours="19" minutes="30" seconds="0"/>
                 </timeset>
                 <timeset id="14">
                 <time hours="12" minutes="40" seconds="0"/>
