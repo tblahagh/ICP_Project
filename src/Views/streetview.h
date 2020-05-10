@@ -62,11 +62,11 @@ private:
     /**
      * Indikátor jestli je otevřený detail ulice
      */
-    boolean opened = false;
+    bool opened = false;
     /**
      * Indikátor jestli je ulice vybraná
      */
-    boolean selected = false;
+    bool selected = false;
 };
 
 #endif // STREETVIEW_H

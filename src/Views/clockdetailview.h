@@ -13,7 +13,7 @@
 #include <QPushButton>
 #include <QHBoxLayout>
 #include <QSizePolicy>
-#include <windows.h>
+
 
 
 using namespace std;

@@ -54,7 +54,7 @@ private:
     /**
      * Indikátor jestli je otevřený detail zastávky
      */
-    boolean opened = false;
+    bool opened = false;
 };
 
 #endif // BUSSTOPVIEW_H
