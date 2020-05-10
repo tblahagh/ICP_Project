@@ -10,7 +10,7 @@
 #include <QHBoxLayout>
 #include <QWidget>
 #include <QSizePolicy>
-#include <windows.h>
+
 
 #include "src/Views/mapview.h"
 #include "src/Views/clockview.h"
