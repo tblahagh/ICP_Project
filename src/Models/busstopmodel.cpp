@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// vytvoří zastávku podle parametrů
+// Základní konstruktor
 BusStopModel::BusStopModel(unsigned int id, QString name, double position, StreetModel* street) : BaseModel(id)
 {
     this->street = street;
@@ -17,7 +17,7 @@ BusStopModel::BusStopModel(unsigned int id, QString name, double position, Stree
 }
 
 //----------------------------------------------------------------
-// vytvoří zastávku podle souboru xml
+// Konstruktor pro vytvoření modelu z XML uzlu
 BusStopModel::BusStopModel(TiXmlElement* xml, vector<StreetModel*> streets) : BaseModel(xml)
 {
     unsigned int streetId = 0;
@@ -35,14 +35,14 @@ BusStopModel::BusStopModel(TiXmlElement* xml, vector<StreetModel*> streets) : Ba
 }
 
 //-----------------------------------------------------------------
-// destruktor
+// Destruktor
 BusStopModel::~BusStopModel()
 {
     delete position;
 }
 
 //----------------------------------------------------------------
-// tisk
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void BusStopModel::Print(int indent)
 {
     PrintIndent(indent);
@@ -60,25 +60,25 @@ void BusStopModel::Print(int indent)
 //-----------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-// vrátí název zastávky
+// Funkce vrací název zastávky
 QString BusStopModel::getName(){
     return this->name;
 }
 
 //--------------------------------------------------------------------
-// vrátí ulici, na které se zastávka nachází
+// Funkce vrací ulici kde se zastávka nachází
 StreetModel* BusStopModel::getStreet(){
     return this->street;
 }
 
 //-------------------------------------------------------------------
-// vrátí pozici, na které se zastávka nachází
+// Funkce vrací bod, kde se zastávka nachází
 PointModel* BusStopModel::getPosition(){
     return this->position;
 }
 
 //-------------------------------------------------------------------
-// vrátí pozici, na které se zastávka nachází
+// Funkce vrací hodnotu, jak daleko se zastávka nachází od počátečního bodu
 double BusStopModel::getPositionOnStreet(){
     return this->positionOnStreet;
 }
@@ -88,7 +88,7 @@ double BusStopModel::getPositionOnStreet(){
 //----------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------
-// vypočítá pozici na mapě
+// Funkce vrací hodnotu, jak daleko se zastávka nachází od počátečního bodu
 void BusStopModel::CalculatePosition(double position){
     if(position < 0 || position > 1) throw new QString("Zastávka musí ležet na ulici");
 
@@ -98,13 +98,13 @@ void BusStopModel::CalculatePosition(double position){
 }
 
 //--------------------------------------------------------------------
-// vypočítá vzdálenost od počátku ulice
+// Funkce vrací vzdálenost mezi zástávkou a počátečním bodem ulice
 double BusStopModel::DistanceFromStart(){
     return this->position->GetDistanceFrom(street->getStartPosition());
 }
 
 //--------------------------------------------------------------------
-// vrátí vzdálenost od konce ulice
+// Funkce vrací vzdálenost mezi zástávkou a koncovým bodem ulice
 double BusStopModel::DistanceFromEnd(){
     return this->position->GetDistanceFrom(street->getEndPosition());
 }
@@ -114,7 +114,7 @@ double BusStopModel::DistanceFromEnd(){
 //----------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-// zkontroluje, jsou vstupní hodnoty korektní
+// Metoda vyhodí výjimku, pokud je zastávka špatně inicializována
 void BusStopModel::isCorrect(){
 
     if(this->name == NULL) this->name = "";

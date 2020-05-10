@@ -17,62 +17,129 @@ using namespace std;
 class MainWindow;
 class MapModel;
 class BusView;
-
+/**
+ * Pohled celé mapy
+ */
 class MapView : public QWidget
 {
     Q_OBJECT
 
 public:
-    // konstruktor
-    MapView(MapModel *_mapModel, MainWindow* _mainWindow, QWidget *parent = nullptr);
-    // destruktor
+    /**
+     * Základní kontruktor
+     * @param _mainWindow Okno aplikace
+     * @param parent Rodič pohledu
+     */
+    MapView(MainWindow* _mainWindow, QWidget *parent = nullptr);
+    /**
+     * Destruktor
+     */
     ~MapView();
-    // vykreslení mapy
+    /**
+     * Metoda vykreslí mapu
+     * @param event
+     */
     void paintEvent(QPaintEvent *event);
-    // vrátí model mapy
+    /**
+     * Funkce vrací model mapy
+     * @return Ukazatel na model mapy
+     */
     MapModel* getMapModel();
-    // vrátí zoom
+    /**
+     * Funkce vrací zoom mapy
+     * @return Hodnota zoomu mapy
+     */
     double getZoom();
-    // vrátí offset
+    /**
+     * Funkce vrací offset mapy
+     * @return Hodnota offsetu mapy
+     */
     double getOffset();
-    // vrátí mod
+    /**
+     * Funkce vrací mód mapy
+     * @return Hodnota módu mapy
+     */
     int getMode();
-    // nastavení modu
+    /**
+     * Metoda nastaví mód mapy
+     * @param _mode Nový mód
+     */
     void setMode(int _mode);
-    // vrati pohled ulice podle modelu
+    /**
+     * Funkce vrací pohled ulice
+     * @param model Model ulice, jehož pohled chceme
+     * @return Ukazatel na pohled ulice
+     */
     StreetView* getStreetByModel(StreetModel* model);
+    /**
+     * Metoda vybere všechny ulice z trasy
+     * @param path trasa, jejíž ulice se mají vybrat
+     */
     void selectPath(PathModel* path);
+    /**
+     * Metoda vytvoří autobusy
+     */
     void loadBuses();
+    /**
+     * Metoda zavře všechny otevřené detaily ulic
+     */
     void closeStreets();
-
+    /**
+     * Metoda inicializuje pohled na novou mapu
+     * @param map Nová mapa
+     */
+    void selectMap(MapModel* map);
 
 public slots:
-    // zvýšit zoom
+    /**
+     * Metodá zvýší zoom
+     */
     void increaseZoom();
-    // snížit zoom
+    /**
+     * Metoda sníží zoom
+     */
     void decreaseZoom();
 
 
 protected:
-    // kliknutí na mapu
+    /**
+     * Metoda, která se provede při kliknutí na mapu
+     * @param event
+     */
     void mousePressEvent(QMouseEvent *event);
 
 private:
-    // hlavni okno
+    /**
+     * Okno aplikace
+     */
     MainWindow *mainWindow;
-    // model mapy
+    /**
+     * Model mapy
+     */
     MapModel* mapModel;
-    // pohledy ulic
+    /**
+     * Pohledy ulic
+     */
     vector<StreetView*> streets;
-    // pohledy zastavek
+    /**
+     * Pohledy zastávek
+     */
     vector<BusStopView*> busStops;
-    // pohledy autobusu
+    /**
+     * Pohledy autobusů
+     */
     vector<BusView*> buses;
-    // zoom
+    /**
+     * Zoom
+     */
     double zoom = 1;
-    //offset
+    /**
+     * Offset
+     */
     double offset = 10;
-    // mod zobrazeni - 0-default, 1-path
+    /**
+     * Mód
+     */
     int mode = 0;
 };
 

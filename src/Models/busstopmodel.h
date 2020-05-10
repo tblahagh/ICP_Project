@@ -4,44 +4,105 @@
 #include "src/Models/basemodel.h"
 #include "src/tinyxml/tinystr.h"
 #include "src/tinyxml/tinyxml.h"
-// class representing bus stop
 using namespace std;
-
+/**
+ * Třída reprezentující autobusovou zástávku
+ */
 class BusStopModel : public BaseModel
 {
 public:
 
-    // basic constructor
-    BusStopModel(unsigned int id = 0, QString name = "", double Position = 0, StreetModel* Street = nullptr);
-    // constructor for creating object from xml
+    /**
+     * Základní konstruktor
+     * @param id Identifikátor modelu
+     * @param name Jméno zastávky
+     * @param position Pozice, jak daleko od počátečního bodu ulice se zastávka nachází
+     * @param street Ukazatel na model ulice, kde se zastávka nachází
+     */
+    BusStopModel(unsigned int id = 0, QString name = "", double position = 0, StreetModel* street = nullptr);
+
+    /**
+     * Konstruktor pro vytvoření modelu z XML uzlu
+     * @param xml XML uzel, ze kterého se model vytvoří
+     * @param streets Pole s ukazateli na ulice, ze kterého se vybere ulice, kde se zastávka nachází
+     */
     BusStopModel(TiXmlElement* xml, vector<StreetModel*> streets);
-    // destructor
+
+    /**
+    * Destruktor
+    */
     ~BusStopModel();
 
+    /**
+     * Funkce vrací ulici kde se zastávka nachází
+     * @return Hodnota vlastnosti street
+     */
     StreetModel* getStreet();
+
+    /**
+     * Funkce vrací bod, kde se zastávka nachází
+     * @return Hodnota vlastnosti position
+     */
     PointModel* getPosition();
+    /**
+     * Funkce vrací hodnotu, jak daleko se zastávka nachází od počátečního bodu
+     * @return Hodnota vlastnosti positionOnStreet
+     */
     double getPositionOnStreet();
+
+    /**
+     * Funkce vrací název zastávky
+     * @return Hodnota vlastnosti name
+     */
     QString getName();
 
+    /**
+     * Metoda vyhodí výjimku, pokud je zastávka špatně inicializována
+     */
     void isCorrect();
-    // debug function for printing models content on stdout
+
+    /**
+     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @param počet tabulátorů před výpisem
+     */
     virtual void Print(int indent) override;
-    // returns lenght between bus stop and street's start point
+
+    /**
+     * Funkce vrací vzdálenost mezi zástávkou a počátečním bodem ulice
+     * @return Číslo značící vzdálenost mezi zastávkou a počátečním bodem ulice
+     */
     double DistanceFromStart();
-    // returns lenght between bus stop and street's end point
+
+    /**
+     * Funkce vrací vzdálenost mezi zástávkou a koncovým bodem ulice
+     * @return Číslo značící vzdálenost mezi zastávkou a koncovým bodem ulice
+     */
     double DistanceFromEnd();
 private:
-    // calculates the Position property,
-    // POSITION is number in range from 0 to 1 marking how far from start point bus stop id
+
+    /**
+     * Funkce vrací hodnotu, jak daleko se zastávka nachází od počátečního bodu
+     * @param position vzdálenost od počátečního bodu, kde 0 znamená, že bod se nachází přesně na na začátku ulice a 1, že se nachází na konci ulice
+     */
     void CalculatePosition(double position);
 
-    // pointer to street where bus stop is
+    /**
+     * Ulice, kde se zastávka nachází
+     */
     StreetModel* street;
-    // exact position
+    /**
+     * Bod, kde se zastávka nachází
+     */
     PointModel* position;
-
+    /**
+     * Procentuální vzdálenost od počátečního bodu
+     * 0 - Zastávka leží na počátečním bodu
+     * 1 - Zastávka leží na koncovém bodu
+     */
     double positionOnStreet = 0;
-    // name
+    /**
+     * Jméno zastávky
+     */
     QString name;
 
 };

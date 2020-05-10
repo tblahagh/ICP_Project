@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------
-// vytvoření ulice podle zadaných parametrů
+// Základní konstruktor
 StreetModel::StreetModel(unsigned int id, QString name, PointModel* start, PointModel* end) : BaseModel(id)
 {
     this->Name = name;
@@ -16,7 +16,7 @@ StreetModel::StreetModel(unsigned int id, QString name, PointModel* start, Point
 }
 
 //-------------------------------------------------------------------------
-// vytvoření ulice ze souboru xml
+// Konstruktor pro vytvoření modelu z XML uzlu
 StreetModel::StreetModel(TiXmlElement* xml, vector<PointModel*> points) : BaseModel(xml)
 {
     this->Name = xml->Attribute("name");
@@ -32,13 +32,14 @@ StreetModel::StreetModel(TiXmlElement* xml, vector<PointModel*> points) : BaseMo
 
     isCorrect();
 }
-
+//-------------------------------------------------------------------------------
+// Destruktor
 StreetModel::~StreetModel(){
     if(detour != NULL) delete detour;
 }
 
 //-------------------------------------------------------------------------------
-// tisk ulice
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void StreetModel::Print(int indent)
 {
     PrintIndent(indent);
@@ -56,31 +57,31 @@ void StreetModel::Print(int indent)
 //-----------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// vrací počáteční bod
+// Vrací počáteční bod
 PointModel* StreetModel::getStartPosition(){
     return this->StartPosition;
 }
 
 //-------------------------------------------------------------------------------
-// vrací koncový bod
+// Vrací koncový bod
 PointModel* StreetModel::getEndPosition(){
     return this->EndPosition;
 }
 
 //----------------------------------------------------------------------------
-// vrací jméno ulice
+// Vrací jméno ulice
 QString StreetModel::getName(){
     return this->Name;
 }
 
 //-------------------------------------------------------------------------
-// vrátí hustotu provozu
+// Funkce vrací hustotu provozu na ulici
 int StreetModel::GetTraffic(){
     return this->traffic;
 }
 
 //---------------------------------------------------------------------------
-// nastaví hustotu provozu
+// Metoda nastaví hustotu provozu na ulici
 void StreetModel::SetTraffic(int _traffic){
     if(_traffic < 0 || _traffic > 3) throw new QString("Špatná hodnota hustoty provozu");
     if(_traffic != 0 && traffic == 0){
@@ -99,7 +100,7 @@ int StreetModel::GetDelay(){
 }
 
 //-----------------------------------------------------------------------------
-// nastaví zpoždění
+// Funkce vrací hodnotu zpoždění při jízdě odbočkou
 void StreetModel::SetDelay(int _delay){
     if(_delay < 0) throw new QString("Zpoždění nemůže být záporné");
 
@@ -107,13 +108,13 @@ void StreetModel::SetDelay(int _delay){
 }
 
 //-----------------------------------------------------------------------------
-// vrátí trasu objížďky
+// Funkce vrací trasu odbočky, pokud je ulice uzavřená
 PathModel* StreetModel::GetDetour(){
     return this->detour;
 }
 
 //------------------------------------------------------------------------------
-// nastaví trasu objížďky
+// Metoda nastaví trasu odbočky, pokud je ulice uzavřená
 void StreetModel::SetDetour(PathModel *_detour){
 
     // pokud byla zadána prázdná objížďka
@@ -154,7 +155,7 @@ void StreetModel::SetDetour(PathModel *_detour){
 //--------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------
-// vrací bod, kterým je ulice propojena s jinou ulicí
+// Funkce vrací bod, kterým je ulice propojena s jinou ulicí
 PointModel* StreetModel::IsConnectedBy(StreetModel *street)
 {
     if (street == nullptr) throw new QString("Nebyla vybrána žádná ulice.");
@@ -169,7 +170,8 @@ PointModel* StreetModel::IsConnectedBy(StreetModel *street)
 }
 
 //-----------------------------------------------------------------------------
-// vrátí opačný bod
+// Funkce vrací opačný bod k bodu point, tedy pokud je point počáteční bod, vrací koncový a naopak,
+// pokud point není počáteční ani koncový, vrací nullptr
 PointModel* StreetModel::GetOppositePoint(PointModel *point)
 {
     if(point == NULL) throw new QString("Nebyl vybrán žádný bod");
@@ -182,7 +184,7 @@ PointModel* StreetModel::GetOppositePoint(PointModel *point)
 }
 
 //-----------------------------------------------------------------------------
-// vrátí délku ulice
+// Funkce vypočítá délku ulice neboli vzdálenost mezi počátečním a koncovým bodem
 double StreetModel::GetLength()
 {
     return StartPosition->GetDistanceFrom(EndPosition);
@@ -204,7 +206,7 @@ void StreetModel::isCorrect(){
 }
 
 //-----------------------------------------------------------------------------
-// vrátí true, pokud jeden z koncových bodů je zadaný bod
+// Funkce kontroluje jestli bod point je buď počáteční nebo koncový bod
 bool StreetModel::ContainsEndPoint(PointModel *point){
 
     if(point == NULL) throw new QString("Nebyl vybrán žádný bod.");
@@ -215,7 +217,7 @@ bool StreetModel::ContainsEndPoint(PointModel *point){
 }
 
 //-----------------------------------------------------------------------------
-// vrátí true, pokud bod lezi na ulici
+// Funkce kontroluje jestli bod point leží na ulici s určitou tolerancí
 bool StreetModel::ContainsPoint(PointModel *point, double tolerance){
 
     if(point == NULL) throw new QString("Nebyl vybrán žádný bod.");

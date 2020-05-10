@@ -2,11 +2,11 @@
 #include "src/TimeLib.h"
 
 //**************************************************************************
-// konstruktory, destruktory a tisk
+// konstruktory, destruktory
 //--------------------------------------------------------------------------
 
 // ---------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 BusDetailView::BusDetailView(BusView* _busView, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent)
 {
     if(_busView == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se vytvořit detail autobusu");
@@ -21,13 +21,14 @@ BusDetailView::BusDetailView(BusView* _busView, MainWindow* _mainWindow, QWidget
 }
 
 //------------------------------------------------------------------
-// destruktor
+// Destruktor
 BusDetailView::~BusDetailView(){
     if(layout != NULL) delete layout;
     this->busView->close();
     this->mainWindow->mapUpdate();
 }
-
+//------------------------------------------------------------------
+// Funkce vrací pohled autobusu, jehož se detail týká
 BusView* BusDetailView::getBusView(){
     return this->busView;
 }
@@ -37,7 +38,7 @@ BusView* BusDetailView::getBusView(){
 //--------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------
-// vykreslení
+// Metoda vykreslí detail do widgetu
 void BusDetailView::paint(QWidget *widget){
 
     if(widget == NULL) throw new QString("Nepodařilo se vykreslit detail autobusu");
@@ -95,7 +96,7 @@ void BusDetailView::paint(QWidget *widget){
 //------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------
-// kliknutí na tlačítko zavřít
+// Metoda zavření detailu
 void BusDetailView::btnCloseClicked(){
 
     try{

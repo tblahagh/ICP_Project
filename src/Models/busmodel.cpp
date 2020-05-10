@@ -6,7 +6,7 @@
 //---------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 BusModel::BusModel(unsigned int id, tm _startTime, BusLineModel* _busLine, ClockModel* _clockModel) : BaseModel(id)
 {
     if(_busLine == NULL || _clockModel == NULL) throw new QString("Nebyla vybrána žádná autobusová linka");
@@ -44,7 +44,7 @@ BusModel::BusModel(unsigned int id, tm _startTime, BusLineModel* _busLine, Clock
 }
 
 //------------------------------------------------------------------------
-// tisk
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void BusModel::Print(int indent)
 {
     cout << "Bus: " << id << endl;
@@ -63,31 +63,31 @@ void BusModel::Print(int indent)
 
 
 //-------------------------------------------------------------------------------
-// vrátí autobusovou linku
+// Funkce vrací autobusovou linku, po které autobus jede
 BusLineModel* BusModel::getBusLine(){
     return this->busLine;
 }
 
 //------------------------------------------------------------------------------
-// vrátí zda je otevřený detail
+// Funkce vrací jestli je otevřen detail autobusu
 bool BusModel::getOpenedDetail(){
     return this->openedDetail;
 }
 
 //------------------------------------------------------------------------------
-// nastaví otevřený detail (true/false)
+// Funkce vrací jestli je otevřen detail autobusu
 void BusModel::setOpenedDetail(bool op){
     this->openedDetail = op;
 }
 
 //-----------------------------------------------------------------------------
-// vrátí startovací čas
+// Funkce vrací startovní čas jízdy autobusu
 tm BusModel::getStartTime(){
     return this->startTime;
 }
 
 //----------------------------------------------------------------------------
-// vrátí index příští zastávky
+// Funkce vrací index další zastávky
 int BusModel::getNextStopIndex(){
     return this->indexOfNextStop;
 }
@@ -98,7 +98,7 @@ int BusModel::getNextStopIndex(){
 
 
 //-----------------------------------------------------------------------------
-// aktualizuje pozici
+// Funkce aktualizuje pozici autobusu
 bool BusModel::actualizePosition(){
 
     if(qdebug) cout << "-----------------------------------------------------" << endl;
@@ -252,7 +252,7 @@ bool BusModel::actualizePosition(){
 }
 
 //--------------------------------------------------------------------------------
-// posune autobus na další ulici
+// Funkce posune autobus na další ulici
 bool BusModel::goToNextStreet(){
 
     // pokud se jedna o posledni ulici na trase
@@ -365,7 +365,7 @@ bool BusModel::goToNextStreet(){
 }
 
 //------------------------------------------------------------------------
-// posune autobus na další zastávku
+// Metoda posune autobus na zastávku
 void BusModel::goToNextStop(){
 
     // vypocitame vzdalenost mezi aktualni a nasledujici zastavkou
@@ -392,7 +392,7 @@ void BusModel::goToNextStop(){
 }
 
 //---------------------------------------------------------------------------
-// vrátí aktuální pozici na mapě
+// Funkce vrací bod, kde se autobus současně nachází
 PointModel BusModel::CurrentPosition()
 {
     double x = actualPaths.back()->getStreets()[indexOfActualStreetOnPath.back()]->getStartPosition()->getX();

@@ -5,7 +5,7 @@
 //-------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
-// konstruktor - spuštění timeoutu
+// Základní konstruktor
 ClockView::ClockView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent)
 {
     if(_clockModel == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se vytvořit hodiny");
@@ -23,7 +23,7 @@ ClockView::ClockView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// kliknutí hodin
+// Tiknutí hodin
 void ClockView::ticked()
 {
     try{

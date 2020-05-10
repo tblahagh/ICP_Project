@@ -5,7 +5,7 @@
 //--------------------------------------------------------------------------------
 
 //-------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 MapCreator::MapCreator()
 {
 
@@ -16,7 +16,7 @@ MapCreator::MapCreator()
 //--------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// vytvoří seznam bodů
+// Metoda vytvoří modely bodů z XML uzlu a vloží je do mapy
 void MapCreator::CreatePoints(TiXmlNode *xml, MapModel* map)
 {
     TiXmlNode* xmlPoint = nullptr;
@@ -27,7 +27,7 @@ void MapCreator::CreatePoints(TiXmlNode *xml, MapModel* map)
 }
 
 //-----------------------------------------------------------------
-// vytvoří seznam ulic
+// Metoda vytvoří modely ulic z XML uzlu a vloží je do mapy
 void MapCreator::CreateStreets(TiXmlNode* xml, MapModel* map)
 {
     TiXmlNode *xmlStreet = nullptr;
@@ -39,7 +39,7 @@ void MapCreator::CreateStreets(TiXmlNode* xml, MapModel* map)
 }
 
 //---------------------------------------------------------------
-// vytvoří seznam zastávek
+// Metoda vytvoří modely zastávek z XML uzlu a vloží je do mapy
 void MapCreator::CreateBusStops(TiXmlNode* xml, MapModel* map)
 {
     TiXmlNode* xmlBusStop = nullptr;
@@ -52,7 +52,7 @@ void MapCreator::CreateBusStops(TiXmlNode* xml, MapModel* map)
 }
 
 //--------------------------------------------------------------
-// vytvoří seznam autobusových linek
+// Metoda vytvoří modely autobusových linek z XML uzlu a vloží je do mapy
 void MapCreator::CreateBusLines(TiXmlNode* xml, MapModel* map)
 {
     TiXmlNode *xmlBusLine = nullptr;
@@ -66,7 +66,7 @@ void MapCreator::CreateBusLines(TiXmlNode* xml, MapModel* map)
 
 
 //----------------------------------------------------------------
-// vytvoří seznam jízdních řádů
+// Metoda vytvoří modely jízdních řádů z XML uzlu a vloží je do mapy
 void MapCreator::CreateTimeTables(TiXmlNode* xml, MapModel* map)
 {
     TiXmlNode* xmlTimeTable = nullptr;
@@ -89,6 +89,17 @@ MapModel *MapCreator::CreateMap(string filename, MainWindow* _mainWindow)
     if (load == true)
     {
         TiXmlElement* xmlMap = document.RootElement();
+        int width = 0, height = 0;
+        const char* title = xmlMap->Attribute("title");
+        if (title == nullptr)
+            throw new QString("Chybí vlastnost title");
+        if ((xmlMap->QueryIntAttribute("width", &width)) != TIXML_SUCCESS)
+            throw new QString("Chybí vlastnost width");
+        if ((xmlMap->QueryIntAttribute("height", &height)) != TIXML_SUCCESS)
+            throw new QString("Chybí vlastnost height");
+        map->setTitle(title);
+        map->setWidth(width);
+        map->setHeight(height);
         CreatePoints(xmlMap->FirstChild("points"), map);
         CreateStreets(xmlMap->FirstChild("streets"), map);
         CreateBusStops(xmlMap->FirstChild("busstops"), map);

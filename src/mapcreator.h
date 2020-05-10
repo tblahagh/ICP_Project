@@ -25,25 +25,55 @@ class BusLineModel;
 class TimeSetModel;
 class TimeTableModel;
 class PathModel;
-
+/**
+ * Třída vytvářející model mapy z XML souboru
+ */
 class MapCreator
 {
 public:
-    // basic contructor
+    /**
+     * Základní konstruktor
+     */
     MapCreator();
-    // function parse XML file with name FILENAME and returns created map
+
+    /**
+     * Funkce vytvoří model mapy z XML, vyhodí výjimku pokud nastane chyba při čtení souboru
+     * @param filename Jméno souboru s XML
+     * @param _mainWindow Okno aplikace
+     * @return Ukazatel na vytvořenou mapu
+     */
     MapModel *CreateMap(string filename, MainWindow* _mainWindow);
 private:
 
-    // function creates and returns points from XML
+    /**
+     * Metoda vytvoří modely bodů z XML uzlu a vloží je do mapy
+     * @param xml XML uzel, ze kterého se body vytvářejí
+     * @param map Mapa do které se body přidají
+     */
     void CreatePoints(TiXmlNode *xml, MapModel* map);
-    // function creates and returns streets from XML
+    /**
+     * Metoda vytvoří modely ulic z XML uzlu a vloží je do mapy
+     * @param xml XML uzel, ze kterého se ulice vytvářejí
+     * @param map Mapa do které se ulice přidají
+     */
     void CreateStreets(TiXmlNode* xml, MapModel* map);
-    // function creates and returns bus stops from XML
+    /**
+     * Metoda vytvoří modely zastávek z XML uzlu a vloží je do mapy
+     * @param xml XML uzel, ze kterého se zastávky vytvářejí
+     * @param map Mapa do které se zastávky přidají
+     */
     void CreateBusStops(TiXmlNode* xml, MapModel* map);
-    // function creates and returns bus lines from XML
+    /**
+     * Metoda vytvoří modely autobusových linek z XML uzlu a vloží je do mapy
+     * @param xml XML uzel, ze kterého se linky vytvářejí
+     * @param map Mapa do které se linky přidají
+     */
     void CreateBusLines(TiXmlNode* xml, MapModel* map);
-    // function creates and returns time tables from XML
+    /**
+     * Metoda vytvoří modely jízdních řádů z XML uzlu a vloží je do mapy
+     * @param xml XML uzel, ze kterého se řády vytvářejí
+     * @param map Mapa do které se řády přidají
+     */
     void CreateTimeTables(TiXmlNode* xml, MapModel* map);
 
 

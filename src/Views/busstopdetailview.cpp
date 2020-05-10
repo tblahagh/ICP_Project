@@ -1,11 +1,11 @@
 #include "busstopdetailview.h"
 
 //**************************************************************************
-// konstruktory, destruktory a tisk
+// konstruktory, destruktory
 //--------------------------------------------------------------------------
 
 // ---------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 BusStopDetailView::BusStopDetailView(BusStopView* _busStopView, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent)
 {
     if(_busStopView == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se vytvořit detail zastávky");
@@ -19,7 +19,7 @@ BusStopDetailView::BusStopDetailView(BusStopView* _busStopView, MainWindow* _mai
 }
 
 //------------------------------------------------------------------
-// destruktor
+// Destruktor
 BusStopDetailView::~BusStopDetailView(){
     if(layout != NULL) delete layout;
     this->busStopView->close();
@@ -31,7 +31,7 @@ BusStopDetailView::~BusStopDetailView(){
 //--------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------
-// vykreslení
+// Metoda vykreslí detail do widgetu
 void BusStopDetailView::paint(QWidget *widget){
 
     if(widget == NULL) throw new QString("Nepodařilo se vykreslit detail zastávky");
@@ -58,7 +58,7 @@ void BusStopDetailView::paint(QWidget *widget){
 //------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------
-// kliknutí na tlačítko zavřít
+// Metoda zavření detailu
 void BusStopDetailView::btnCloseClicked(){
 
     try{

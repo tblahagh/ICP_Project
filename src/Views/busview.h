@@ -10,24 +10,44 @@
 using namespace std;
 
 class BusModel;
-
+/**
+ * Pohled autobusu vykreslující se do mapy
+ */
 class BusView : public QWidget
 {
 public:
-    // konstruktor
+    /**
+     * Základní konstruktor
+     * @param _busModel Autobus, které se pohled týká
+     * @param parent Rodič pohledu
+     */
     BusView(BusModel* _busModel, QWidget *parent = nullptr);
-    // vykreslení autobusu
+    /**
+     * Metoda vykreslí autobus
+     * @param painter Plátno pro vykreslování
+     * @param zoom Zvětšení mapy, které je třeba zohlednit
+     * @param offset Offset od hrany mapy
+     */
     void paint(QPainter *painter, double zoom, double offset);
-    // vrátí model autobusu
+    /**
+     * Funkce vrací model autobusu, které se pohled týká
+     * @return Ukazatel na model autobusu
+     */
     BusModel* getBusModel();
 
-    // vykreslí autobus s otevřeným detailem
+    /**
+     * Metoda nastaví autobus jako otevřený
+     */
     void open();
-    // vykreslí autobus se zavřeným detailem
+    /**
+     * Metoda nastaví autobus jako uzavřený
+     */
     void close();
 
 private:
-    // model autobusu
+    /**
+     * Model autobusu
+     */
     BusModel* busModel;
 };
 

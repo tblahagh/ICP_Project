@@ -5,28 +5,20 @@
 //---------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------
-// konstruktor
-MapView::MapView(MapModel *_mapModel, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent) {
+// Základní kontruktor
+MapView::MapView(MainWindow* _mainWindow, QWidget *parent) : QWidget(parent) {
 
-    if(_mapModel == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se načíst mapu");
-    this->mapModel = _mapModel;
+    if( _mainWindow == NULL) throw new QString("Nepodařilo se načíst mapu");
+
     this->mainWindow = _mainWindow;
 
 
-    for(StreetModel *model : mapModel->getStreets()){
-        StreetView *view = new StreetView(model);
-        streets.push_back(view);
-    }
 
-    for(BusStopModel *model : mapModel->getBusStops()){
-        BusStopView *view = new BusStopView(model);
-        busStops.push_back(view);
-    }
 
 }
 
 //---------------------------------------------------------------------
-// destruktor
+// Destruktor
 MapView::~MapView(){
 
 
@@ -50,31 +42,31 @@ MapView::~MapView(){
 //-------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------
-// vrátí model mapy
+// Funkce vrací model mapy
 MapModel* MapView::getMapModel(){
     return this->mapModel;
 }
 
 //----------------------------------------------------------------------
-// vrátí zoom
+// Funkce vrací zoom mapy
 double MapView::getZoom(){
     return this->zoom;
 }
 
 //------------------------------------------------------------------------
-// vrátí offset
+// Funkce vrací offset mapy
 double MapView::getOffset(){
     return this->offset;
 }
 
 //---------------------------------------------------------------------
-// vrátí mod
+// Funkce vrací mód mapy
 int MapView::getMode(){
     return this->mode;
 }
 
 //---------------------------------------------------------------------
-// zvýší zoom o jedna
+// Metodá zvýší zoom
 void MapView::increaseZoom(){
     if(zoom == 20) return;
 
@@ -83,7 +75,7 @@ void MapView::increaseZoom(){
 }
 
 //--------------------------------------------------------------------
-// sníží zoom o jedna
+// Metoda sníží zoom
 void MapView::decreaseZoom(){
     if(zoom == 0.1) return;
 
@@ -92,7 +84,7 @@ void MapView::decreaseZoom(){
 }
 
 //--------------------------------------------------------------------
-// nastaví mod
+// Metoda nastaví mód mapy
 void MapView::setMode(int _mode){
     if(_mode < 0 || _mode > 1) throw new QString("Nepovolena hodnota modu mapy");
 
@@ -106,7 +98,7 @@ void MapView::setMode(int _mode){
 }
 
 //---------------------------------------------------------------------
-// vytvoří se autobusy
+// Metoda vytvoří autobusy
 void MapView::loadBuses(){
     buses.clear();
     for(BusModel *model : mapModel->getBuses()){
@@ -121,34 +113,33 @@ void MapView::loadBuses(){
 //-------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------
-// vykresleni mapy
+// Metoda vykreslí mapu
 void MapView::paintEvent(QPaintEvent*){
 
-    QPainter painter(this);
-    painter.setRenderHint(QPainter::Antialiasing);
+    if (mapModel != nullptr)
+    {
 
-
-    try {
-        for(StreetView *view : streets){
-            view->paint(&painter, this->zoom, this->offset, this->mode);
-        }
-
-        if(mode == 0){
-
-            for(BusStopView *view : busStops){
-                view->paint(&painter, this->zoom, this->offset);
+        QPainter painter(this);
+        painter.setRenderHint(QPainter::Antialiasing);
+        try {
+            for(StreetView *view : streets){
+                view->paint(&painter, this->zoom, this->offset, this->mode);
             }
 
-            for(BusView *view : buses){
-                view->paint(&painter, this->zoom, this->offset);
+            if(mode == 0){
+
+                for(BusStopView *view : busStops){
+                    view->paint(&painter, this->zoom, this->offset);
+                }
+
+                for(BusView *view : buses){
+                    view->paint(&painter, this->zoom, this->offset);
+                }
+
             }
-
         }
-
-
+        catch(const QString *exc){ mainWindow->showException(exc); }
     }
-    catch(const QString *exc){ mainWindow->showException(exc); }
-
 }
 
 
@@ -157,7 +148,7 @@ void MapView::paintEvent(QPaintEvent*){
 //------------------------------------------------------------------------------
 
 //--------------------------------------------------------------
-// kliknutí na mapu
+// Metoda, která se provede při kliknutí na mapu
 void MapView::mousePressEvent(QMouseEvent *event){
 
     double x = (event->x()-offset)/zoom;
@@ -216,7 +207,7 @@ void MapView::mousePressEvent(QMouseEvent *event){
 //-------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------
-// vrátí pohled ulice podle modelu
+// Funkce vrací pohled ulice
 StreetView* MapView::getStreetByModel(StreetModel* model){
 
     if(model == NULL) throw new QString("Nebyl vybrán žádný model ulice");
@@ -230,7 +221,7 @@ StreetView* MapView::getStreetByModel(StreetModel* model){
 }
 
 //------------------------------------------------------------------------
-// vybere všechny ulice z trasy
+// Metoda vybere všechny ulice z trasy
 void MapView::selectPath(PathModel* path){
 
     for(StreetModel* model: path->getStreets()){
@@ -240,9 +231,25 @@ void MapView::selectPath(PathModel* path){
 }
 
 //-----------------------------------------------------------------------
-// zavře všechny otevřené detaily ulic
+// Metoda zavře všechny otevřené detaily ulic
 void MapView::closeStreets(){
     for(StreetView *street: streets){
         street->close();
+    }
+}
+//-----------------------------------------------------------------------
+// Metoda inicializuje pohled na novou mapu
+void MapView::selectMap(MapModel *map) {
+    if (map == nullptr)
+        throw new QString("Nepodařilo se načíst mapu");
+    this->mapModel = map;
+    for(StreetModel *model : mapModel->getStreets()){
+        StreetView *view = new StreetView(model);
+        streets.push_back(view);
+    }
+
+    for(BusStopModel *model : mapModel->getBusStops()){
+        BusStopView *view = new BusStopView(model);
+        busStops.push_back(view);
     }
 }

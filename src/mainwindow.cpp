@@ -5,10 +5,11 @@
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// konstruktor - vykreslení okna
+// Konstruktor, provede inicializaci všech komponent okna
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 {
-
+    mapSelected = false;
+    creator = new MapCreator();
     resize(920,540);
     setWindowTitle("ICP Projekt");
 
@@ -29,12 +30,22 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     vbox = new QVBoxLayout();
     w->setLayout(vbox);
 
+
+    QWidget *mapSelectWidget = new QWidget();
+    QWidget *zoomWidget = new QWidget();
+    QHBoxLayout *hbox = new QHBoxLayout(), *mapSelectHBox = new QHBoxLayout(), *zoomHBox = new QHBoxLayout();
+
+    mapSelectWidget->setLayout(mapSelectHBox);
+    zoomHBox->setAlignment(Qt::AlignLeft);
+    zoomWidget->setLayout(zoomHBox);
+    vbox->addWidget(mapSelectWidget);
+    vbox->addWidget(zoomWidget);
     // hbox pro hodiny a zoom
     QWidget *w2 = new QWidget();
     vbox->addWidget(w2);
 
-    QHBoxLayout *hbox = new QHBoxLayout();
     w2->setLayout(hbox);
+
 
     // scroll area pro mapu
     scroll = new QScrollArea();
@@ -45,14 +56,10 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
 
     // načtení a zobrazení mapy
     try{
-        creator = new MapCreator();
-        mapModel = creator->CreateMap("C:/Qt/projects/icp-project/ICP_Project/karvina.xml", this);
-
-        mapView = new MapView(mapModel, this);
+        mapView = new MapView(this);
 
         scrollWidget = new QWidget();
         scrollWidget->setContentsMargins(0,0,0,0);
-        scrollWidget->setMinimumSize(mapModel->getWidth()*mapView->getZoom()+2*mapView->getOffset()+20,mapModel->getHeight()*mapView->getZoom()+2*mapView->getOffset()+20);
 
         QVBoxLayout *vb = new QVBoxLayout;
         scrollWidget->setLayout(vb);
@@ -65,11 +72,26 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     catch(const QString *exc){
         showException(exc);
     }
+    try {
+        btnMapFileSelect = new QPushButton("Vybrat mapu", this);
+        btnMapFileSelect->setFixedWidth(100);
 
+        connect(btnMapFileSelect, SIGNAL(clicked()), this, SLOT(openFileDialog()));
+                mapSelectHBox->addWidget(btnMapFileSelect);
+
+        labelMapFile = new QLabel(this);
+        labelMapFile->setText("Nevybráno");
+        labelMapFile->setFont(QFont("Arial", 10, QFont::Bold));
+
+        mapSelectHBox->addWidget(labelMapFile);
+    }
+    catch(const QString *exc){
+        showException(exc);
+    }
     // načtení a zobrazení hodin
     try{
         clockModel = new ClockModel();
-        clockInitialized();
+
 
         clockView = new ClockView(clockModel, this);
 
@@ -88,12 +110,16 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     }
 
     // zobrazení tlačítek pro zoom
+    labelZoom = new QLabel();
+    labelZoom->setText("Zoom: ");
+   // labelZoom->setFixedWidth(80);
     btnZoomPlus = new QPushButton(tr("+"));
     btnZoomMinus = new QPushButton(tr("-"));
     btnZoomPlus->setFixedSize(25, 25);
     btnZoomMinus->setFixedSize(25, 25);
-    hbox->addWidget(btnZoomPlus);
-    hbox->addWidget(btnZoomMinus);
+    zoomHBox->addWidget(labelZoom);
+    zoomHBox->addWidget(btnZoomPlus);
+    zoomHBox->addWidget(btnZoomMinus);
 
     connect(btnZoomPlus, SIGNAL(clicked()), this, SLOT(increaseMapZoom()));
     connect(btnZoomMinus, SIGNAL(clicked()), this, SLOT(decreaseMapZoom()));
@@ -112,14 +138,14 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent)
     // widget pro hlašení chyb
     exceptionLabel = new QLabel();
     exceptionLabel->setStyleSheet("color: red;");
-    exceptionLabel->setFixedWidth(300);
+ //   exceptionLabel->setFixedWidth(300);
     vbox->addWidget(exceptionLabel);
 
 
 }
 
 //---------------------------------------------------------------------------
-// destruktor
+// Destruktor
 MainWindow::~MainWindow()
 {
         if (central != NULL) { delete central; }
@@ -138,25 +164,31 @@ MainWindow::~MainWindow()
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// znovu načte zobrazení mapy
+// Metoda aktualizuje pohled mapy
 void MainWindow::mapUpdate(){
     mapView->update();
 }
 
 //--------------------------------------------------------------------------------
-// zvýší zoom
+// Metoda zvýší zoom mapy
 void MainWindow::increaseMapZoom(){
-    mapView->increaseZoom();
-    mapView->update();
-    scrollWidget->setMinimumSize(mapModel->getWidth()*mapView->getZoom()+2*mapView->getOffset()+20,mapModel->getHeight()*mapView->getZoom()+2*mapView->getOffset()+20);
+    if (mapSelected != false)
+    {
+        mapView->increaseZoom();
+        mapView->update();
+        scrollWidget->setMinimumSize(mapModel->getWidth()*mapView->getZoom()+2*mapView->getOffset()+20,mapModel->getHeight()*mapView->getZoom()+2*mapView->getOffset()+20);
+    }
 }
 
 //--------------------------------------------------------------------------------
-// sníží zoom
+// Metoda sníží zoom mapy
 void MainWindow::decreaseMapZoom(){
-    mapView->decreaseZoom();
-    mapView->update();
-    scrollWidget->setMinimumSize(mapModel->getWidth()*mapView->getZoom()+2*mapView->getOffset()+20,mapModel->getHeight()*mapView->getZoom()+2*mapView->getOffset()+20);
+    if (mapSelected != false)
+    {
+        mapView->decreaseZoom();
+        mapView->update();
+        scrollWidget->setMinimumSize(mapModel->getWidth()*mapView->getZoom()+2*mapView->getOffset()+20,mapModel->getHeight()*mapView->getZoom()+2*mapView->getOffset()+20);
+    }
 }
 
 //********************************************************************************
@@ -164,23 +196,29 @@ void MainWindow::decreaseMapZoom(){
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// zobrazí nový čas na hodinách po tiknutí
+// Metoda zobrazí nový čas na hodinách po tiknutí
 void MainWindow::clockTicked(){
     labelClock->setText(clockModel->getString());
-    mapModel->actualizeBuses(clockModel);
-    mapView->loadBuses();
-    mapUpdate();
+    if (mapSelected == true)
+    {
+        mapModel->actualizeBuses(clockModel);
+        mapView->loadBuses();
+        mapUpdate();
+    }
+
 
     if(busDetailView != NULL) updateDetail();
 }
 
 //-------------------------------------------------------------------------------
-// provede akce po inicializaci hodin
+// Metoda provede akce po inicializaci hodin
 void MainWindow::clockInitialized(){
-    mapModel->loadBuses(clockModel);
-    mapView->loadBuses();
-    mapUpdate();
-
+    if (mapSelected == true)
+    {
+        mapModel->loadBuses(clockModel);
+        mapView->loadBuses();
+        mapUpdate();
+    }
     if(busDetailView != NULL) closeDetail();
 }
 
@@ -190,7 +228,7 @@ void MainWindow::clockInitialized(){
 //--------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------
-// otevře detail hodin
+// Metoda otevře detail hodin
 void MainWindow::openClockDetail(){
 
     try{
@@ -204,7 +242,31 @@ void MainWindow::openClockDetail(){
 }
 
 //--------------------------------------------------------------------------------
-// otevře detail ulice
+// Metoda otevře průzkumník souborů pro výběr mapy
+void MainWindow::openFileDialog(){
+    QString fileName = QFileDialog::getOpenFileName(this, "Vybrat mapu", "", "XML files (*.xml)");
+    if (fileName != "")
+    {
+        try {
+            mapModel = creator->CreateMap(fileName.toUtf8().constData(), this);
+            scrollWidget->setMinimumSize(mapModel->getWidth()*mapView->getZoom()+2*mapView->getOffset()+20,mapModel->getHeight()*mapView->getZoom()+2*mapView->getOffset()+20);
+            mapView->selectMap(mapModel);
+            labelMapFile->setText("Mapa: " + mapModel->getTitle());
+            mapSelected = true;
+            closeDetail();
+            mapModel->loadBuses(clockModel);
+            mapView->loadBuses();
+            mapUpdate();
+        }
+        catch(const QString *exc){
+            showException(exc);
+        }
+
+    }
+
+}
+//--------------------------------------------------------------------------------
+// Metoda otevře detail ulice
 void MainWindow::openStreetDetail(StreetView *street){
 
     try{
@@ -218,7 +280,7 @@ void MainWindow::openStreetDetail(StreetView *street){
 }
 
 //---------------------------------------------------------------------------------
-// otevře detail objížďky
+// Metoda otevře detail objížďky
 void MainWindow::openDetourDetail(StreetView *street){
 
     try{
@@ -238,7 +300,7 @@ void MainWindow::openDetourDetail(StreetView *street){
 }
 
 //---------------------------------------------------------------------------------
-// vybere ulici pro objizdku
+// Metoda vloží ulici do vytvářené objíždky
 void MainWindow::selectStreetOnDetour(StreetView *street){
 
     if(street == NULL) throw new QString("Nebyla vybrána žádná ulice");
@@ -253,7 +315,7 @@ void MainWindow::selectStreetOnDetour(StreetView *street){
 }
 
 //------------------------------------------------------------------------------
-// zruší všechny vybrané ulice u detailu objížďky
+// Metoda odstraní všechny ulice z vytvářené objíždky
 void MainWindow::deselectStreetsOnDetour(){
 
     if(detourDetailView == NULL) throw new QString("Není otevřený detail objížďky");
@@ -270,7 +332,7 @@ void MainWindow::deselectStreetsOnDetour(){
 }
 
 //--------------------------------------------------------------------------------
-// otevře detail zastávky
+// Metoda otevře detail autobusové zastávky
 void MainWindow::openBusStopDetail(BusStopView *busStop){
 
     try{
@@ -284,7 +346,7 @@ void MainWindow::openBusStopDetail(BusStopView *busStop){
 }
 
 //--------------------------------------------------------------------------------
-// otevře detail autobusu
+// Metoda otevře detail autobusu
 void MainWindow::openBusDetail(BusView *bus){
 
     try{
@@ -302,7 +364,7 @@ void MainWindow::openBusDetail(BusView *bus){
 }
 
 //-----------------------------------------------------------------------------------
-// znovu načte zobrazení detailu
+// Metoda aktualizuje všechny detaily
 void MainWindow::updateDetail(){
     clearWidget();
 
@@ -334,7 +396,7 @@ void MainWindow::updateDetail(){
 }
 
 //------------------------------------------------------------------------------
-// zavře detaily
+// Metoda zavře všechny detaily
 void MainWindow::closeDetail(){
 
     if(clockDetailView != NULL){
@@ -371,13 +433,13 @@ void MainWindow::closeDetail(){
 }
 
 //----------------------------------------------------------------------------
-// zavře detail konkrétního autobusu
+// Metoda zavře detail autobusu
 void MainWindow::closeBusDetail(BusModel* bus){
     if(busDetailView != NULL && busDetailView->getBusView()->getBusModel() == bus) closeDetail();
 }
 
 //--------------------------------------------------------------------------------
-// vyčistí plochu detailu
+// Metoda vyčistí plochu detailu
 void MainWindow::clearWidget(){
     qDeleteAll(widget->findChildren<QWidget*>("", Qt::FindDirectChildrenOnly));
 }
@@ -387,8 +449,8 @@ void MainWindow::clearWidget(){
 //--------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------------
-// zobrazi chybove hlaseni
+// Metoda zobrazí chybové hlášení
 void MainWindow::showException(const QString *text){
-    exceptionLabel->setText(text->at(0));
+    exceptionLabel->setText(*text);
 }
 

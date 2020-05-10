@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------
-// konstruktor
+// Základní konstruktor, který nastaví hodiny na aktuální čas
 ClockModel::ClockModel(){
 
     time_t Time = time(NULL);
@@ -14,13 +14,8 @@ ClockModel::ClockModel(){
     initialize(tm->tm_hour, tm->tm_min, tm->tm_sec);
 
 }
-
-//*******************************************************************************
-// metody get, set, add
-//-------------------------------------------------------------------------------
-
 //---------------------------------------------------------------
-// inicializace podle zadaného času
+// Metoda inicializuje hodiny na zadaný čas
 void ClockModel::initialize(int _hour, int _minute, int _second)
 {
     if(_hour < 0 || _hour > 23) throw new QString("Hodina musí být v intervalu 0 - 23");
@@ -31,9 +26,14 @@ void ClockModel::initialize(int _hour, int _minute, int _second)
     this->minute = _minute;
     this->second = _second;
 }
+//*******************************************************************************
+// metody get, set, add
+//-------------------------------------------------------------------------------
+
+
 
 //------------------------------------------------------------------
-// nastavení rychlosti
+// Metoda nastaví rychlost hodin
 void ClockModel::setSpeed(int _speed){
     if(_speed < 0 || _speed > 50) throw new QString("Rychlost musí být v intervalu 0 - 50.");
 
@@ -41,32 +41,32 @@ void ClockModel::setSpeed(int _speed){
 }
 
 //-----------------------------------------------------------------
-// vrátí rychlost
+// Funkce vrací rychlost hodin
 int ClockModel::getSpeed(){
     return speed;
 }
 
 
 //--------------------------------------------------------------------
-// vrátí hodinu
+// Funkce vrací počet hodin
 int ClockModel::getHour(){
     return hour;
 }
 
 //------------------------------------------------------------------
-// vrátí minutu
+// Funkce vrací počet sekund
 int ClockModel::getMinute(){
     return minute;
 }
 
 //-------------------------------------------------------------------
-// vrátí sekundu
+// Funkce vrací počet sekund
 int ClockModel::getSecond(){
     return second;
 }
 
 //------------------------------------------------------------------
-// vrátí textovou hodnotu hodin
+// Funkce převede hodiny na text
 QString ClockModel::getString(){
     QString string = QString(13);
 
@@ -85,7 +85,7 @@ QString ClockModel::getString(){
 }
 
 //-------------------------------------------------------------------
-// vrátí sekundu
+// Funkce vrátí čas převedený na typ tm
 tm ClockModel::getTime(){
     tm time;
     time.tm_hour = this->hour;

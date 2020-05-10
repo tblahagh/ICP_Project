@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------
-// vytvoří bod podle parametrů
+// Základní konstruktor pro vytvoření bodu
 PointModel::PointModel(unsigned int id, double x, double y) : BaseModel(id)
 {
     this->X = x;
@@ -13,7 +13,7 @@ PointModel::PointModel(unsigned int id, double x, double y) : BaseModel(id)
 }
 
 //----------------------------------------------------------------------------
-// vytvoří bod ze souboru xml
+// Konstruktor pro vytvoření modelu bodu z XML uzlu
 PointModel::PointModel(TiXmlElement* xml) : BaseModel(xml)
 {
     if (xml->QueryDoubleAttribute("x", &X) != TIXML_SUCCESS)
@@ -23,7 +23,7 @@ PointModel::PointModel(TiXmlElement* xml) : BaseModel(xml)
 }
 
 //----------------------------------------------------------------------------
-// tisk bodu
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void PointModel::Print(int indent)
 {
     PrintIndent(indent);
@@ -35,13 +35,13 @@ void PointModel::Print(int indent)
 //----------------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-// vrátí souřadnici x
+// Vrací souřadnici X
 double PointModel::getX(){
     return X;
 }
 
 //---------------------------------------------------------------------
-// vrátí souřadnici y
+// Vrací souřadnici Y
 double PointModel::getY(){
     return Y;
 }
@@ -51,7 +51,7 @@ double PointModel::getY(){
 //------------------------------------------------------------------------
 
 //----------------------------------------------------------------------
-// vrátí vzdálenost od jiného bodu
+// Funkce vypočte vzdálenost bodu od jiného
 double PointModel::GetDistanceFrom(PointModel *point)
 {
     if(point == NULL) throw new QString("Nebyl vybrán žádný bod");

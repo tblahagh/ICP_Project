@@ -6,16 +6,16 @@
 //---------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------------
-// konstruktor
+// Základní kostruktor
 MapModel::MapModel(MainWindow* _mainWindow){
 
     if(_mainWindow == NULL) throw new QString("Nepodařilo se vytvořit mapu");
-
+    Buses = vector<BusModel*>();
     this->mainWindow = _mainWindow;
 }
 
 //---------------------------------------------------------------------------------------
-// destruktor
+// Destruktor
 MapModel::~MapModel()
 {
     for (BusModel* bus : Buses)
@@ -33,7 +33,7 @@ MapModel::~MapModel()
 }
 
 //--------------------------------------------------------------------------------------
-// tisk modelu
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void MapModel::Print()
 {
     cout << "Width: " << this->width << endl << "Height: " << this->height << endl;
@@ -75,57 +75,75 @@ void MapModel::Print()
 //******************************************************************************
 // metody set, get, add
 //------------------------------------------------------------------------------
-
+// Metoda nastaví šířku mapy
+void MapModel::setWidth(double width){
+    this->width = width;
+}
+//------------------------------------------------------------------------------
+// Metoda nastaví výšku mapy
+void MapModel::setHeight(double height){
+    this->height = height;
+}
+//------------------------------------------------------------------------------
+// Metoda nastaví název mapy
+void MapModel::setTitle(QString title){
+    this->title = title;
+}
+//------------------------------------------------------------------------------
+// Funkce vrací název mapy
+QString MapModel::getTitle() {
+    return this->title;
+}
 //----------------------------------------------------------------------
-// vrátí šířku mapy
+// Funkce vrací šířku mapy
 double MapModel::getWidth(){
     return this->width;
 }
 
 //----------------------------------------------------------------------
-// vrátí výšku mapy
+// Funkce vrací výšky mapy
 double MapModel::getHeight(){
     return this->height;
 }
 
 //-----------------------------------------------------------------------
-// vrátí seznam bodů
+// Funkce vrací body, kterými jsou na mapě ulice propojeny
 vector<PointModel*> MapModel::getPoints(){
     return this->Points;
 }
 
 //-----------------------------------------------------------------------
-// vrátí seznam ulic
+// Funkce vrací ulice, ze kterých se mapa skládá
 vector<StreetModel*> MapModel::getStreets(){
     return this->Streets;
 }
 
 //-----------------------------------------------------------------------
-// vrátí seznam zastávek
+// Funkce vrací autobusové zastávky na mapě
 vector<BusStopModel*> MapModel::getBusStops(){
     return this->BusStops;
 }
 
 //-----------------------------------------------------------------------
-// vrátí seznam linek
+// Funkce vrací autobusové linky, které jsou vytvořeny ze zastávek
 vector<BusLineModel*> MapModel::getBusLines(){
     return this->BusLines;
 }
 
 //-----------------------------------------------------------------------
-// vrátí seznam jízdních řádů
+// Funkce vrací jízdní řády, kterými se řídí autobusové linky
 vector<TimeTableModel*> MapModel::getTimeTables(){
     return this->TimeTables;
 }
 
 //-----------------------------------------------------------------------
-// vrátí seznam autobusů
+// Funkce vrací autobusy, které jsou současně na trase
 vector<BusModel*> MapModel::getBuses(){
     return this->Buses;
 }
 
 //-----------------------------------------------------------------------
-// přidá bod do seznamu
+// Metoda přidá bod do mapy
 void MapModel::addPoint(PointModel* point){
 
     if(point == NULL) throw new QString("Nebyl vybrán žádný bod.");
@@ -139,7 +157,7 @@ void MapModel::addPoint(PointModel* point){
 }
 
 //-----------------------------------------------------------------------
-// přidá ulici do seznamu
+// Metoda přidá ulici do mapy
 void MapModel::addStreet(StreetModel* street){
 
     if(street == NULL) throw new QString("Nebyla vybrána žádná ulice.");
@@ -150,7 +168,7 @@ void MapModel::addStreet(StreetModel* street){
 }
 
 //-----------------------------------------------------------------------
-// přidá zastávku do seznamu
+// Metoda přidá autobusovou zastávku do mapy
 void MapModel::addBusStop(BusStopModel *busStop){
 
     if(busStop == NULL) throw new QString("Nebyla vybrána žádná zastávka.");
@@ -161,7 +179,7 @@ void MapModel::addBusStop(BusStopModel *busStop){
 }
 
 //-----------------------------------------------------------------------
-// přidá linku do seznamu
+// Metoda přidá autobusovou linku do mapy
 void MapModel::addBusLine(BusLineModel *busLine){
 
     if(busLine == NULL) throw new QString("Nebyla vybrána žádná linka.");
@@ -172,7 +190,7 @@ void MapModel::addBusLine(BusLineModel *busLine){
 }
 
 //-----------------------------------------------------------------------
-// přidá jízdní řád do seznamu
+// Metoda přidá nový jízdní řád do mapy
 void MapModel::addTimeTable(TimeTableModel *timeTable){
 
     if(timeTable == NULL) throw new QString("Nebyl vybrán žádný jízdní řád.");
@@ -187,7 +205,7 @@ void MapModel::addTimeTable(TimeTableModel *timeTable){
 //-------------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------
-// vrátí ulici, která obsahuje daný bod
+// Funkce vrací ulici podle bodu
 StreetModel* MapModel::getStreetByPoint(PointModel *point, double zoom){
 
     if(point == NULL) throw new QString("Nebyl vybrán žádný bod");
@@ -203,7 +221,7 @@ StreetModel* MapModel::getStreetByPoint(PointModel *point, double zoom){
 }
 
 //-------------------------------------------------------------------------
-// vrátí zastávku, která je na daném bodě
+// Funkce vrací autobusovou zastávku podle bodu
 BusStopModel* MapModel::getBusStopByPoint(PointModel *point, double zoom){
 
     double tolerance = 5/zoom;
@@ -220,7 +238,7 @@ BusStopModel* MapModel::getBusStopByPoint(PointModel *point, double zoom){
 }
 
 //-------------------------------------------------------------------------
-// vrátí autobus, který je na daném bodě
+// Funkce vrací autobus podle bodu
 BusModel* MapModel::getBusByPoint(PointModel *point, double zoom){
 
     double tolerance = 5/zoom;
@@ -236,7 +254,7 @@ BusModel* MapModel::getBusByPoint(PointModel *point, double zoom){
 }
 
 //--------------------------------------------------------------------------
-// vytvoří seznam autobusů
+//Metoda vytvoří autobusy podle času hodin
 void MapModel::loadBuses(ClockModel* clock){
 
     for(BusModel* bus: Buses) delete bus;
@@ -265,7 +283,7 @@ void MapModel::loadBuses(ClockModel* clock){
 }
 
 //--------------------------------------------------------------------------
-// aktualizuje seznam autobusů
+// Metoda aktualizuje autobusy podle času hodin
 void MapModel::actualizeBuses(ClockModel* clock){
 
     for(BusModel* bus : Buses){
@@ -289,7 +307,7 @@ void MapModel::actualizeBuses(ClockModel* clock){
 }
 
 //------------------------------------------------------------------------------
-// vymaže autobus ze seznamu
+// Metoda vymaže autobus z pole
 void MapModel::deleteBus(vector<BusModel*> *buses, BusModel *bus){
     if(bus == NULL) throw new QString("Nebyl vybrán žádný autobus");
 

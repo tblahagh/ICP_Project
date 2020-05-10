@@ -1,11 +1,15 @@
+/*
+ * Autor: Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #include "streetview.h"
 
 //*************************************************************************************
-// konstruktory, destruktory, tisk
+// konstruktory, destruktory
 //------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 StreetView::StreetView(StreetModel* _streetModel, QWidget *parent) : QWidget(parent){
 
     if(_streetModel == NULL) throw new QString("Nepodařilo se vytvořit StreetView.");
@@ -19,31 +23,31 @@ StreetView::StreetView(StreetModel* _streetModel, QWidget *parent) : QWidget(par
 //----------------------------------------------------------------------------------
 
 //---------------------------------------------------------------
-// vrací model ulice
+// Funkce vrací model ulice, které se pohled týká
 StreetModel* StreetView::getStreetModel(){
     return this->streetModel;
 }
 
 //--------------------------------------------------------------
-// nastaví ulici jako otevřenou
+// Metoda nastaví ulici jako otevřenou
 void StreetView::open(){
     opened = true;
 }
 
 //------------------------------------------------------------
-// nastaví ulici jako zavřenou
+// Metoda nastaví ulici jako uzavřenou
 void StreetView::close(){
     opened = false;
 }
 
 //--------------------------------------------------------------
-// nastaví ulici jako vybranou
+// Metoda nastaví ulici jako vybranou
 void StreetView::select(){
     selected = true;
 }
 
 //------------------------------------------------------------
-// nastaví ulici jako nevybranou
+// Metoda nastaví ulici jako nevybranou
 void StreetView::deselect(){
     selected = false;
 }
@@ -53,7 +57,7 @@ void StreetView::deselect(){
 //---------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------
-// vykreslí ulici
+// Metoda vykreslí ulici
 void StreetView::paint(QPainter *painter, double zoom, double offset, int mode){
 
     if(painter == NULL) throw new QString("Nepodařilo se vytvořit StreetView.");

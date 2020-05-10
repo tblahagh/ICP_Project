@@ -1,3 +1,7 @@
+/*
+ * Autor: Tomáš Blaha
+ * Datum: 9.5.2020
+ * */
 #include "basemodel.h"
 
 //*******************************************************************************
@@ -5,14 +9,14 @@
 //-------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------------
-// vytvoření základního modelu podle parametrů
+// Základní konstruktor
 BaseModel::BaseModel(unsigned int id)
 {
     this->id = id;
 }
 
 //-------------------------------------------------------------------------------
-// vytvoření základního modelu podle souboru xml
+// Konstruktor pro vytvoření modelu z XML uzlu
 BaseModel::BaseModel(TiXmlElement* xml)
 {
     if (xml->QueryUnsignedAttribute("id", &id) != TIXML_SUCCESS)
@@ -20,11 +24,11 @@ BaseModel::BaseModel(TiXmlElement* xml)
 }
 
 //-----------------------------------------------------------------------------
-// destruktor
+// Destruktor
 BaseModel::~BaseModel(){}
 
 //-----------------------------------------------------------------------------
-// tisk modelu
+// Ladící metoda výpis pro odsazení na standartní výstup
 void BaseModel::PrintIndent(int indent)
 {
     while (indent-- > 0)
@@ -36,7 +40,7 @@ void BaseModel::PrintIndent(int indent)
 //--------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------------------
-// vrátí id modelu
+// Funkce vrátí identifikátor modelu
 int BaseModel::getId(){
     return this->id;
 }

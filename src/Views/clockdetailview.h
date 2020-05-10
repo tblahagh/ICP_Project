@@ -16,35 +16,72 @@ using namespace std;
 
 class MainWindow;
 class ClockModel;
-
+/**
+ * Pohled detailu hodin
+ */
 class ClockDetailView : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * Základní konstruktor
+     * @param _clockModel Model hodin
+     * @param _mainWindow Okno aplikace
+     * @param parent Rodič pohledu
+     */
     ClockDetailView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *parent = 0);
+    /**
+     * Destruktor
+     */
     ~ClockDetailView();
+    /**
+     * Metoda vykresli pohled do widgetu
+     * @param widget Widget, do kterého se má pohled vykreslit
+     */
     void paint(QWidget *widget);
 
 public slots:
+    /**
+     * Metoda se provede při kliknutí na tlačítko inicializace
+     */
     void btnInitClicked();
+    /**
+     * Metoda se provede při kliknutí na tlačítko uložení rychlosti
+     */
     void btnSpeedClicked();
+    /**
+     * Metoda zavření detailu
+     */
     void btnCloseClicked();
 
 private:
-    // model zakladniho okna
+    /**
+     * okno aplikace
+     */
     MainWindow *mainWindow;
-    // model hodin
+
+    /**
+     * Model hodin
+     */
     ClockModel *clockModel;
 
-    // layout
+    /**
+     * Layout
+     */
     QGridLayout *layout = NULL;
-    // fields
+
+    /**
+     * Textová pole
+     */
     QLineEdit *fieldHour;
     QLineEdit *fieldMinute;
     QLineEdit *fieldSecond;
     QLineEdit *fieldSpeed;
-    // btn
+
+    /**
+     * Tlačítka
+     */
     QPushButton *btnInit;
     QPushButton *btnSpeed;
     QPushButton *btnClose;

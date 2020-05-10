@@ -11,20 +11,35 @@ using namespace std;
 
 class MainWindow;
 class ClockModel;
-
+/**
+ * Pohled hodin
+ */
 class ClockView : public QWidget
 {
     Q_OBJECT
 
 public:
+    /**
+     * Základní konstruktor
+     * @param _clockModel Model hodin
+     * @param _mainWindow Okno aplikace
+     * @param parent Rodič pohledu
+     */
     ClockView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *parent = nullptr);
 public slots:
+    /**
+     * Tiknutí hodin
+     */
     void ticked();
 
 private:
-    // model zakladniho okna
+    /**
+     * Okno aplikace
+     */
     MainWindow *mainWindow;
-    // model hodin
+    /**
+     * Model hodin
+     */
     ClockModel *clockModel;
 };
 

@@ -31,81 +31,219 @@ class BusDetailView;
 class ClockModel;
 class MapView;
 class MapCreator;
-
+/**
+ * Hlavní okno aplikace
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
+
+    /**
+     * Konstruktor, provede inicializaci všech komponent okna
+     * @param parent Rodič okna
+     */
     MainWindow(QWidget *parent = 0);
+
+    /**
+     * Destruktor
+     */
     ~MainWindow();
+    /**
+     * Metoda zobrazí nový čas na hodinách po tiknutí
+     */
     void clockTicked();
+    /**
+     * Metoda zavře všechny detaily
+     */
     void closeDetail();
+    /**
+     * Metoda aktualizuje všechny detaily
+     */
     void updateDetail();
+    /**
+     * Metoda vyčistí plochu detailu
+     */
     void clearWidget();
+    /**
+     * Metoda otevře detail ulice
+     * @param view Pohled ulice která se má zobrazit
+     */
     void openStreetDetail(StreetView *view);
+    /**
+     * Metoda otevře detail objížďky
+     * @param view Pohled ulice, které se objížďka týká
+     */
     void openDetourDetail(StreetView *view);
+    /**
+     * Metoda otevře detail autobusové zastávky
+     * @param view Pohled autobusové zastávky, která se má zobrazit
+     */
     void openBusStopDetail(BusStopView *view);
+    /**
+     * Metoda otevře detail autobusu
+     * @param view Pohled autobusu, který se má zobrazit
+     */
     void openBusDetail(BusView *view);
+    /**
+     * Metoda aktualizuje pohled mapy
+     */
     void mapUpdate();
+    /**
+     * Metoda vloží ulici do vytvářené objíždky
+     * @param view Pohled ulice, která má být přidána
+     */
     void selectStreetOnDetour(StreetView *view);
+    /**
+     * Metoda odstraní ulici z vytvářené objíždky
+     * @param view Pohled ulice, která má být odstraněna
+     */
     void deselectStreetsOnDetour();
+    /**
+     * Metoda zavře detail autobusu
+     * @param view Autobus, jehož model má být zavřen
+     */
     void closeBusDetail(BusModel* bus);
+    /**
+     * Metoda zobrazí výjimku
+     * @param text Text výjimky
+     */
     void showException(const QString *text);
+    /**
+     * Metoda provede akce po inicializaci hodin
+     */
     void clockInitialized();
 
 public slots:
+    /**
+     * Metoda zvýší zoom mapy
+     */
     void increaseMapZoom();
+    /**
+     * Metoda sníží zoom mapy
+     */
     void decreaseMapZoom();
+    /**
+     * Metoda otevře detail hodin
+     */
     void openClockDetail();
-
+    /**
+     * Metoda otevře průzkumník souborů pro výběr mapy
+     */
+    void openFileDialog();
 private:
-    // centrální umístění
+
+
+    /**
+     * Centrální umístění
+     */
     QWidget * central = NULL;
-    // základní hbox
+    /**
+     * Základní hbox
+     */
     QHBoxLayout *layout;
-    // vbox pro detaily a nastavení
+    /**
+     * Vbox pro detaily a nastavení
+     */
     QVBoxLayout *vbox;
-    // widget pro nastaveni
+
+    /**
+     * Widget pro nastaveni
+     */
     QWidget *widget;
-    // widget - velikost pro scroll area
+    //
+    /**
+     * Widget - velikost pro scroll area
+     */
     QWidget *scrollWidget;
-    // scroll area pro mapu
+    //
+    /**
+     * Scroll area pro mapu
+     */
     QScrollArea *scroll;
 
-    // objekt pro vytvoření mapy
+    //
+    /**
+     * Objekt pro vytvoření mapy
+     */
     MapCreator *creator = NULL;
-    // model mapy
+    //
+    /**
+     * Model mapy
+     */
     MapModel *mapModel = NULL;
-    // pohled pro mapu
+    //
+    /**
+     * Pohled pro mapu
+     */
     MapView *mapView;
-
-    // model pro hodiny
+    /**
+     * Popisek s názvem mapy
+     */
+    QLabel *labelMapFile;
+    /**
+     * Tlačítko pro otevření průzkumníku souborů pro výběr mapy
+     */
+    QPushButton* btnMapFileSelect;
+    /**
+     * Model hodin
+     */
     ClockModel *clockModel = NULL;
-    // pohled pro hodiny
+
+    /**
+     * Pohled hodin
+     */
     ClockView *clockView;
-    // tlačítko pro úpravu hodin
+    /**
+     * Tlačítko pro úpravu hodin
+     */
     QPushButton *btnClockEdit;
-    // zobrazeni hodin
+
+    /**
+     * Zobrazení hodin
+     */
     QLabel *labelClock;
 
-    // tlačítka pro zoom +, -
+    /**
+     * Zoom popisek
+     */
+    QLabel *labelZoom;
+
+    /**
+     * Tlačítka pro zoom
+     */
     QPushButton *btnZoomPlus;
     QPushButton *btnZoomMinus;
 
-    // label pro hlaseni exception
+    /**
+     * Popisek pro hlášení chyb
+     */
     QLabel *exceptionLabel = NULL;
 
-    // detail hodin
+    /**
+     * Detail hodin
+     */
     ClockDetailView *clockDetailView = NULL;
-    // detail ulice
+    /**
+     * Detail ulice
+     */
     StreetDetailView *streetDetailView = NULL;
-    // detail objížďky
+    /**
+     * Detail objížďky
+     */
     DetourDetailView *detourDetailView = NULL;
-    // detail zastávky
+    /**
+     * Detail zastávky
+     */
     BusStopDetailView *busStopDetailView = NULL;
-    // detail autobusu
+    /**
+     * Detail autobusu
+     */
     BusDetailView *busDetailView = NULL;
-
+    /**
+     * Indikátor jestli je otevřena mapa
+     */
+    bool mapSelected;
 };
 #endif // MAINWINDOW_H

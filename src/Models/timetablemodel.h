@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef TIMETABLEMODEL_H
 #define TIMETABLEMODEL_H
 
@@ -7,39 +11,66 @@
 #include <vector>
 
 using namespace std;
+/**
+ * Třída reprezentující jízdní řád
+ */
 class TimeTableModel : public BaseModel
 {
 public:
 
-    // basic contructor
+
+    /**
+     * Základní kostruktor
+     * @param id Identifikátor model
+     * @param busLine Autobusová linka, které se řád týka
+     * @param startTimes Časy příjezdu autobusu na zastávky
+     */
     TimeTableModel(unsigned int id = 0, BusLineModel* busLine = nullptr, vector<tm> startTimes = {});
-    // constructor for creating object from xml
+
+    /**
+     * Konstruktor pro vytvoření řádu z XML uzlu
+     * @param xml XML uzel
+     * @param busLines Ukazatele na autobusové linky
+     */
     TimeTableModel(TiXmlElement* xml, vector<BusLineModel*> busLines);
-    // destructor
+
+    /**
+     * Destruktor
+     */
     ~TimeTableModel();
 
+    /**
+     * Funkce vrací časy zastávek
+     * @return Časy zastávek
+     */
     vector<tm> getStartTimes();
+
+    /**
+     * Funkce vrací autobusovou linku
+     * @return Ukazatel na autobusovou linku
+     */
     BusLineModel* getBusLine();
 
+    /**
+     * Funkce vyhodí výjimku, pokud je linka špatně inicializována
+     */
     void isCorrect();
-/*
-    // returns all active buses of this time table
-    vector<BusModel> GetActiveBuses();
-    // returns bus stop from BusLine with indexed by INDEX
-    BusStopModel* GetBusStopByIndex(const unsigned int index);
-    // returns bus stop from BusLine with identifier ID
-    BusStopModel * GetBusStopById(const unsigned int id);
-    // returns all todays time sets
-    vector<TimeSetModel*> GetTodayTimeSets();
-    // returns all todays active time sets
-    vector<TimeSetModel*> GetTodayActualTimeSets();*/
-    // debug function for printing models content on stdout
+
+    /**
+     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @param Počet tabulátorů před výpisem
+     */
     virtual void Print(int indent) override;
 
 private:
-    // vector of time sets of this time table
+
+    /**
+     * Časy zastávek
+     */
     vector<tm> StartTimes;
-    // pointer to bus line, which is related to time table
+    /**
+     * Autobusová linka
+     */
     BusLineModel* BusLine;
 };
 

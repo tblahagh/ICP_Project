@@ -1,11 +1,11 @@
 #include "busstopview.h"
 
 //****************************************************************************************
-// konstruktory, destruktory, tisk
+// konstruktory, destruktory
 //--------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 BusStopView::BusStopView(BusStopModel* _busStopModel, QWidget *parent) : QWidget(parent){
 
     if(_busStopModel == NULL) throw new QString("Nepodařilo se vytvořit BusStopView.");
@@ -19,19 +19,19 @@ BusStopView::BusStopView(BusStopModel* _busStopModel, QWidget *parent) : QWidget
 //-----------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------
-// vrací model zastávky
+// Funkce vrací model zastávky, které se pohled týká
 BusStopModel* BusStopView::getBusStopModel(){
     return this->busStopModel;
 }
 
 //-----------------------------------------------------------------------
-// nastaví zastávku jako otevřenou
+// Metoda nastaví zastávku jako otevřenou
 void BusStopView::open(){
     opened = true;
 }
 
 //--------------------------------------------------------------------------
-// nastaví zastávku jako zavřenou
+// Metoda nastaví zastávku jako uzavřenou
 void BusStopView::close(){
     opened = false;
 }
@@ -41,7 +41,7 @@ void BusStopView::close(){
 //--------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------
-// vykreslí ulici
+// Metoda vykreslí zastávku
 void BusStopView::paint(QPainter *painter, double zoom, double offset){
 
     if(painter == NULL) throw new QString("Nepodařilo se vytvořit BusStopView.");

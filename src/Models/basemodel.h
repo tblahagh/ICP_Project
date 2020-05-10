@@ -7,22 +7,49 @@
 #include <vector>
 #include <QString>
 using namespace std;
-// Base class from which inherits another model classes
+/**
+* Základni třída, ze které dědí ostatní modely
+*/
 class BaseModel
 {
 public:
-    // destructor
+
+    /**
+    * Destruktor
+    */
     virtual ~BaseModel();
-    // basic constructor
+
+    /**
+     * Základní konstruktor
+     * @param id Identifikátor modelu
+     */
     BaseModel(unsigned int id = 0);
-    // constructor for creating object from xml
+
+    /**
+     * Konstruktor pro vytvoření modelu z XML uzlu
+     * @param xml XML uzel, ze kterého se model vytvoří
+     */
     BaseModel(TiXmlElement* xml);
-    // returns object id
+
+    /**
+     * Funkce vrátí identifikátor modelu
+     * @return Hodnota vlastnosti id
+     */
     int getId();
-    // debug function for printing models content on stdout
+
+    /**
+     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @param Počet tabulátorů před výpisem
+     */
     virtual void Print(int indent) = 0;
 
-    // templated function that select pointer to model from vector MODELS identified by ID and returns it
+    /**
+     * Šablonová funkce, která vybere ukazatel na model z pole podle identifikátoru
+     * @tparam T Typ modelu
+     * @param models Pole modelů
+     * @param id Identifikátor modelu
+     * @return Ukazatel na model vybraný z pole podle identifikátoru
+     */
     template<class T = BaseModel>
     T* GetModelById(vector<T*> models, unsigned int id)
     {
@@ -36,7 +63,15 @@ public:
         return nullptr;
     }
 
-    // templated function that gets identifiers of models from XML and return vector of pointers to models given by these identifiers
+
+    /**
+     * Šablonová funkce, která vybere z pole models všechny modely, na které je odkazováno v XML uzlu xml
+     * @tparam T Typ modelů
+     * @param xml XML uzel
+     * @param models Pole již existujích modelů
+     * @param idAttribute Řetězec značící atribut v poduzlech obsahující identifikátor modelu
+     * @return Pole s ukazateli na vybrané modely
+     */
     template<class T = BaseModel>
     vector<T*> GetByXml(TiXmlNode* xml, vector<T*> models, string  idAttribute)
     {
@@ -57,6 +92,13 @@ public:
     }
 
     // templated function that gets identifiers of models from XML and return vector of pointers to models given by these identifiers
+    /**
+     * Šablonová funkce, která vybere z identifikátory modelů, na které je odkazováno v XML uzlu xml
+     * @tparam T Typ modelů
+     * @param xml XML uzel
+     * @param idAttribute Řetězec značící atribut v poduzlech obsahující identifikátor modelu
+     * @return Pole s vybranými identifikátory
+     */
     vector<int> GetIntByXml(TiXmlNode* xml, string  idAttribute)
     {
         vector<int> selectedModels = {};
@@ -73,9 +115,14 @@ public:
     }
 
 protected:
-    // unique identifier of the model
+    /**
+     * Unikátní identifikátor modelu
+     */
     unsigned int id;
-
+    /**
+     * Ladící metoda výpis pro odsazení na standartní výstup
+     * @param indent Počet tabulátorů
+     */
     void PrintIndent(int indent);
 
 };

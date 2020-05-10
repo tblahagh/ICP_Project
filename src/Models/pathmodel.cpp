@@ -5,14 +5,14 @@
 //-----------------------------------------------------------------------------
 
 //-------------------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 PathModel::PathModel(unsigned int id) : BaseModel(id)
 {
 
 }
 
 //---------------------------------------------------------------------------
-// tisk ulice
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void PathModel::Print(int indent)
 {
     PrintIndent(indent);
@@ -36,25 +36,25 @@ void PathModel::Print(int indent)
 //-----------------------------------------------------------------------------
 
 //------------------------------------------------------------------------------
-// vrací seznam ulic
+// Funkce vrací seznam ulic, které tvoří trasu
 vector<StreetModel*> PathModel::getStreets(){
     return this->streets;
 }
 
 //-----------------------------------------------------------------------------
-// vrací počáteční bod
+// Funkce vrací počáteční bod trasy
 PointModel* PathModel::getStartPosition(){
     return this->startPosition;
 }
 
 //--------------------------------------------------------------------
-// vrací koncový bod
+// Funkce vrací koncový bod trasy
 PointModel* PathModel::getEndPosition(){
     return this->endPosition;
 }
 
 //-----------------------------------------------------------------
-// přidá ulici na konec cesty
+// Metoda přidá ulici na konec trasy
 void PathModel::addStreet(StreetModel* street){
     if(street == NULL) throw new QString("Nebyla vybrána žádná ulice");
 
@@ -73,19 +73,19 @@ void PathModel::addStreet(StreetModel* street){
 }
 
 //-------------------------------------------------------------------
-// vrátí počet ulic
+// Funkce vrací počet ulic, které tvoří trasu
 unsigned int PathModel::getNumberOfStreets(){
     return this->streets.size();
 }
 
 //-------------------------------------------------------------------
-// odstraní jednu ulici
+// Metoda vymaže ulici na konci trasy
 void PathModel::clearStreet(){
     this->streets.pop_back();
 }
 
 //---------------------------------------------------------------------
-// odstraní všechny ulice
+// Metoda vymaže všechny ulice v trase
 void PathModel::clearStreets(){
     this->streets.clear();
     this->startPosition = NULL;
@@ -97,7 +97,7 @@ void PathModel::clearStreets(){
 //---------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// vrátí délku trasy
+// Funkce vrací délku trasy
 double PathModel::getLenght(){
     double lenght = 0;
 
@@ -112,7 +112,7 @@ double PathModel::getLenght(){
 //-------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------------
-// kontroluje, zda cesta v pořádku
+// Metoda vyhodí výjimku, pokud je trasa špatně inicializována
 void PathModel::isCorrect(){
 
     if(this->streets.empty()) return;

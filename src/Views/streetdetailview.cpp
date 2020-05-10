@@ -1,11 +1,11 @@
 #include "streetdetailview.h"
 
 //**************************************************************************
-// konstruktory, destruktory a tisk
+// konstruktory, destruktory
 //--------------------------------------------------------------------------
 
 // ---------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 StreetDetailView::StreetDetailView(StreetView* _streetView, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent)
 {
     if(_streetView == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se vytvořit detail ulice");
@@ -19,7 +19,7 @@ StreetDetailView::StreetDetailView(StreetView* _streetView, MainWindow* _mainWin
 }
 
 //------------------------------------------------------------------
-// destruktor
+// Destruktor
 StreetDetailView::~StreetDetailView(){
     if(layout != NULL) delete layout;
     this->streetView->close();
@@ -31,7 +31,7 @@ StreetDetailView::~StreetDetailView(){
 //--------------------------------------------------------------------------------
 
 //-------------------------------------------------------------------
-// vykreslení
+// Metoda vykreslí objížďku na widget
 void StreetDetailView::paint(QWidget *widget){
 
     if(widget == NULL) throw new QString("Nepodařilo se vykreslit detail ulice");
@@ -95,7 +95,7 @@ void StreetDetailView::paint(QWidget *widget){
 //------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------
-// kliknutí na tlačítko uložit
+// Metoda volaná při stisku tlačítka uloží stav ulice
 void StreetDetailView::btnSaveClicked(){
     int traffic = fieldTraffic->checkedId();
 
@@ -108,7 +108,7 @@ void StreetDetailView::btnSaveClicked(){
 }
 
 //------------------------------------------------------------------
-// kliknutí na tlačítko zavřít
+// Metoda volaná při stisku tlačítka zavře detail ulice
 void StreetDetailView::btnCloseClicked(){
 
     try{
@@ -118,7 +118,7 @@ void StreetDetailView::btnCloseClicked(){
 }
 
 //-----------------------------------------------------------------
-// kliknutí na tlačítko detail objížďky
+// Metoda volaná při stisku tlačítka otevře detail objížďky ulice
 void StreetDetailView::btnDetourDetailClicked(){
 
     try{

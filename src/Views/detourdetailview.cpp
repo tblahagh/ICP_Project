@@ -5,7 +5,7 @@
 //------------------------------------------------------------------------------------
 
 //-----------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 DetourDetailView::DetourDetailView(StreetView* _streetView, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent)
 {
     if(_streetView == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se vytvořit detail objížďky");
@@ -26,7 +26,7 @@ DetourDetailView::DetourDetailView(StreetView* _streetView, MainWindow* _mainWin
 }
 
 //------------------------------------------------------------
-// destruktor
+// Destruktor
 DetourDetailView::~DetourDetailView(){
     if(layout != NULL) delete layout;
     if(path != NULL && path != streetView->getStreetModel()->GetDetour()) delete path;
@@ -37,7 +37,7 @@ DetourDetailView::~DetourDetailView(){
 //-------------------------------------------------------------------------------
 
 //---------------------------------------------------------------
-// přidání ulice do cesty
+// Metoda přidá ulici do objížďky
 void DetourDetailView::addStreet(StreetModel *street){
 
     if(street == NULL) throw new QString("Nebyl vybrán žádný model ulice");
@@ -46,7 +46,7 @@ void DetourDetailView::addStreet(StreetModel *street){
 }
 
 //---------------------------------------------------------------
-// vyčištění cesty
+// Metoda smaže všechny ulice z objížďky
 void DetourDetailView::clearStreets(){
 
     if(path != NULL && path != streetView->getStreetModel()->GetDetour()) delete path;
@@ -58,7 +58,7 @@ void DetourDetailView::clearStreets(){
 //---------------------------------------------------------------------------------
 
 //--------------------------------------------------------------
-// vykreslení
+// Metoda vykreslí objížďku na widget
 void DetourDetailView::paint(QWidget *widget){
 
     if(widget == NULL) throw new QString("Nepodařilo se vykreslit detail objížďky");
@@ -119,7 +119,7 @@ void DetourDetailView::paint(QWidget *widget){
 //----------------------------------------------------------------------------------
 
 //-----------------------------------------------------------
-// kliknutí na tlačítko zavřít
+// Metoda volaná při stisku tlačítka zavře detail objížďky
 void DetourDetailView::btnCloseClicked(){
 
     try{
@@ -129,7 +129,7 @@ void DetourDetailView::btnCloseClicked(){
 }
 
 //----------------------------------------------------------
-// kliknutí na tlačítko vyčistit
+// Metoda volaná při stisku tlačítka smaže stav objížďky
 void DetourDetailView::btnClearClicked(){
 
     try{
@@ -140,7 +140,7 @@ void DetourDetailView::btnClearClicked(){
     catch(const QString *exc){ mainWindow->showException(exc); }
 }
 //-----------------------------------------------------------
-// kliknutí na tlačítko uložit
+// Metoda volaná při stisku tlačítka uloží stav objížďky
 void DetourDetailView::btnSaveClicked(){
     int delay = QString(fieldDelay->text()).toInt();
 

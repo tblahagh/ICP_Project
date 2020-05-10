@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #include "timetablemodel.h"
 #include <iostream>
 #include "src/TimeLib.h"
@@ -7,19 +11,17 @@
 //-----------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------
-// vytvoří jízdní řád podle parametrů
+// Základní kostruktor
 TimeTableModel::TimeTableModel(unsigned int id, BusLineModel* busLine, vector<tm> startTimes) : BaseModel(id)
 {
     this->id = id;
     this->BusLine = busLine;
-
     this->StartTimes = startTimes;
-
     isCorrect();
 }
 
 //--------------------------------------------------------------------
-// vytvoří jízdní řád podle xml souboru
+// Konstruktor pro vytvoření řádu z XML uzlu
 TimeTableModel::TimeTableModel(TiXmlElement* xml, vector<BusLineModel*> busLines) : BaseModel(xml)
 {
 
@@ -54,14 +56,14 @@ TimeTableModel::TimeTableModel(TiXmlElement* xml, vector<BusLineModel*> busLines
 }
 
 //----------------------------------------------------------------------------
-// destruktor
+// Destruktor
 TimeTableModel::~TimeTableModel()
 {
 
 }
 
 //---------------------------------------------------------------------------
-// tisk
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void TimeTableModel::Print(int indent)
 {
     PrintIndent(indent);
@@ -84,13 +86,13 @@ void TimeTableModel::Print(int indent)
 //------------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------
-// vrátí autobusovou linku
+// Funkce vrací autobusovou linku
 BusLineModel* TimeTableModel::getBusLine(){
     return this->BusLine;
 }
 
 //------------------------------------------------------------------------
-// vrátí seznam startovních časů
+// Funkce vrací časy zastávek
 vector<tm> TimeTableModel::getStartTimes(){
     return this->StartTimes;
 }
@@ -100,7 +102,7 @@ vector<tm> TimeTableModel::getStartTimes(){
 //-------------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------------
-// kontrola, zda je jízdní řád korektní
+// Funkce vyhodí výjimku, pokud je linka špatně inicializována
 void TimeTableModel::isCorrect(){
     for(tm time : StartTimes){
         IsCorrectTime(time);

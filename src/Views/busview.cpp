@@ -5,7 +5,7 @@
 //---------------------------------------------------------------------------------------
 
 //---------------------------------------------------------------------
-// konstruktor
+// Základní konstruktor
 BusView::BusView(BusModel* _busModel, QWidget *parent) : QWidget(parent){
 
     if(_busModel == NULL) throw new QString("Nepodařilo se vytvořit BusView.");
@@ -19,19 +19,19 @@ BusView::BusView(BusModel* _busModel, QWidget *parent) : QWidget(parent){
 //---------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------
-// vrací model ulice
+// Funkce vrací model autobusu, které se pohled týká
 BusModel* BusView::getBusModel(){
     return this->busModel;
 }
 
 //------------------------------------------------------------
-// vykreslí ulici jako otevřenou
+// Metoda nastaví autobus jako otevřený
 void BusView::open(){
     busModel->setOpenedDetail(true);
 }
 
 //--------------------------------------------------------------
-// vykreslí ulici jako zavřenou
+// Metoda nastaví autobus jako uzavřený
 void BusView::close(){
     busModel->setOpenedDetail(false);
 }
@@ -42,7 +42,7 @@ void BusView::close(){
 //---------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------
-// vykreslí ulici
+// Metoda vykreslí autobus
 void BusView::paint(QPainter *painter, double zoom, double offset){
 
     if(painter == NULL) throw new QString("Nepodařilo se vytvořit BusView.");

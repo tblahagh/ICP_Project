@@ -23,63 +23,222 @@ class BusLineModel;
 class StreetModel;
 class MainWindow;
 
-// class representing whole map
+/**
+ * Třída reprezentující celou mapu
+ */
 class MapModel
 {
 public:
-    // getters
-    double getWidth();
-    double getHeight();
-    vector<PointModel*> getPoints();
-    vector<StreetModel*> getStreets();
-    vector<BusStopModel*> getBusStops();
-    vector<BusLineModel*> getBusLines();
-    vector<TimeTableModel*> getTimeTables();
-    vector<BusModel*> getBuses();
 
-    // add
-    void addPoint(PointModel* point);
-    void addStreet(StreetModel* street);
-    void addBusStop(BusStopModel* busStop);
-    void addBusLine(BusLineModel* busLine);
-    void addTimeTable(TimeTableModel* timeTable);
-    void deleteBus(vector<BusModel*> *buses, BusModel* bus);
-
-    // load buses
-    void loadBuses(ClockModel* clock);
-    void actualizeBuses(ClockModel* clock);
-    // get street which contains point
-    StreetModel* getStreetByPoint(PointModel *point, double zoom);
-    BusStopModel* getBusStopByPoint(PointModel *point, double zoom);
-    BusModel* getBusByPoint(PointModel *point, double zoom);
-
-    // basic constructor
+    /**
+     * Základní kostruktor
+     * @param _mainWindow Okno aplikace
+     */
     MapModel(MainWindow* _mainWindow);
-    // destructor
+
+    /**
+     * Destruktor
+     */
     ~MapModel();
-    // debug function for printing map content to stdout
+
+    /**
+     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @param Počet tabulátorů před výpisem
+     */
     void Print();
 
+    /**
+     * Funkce vrací šířku mapy
+     * @return Šířka mapy
+     */
+    double getWidth();
+
+    /**
+     * Funkce vrací výšky mapy
+     * @return Výška mapy
+     */
+    double getHeight();
+
+    /**
+     * Funkce vrací název mapy
+     * @return Název mapy
+     */
+    QString getTitle();
+
+    /**
+     * Funkce vrací body, kterými jsou na mapě ulice propojeny
+     * @return Pole ukazatelů na body
+     */
+    vector<PointModel*> getPoints();
+
+    /**
+     * Funkce vrací ulice, ze kterých se mapa skládá
+     * @return Pole ukazatelů na ulice, ze kterých se mapa skládá
+     */
+    vector<StreetModel*> getStreets();
+
+    /**
+     * Funkce vrací autobusové zastávky na mapě
+     * @return Pole ukazatelů na zastávky na mapě
+     */
+    vector<BusStopModel*> getBusStops();
+
+    /**
+     * Funkce vrací autobusové linky, které jsou vytvořeny ze zastávek
+     * @return Pole ukazatelů na autobusové linky mapy
+     */
+    vector<BusLineModel*> getBusLines();
+
+    /**
+     * Funkce vrací jízdní řády, kterými se řídí autobusové linky
+     * @return Pole ukazatelů na jízdní řády
+     */
+    vector<TimeTableModel*> getTimeTables();
+
+    /**
+     * Funkce vrací autobusy, které jsou současně na trase
+     * @return Pole ukazatelů na autobusy
+     */
+    vector<BusModel*> getBuses();
+
+    /**
+     * Metoda nastaví šířku mapy
+     * @param width Nová šířka mapy
+     */
+    void setWidth(double width);
+
+    /**
+     * Metoda nastaví výšku mapy
+     * @param height Nová výška mapy
+     */
+    void setHeight(double height);
+
+    /**
+     * Metoda nastaví název mapy
+     * @param title Nový název mapy
+     */
+    void setTitle(QString title);
+
+    /**
+     * Metoda přidá bod do mapy
+     * @param point Nový bod
+     */
+    void addPoint(PointModel* point);
+
+    /**
+     * Metoda přidá ulici do mapy
+     * @param street Nová ulice
+     */
+    void addStreet(StreetModel* street);
+
+    /**
+     * Metoda přidá autobusovou zastávku do mapy
+     * @param busStop Nová zastávka
+     */
+    void addBusStop(BusStopModel* busStop);
+
+    /**
+     * Metoda přidá autobusovou linku do mapy
+     * @param busLine Nová linka
+     */
+    void addBusLine(BusLineModel* busLine);
+
+    /**
+     * Metoda přidá nový jízdní řád do mapy
+     * @param timeTable Nový jízdní řád
+     */
+    void addTimeTable(TimeTableModel* timeTable);
+
+
+
+    /**
+     * Metoda vytvoří autobusy podle času hodin
+     * @param clock Hodiny podle kterých se autobusy vytvařejí
+     */
+    void loadBuses(ClockModel* clock);
+
+    /**
+     * Metoda aktualizuje autobusy podle času hodin
+     * @param clock Hodiny podle kterých se autobusy aktualizují
+     */
+    void actualizeBuses(ClockModel* clock);
+
+    /**
+     * Funkce vrací ulici podle bodu
+     * @param point Bod, podle kterého se ulice hledá
+     * @param zoom Zvětšení mapy, které je třeba zohlednit
+     * @return Ukazatel na ulici, na které se bod nachází
+     */
+    StreetModel* getStreetByPoint(PointModel *point, double zoom);
+
+    /**
+     * Funkce vrací autobusovou zastávku podle bodu
+     * @param point Bod, podle kterého se zastávka hledá
+     * @param zoom Zvětšení mapy, které je třeba zohlednit
+     * @return Ukazatel na zastávku
+     */
+    BusStopModel* getBusStopByPoint(PointModel *point, double zoom);
+
+    /**
+     * Funkce vrací autobus podle bodu
+     * @param point Bod, podle kterého se autobus hledá
+     * @param zoom Zvětšení mapy, které je třeba zohlednit
+     * @return Ukazatel na autobus
+     */
+    BusModel* getBusByPoint(PointModel *point, double zoom);
+
+
+
+
+
 private:
+
+    /**
+     * Okno aplikace
+     */
     MainWindow* mainWindow;
-    // width of map
+
+    /**
+     * Název mapy
+     */
+    QString title;
+
+    /**
+     * Šířka mapy
+     */
     double width;
-    // height of map
+    /**
+     * Výška mapy
+     */
     double height;
-    // points with which streets are connected
+    /**
+     * Body, kterými jsou ulice mapy propojeny
+     */
     vector<PointModel*> Points;
-    // all streets of the map
+    /**
+     * Ulice, ze který se mapa skládá
+     */
     vector<StreetModel*> Streets;
-    // all bus stops of the map
+    /**
+     * Autobusové zastávky na mapě
+     */
     vector<BusStopModel*> BusStops;
-    // all bus lines of the map
+    /**
+     * Autobusové linky na mapě
+     */
     vector<BusLineModel*> BusLines;
-    // time tables for bus lines
+    /**
+     * Jízdní řády autobusových linek
+     */
     vector<TimeTableModel*> TimeTables;
-    // buses on the map
+    /**
+     * Autobusy na cestě
+     */
     vector<BusModel*> Buses;
 
     tm lastActualizeBuses = {};
+
+    void deleteBus(vector<BusModel*> *buses, BusModel* bus);
 };
 
 #endif // MAPMODEL_H

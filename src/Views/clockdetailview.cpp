@@ -5,7 +5,7 @@
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// konstuktor - vytvoření detailu
+// Základní konstruktor
 ClockDetailView::ClockDetailView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *parent) : QWidget(parent)
 {
     if(_clockModel == NULL || _mainWindow == NULL) throw new QString("Nepodařilo se vytvořit detail hodin");
@@ -16,7 +16,7 @@ ClockDetailView::ClockDetailView(ClockModel* _clockModel, MainWindow* _mainWindo
 }
 
 //----------------------------------------------------------------------------
-// destruktor
+// Destruktor
 ClockDetailView::~ClockDetailView(){
     if(layout != NULL) delete layout;
 }
@@ -26,7 +26,7 @@ ClockDetailView::~ClockDetailView(){
 //----------------------------------------------------------------------------
 
 //----------------------------------------------------------------------------
-// vykreslení detailu
+// Metoda vykresli pohled do widgetu
 void ClockDetailView::paint(QWidget *widget){
 
     if(widget == NULL) throw new QString("Nepodařilo se vykreslit detail hodin");
@@ -86,7 +86,7 @@ void ClockDetailView::paint(QWidget *widget){
 //---------------------------------------------------------------------------
 
 //-----------------------------------------------------------------------------
-// kliknutí na inicializaci hodin
+// Metoda se provede při kliknutí na tlačítko inicializace
 void ClockDetailView::btnInitClicked(){
 
     try{
@@ -102,7 +102,7 @@ void ClockDetailView::btnInitClicked(){
 }
 
 //--------------------------------------------------------------------------------
-// kliknutí na uložení rychlosti
+// Metoda se provede při kliknutí na tlačítko uložení rychlosti
 void ClockDetailView::btnSpeedClicked(){
 
     try{
@@ -113,7 +113,7 @@ void ClockDetailView::btnSpeedClicked(){
 }
 
 //-------------------------------------------------------------------------------
-// kliknutí na zavřít
+// Metoda zavření detailu
 void ClockDetailView::btnCloseClicked(){
 
     try{

@@ -9,27 +9,62 @@
 
 
 
-// class representing 2d point
+/**
+* Třída reprezentující bod ve dvourozměrném prostoru
+*/
 class PointModel : public BaseModel
 {
 public:
-    // basic constructor
-    PointModel(unsigned int id = 0, double X = 0, double Y = 0);
-    // constructor for creating object from xml
+
+    /**
+     * Základní konstruktor pro vytvoření bodu
+     * @param id identifikátor modelu
+     * @param x Souřadnice X
+     * @param y Souřadnice Y
+     */
+    PointModel(unsigned int id = 0, double x = 0, double y = 0);
+
+    /**
+     * Konstruktor pro vytvoření modelu bodu z XML uzlu
+     * @param xml XML uzel, ze kterého se model vytvoří
+     */
     PointModel(TiXmlElement* xml);
-    // vrátí souřadnici x
+
+    /**
+     * Vrací souřadnici X
+     * @return Hodnota souřadnice X
+     */
     double getX();
-    // vrátí souřadnici y
+
+    /**
+     * Vrací souřadnici Y
+     * @return Hodnota souřadnice Y
+     */
     double getY();
-    // returns distance between obejct and POINT
+
+    /**
+     * Funkce vypočte vzdálenost bodu od jiného
+     * @param point Bod, od kterého se má vypočítat vzdálenost
+     * @return Vzdálenost mezi body
+     */
     double GetDistanceFrom(PointModel* point);
-    // debug function for printing models content on stdout
+
+    /**
+     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @param počet tabulátorů před výpisem
+     */
     virtual void Print(int indent) override;
 
 private:
-    // x coordinate
+
+    /**
+     * Souřadnice X
+     */
     double X;
-    // y coordinate
+
+    /**
+     * Souřadnice Y
+     */
     double Y;
 
 

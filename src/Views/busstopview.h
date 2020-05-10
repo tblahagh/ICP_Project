@@ -8,26 +8,48 @@
 #include "src/Models/busstopmodel.h"
 
 using namespace std;
-
+/**
+ * Pohled který vykreslí zastávku na mapu
+ */
 class BusStopView : public QWidget
 {
 public:
-    // konstruktor
+    /**
+     * Základní konstruktor
+     * @param _busStopModel Zastávka, které se pohled týká
+     * @param parent Rodič pohledu
+     */
     BusStopView(BusStopModel* _busStopModel, QWidget *parent = nullptr);
-    // vykreslení zastávky
+    /**
+     * Metoda vykreslí zastávku
+     * @param painter Plátno pro vykreslování
+     * @param zoom Zvětšení mapy, které je třeba zohlednit
+     * @param offset Offset od hrany mapy
+     */
     void paint(QPainter *painter, double zoom, double offset);
-    // vrátí model zastávky
+    /**
+     * Funkce vrací model zastávky, které se pohled týká
+     * @return Ukazatel na model zastávky
+     */
     BusStopModel* getBusStopModel();
 
-    // vykreslí zastávku s otevřeným detailem
+    /**
+     * Metoda nastaví zastávku jako otevřenou
+     */
     void open();
-    // vykreslí zastávku se zavřeným detailem
+    /**
+     * Metoda nastaví zastávku jako uzavřenou
+     */
     void close();
 
 private:
-    // model zastávky
+    /**
+     * Model zastávky
+     */
     BusStopModel* busStopModel;
-    // otevřený detail zastávky
+    /**
+     * Indikátor jestli je otevřený detail zastávky
+     */
     boolean opened = false;
 };
 

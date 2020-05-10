@@ -14,34 +14,90 @@ using namespace std;
 
 class StreetModel;
 
+/**
+* Třída reprezentující trasu vytvořenou z ulic
+*/
 class PathModel : public BaseModel
 {
 public:
-    // konstruktor
+    /**
+     * Základní konstruktor
+     * @param id Identifikátor modelu
+     */
     PathModel(unsigned int id = 0);
-    // tiskne cestu
-    void Print(int indent);
-    // vrátí seznam ulic, které tvoří cestu
+
+    /**
+     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @param počet tabulátorů před výpisem
+     */
+    virtual void Print(int indent);
+
+    /**
+     * Funkce vrací seznam ulic, které tvoří trasu
+     * @return Hodnota vlastnosti streets
+     */
     vector<StreetModel*> getStreets();
-    // vrátí počáteční bod cesty
+
+    /**
+     * Funkce vrací počáteční bod trasy
+     * @return Ukazatel na bod, kterým trasa začíná
+     */
     PointModel* getStartPosition();
-    // vrátí koncový bod cesty
+
+    /**
+     * Funkce vrací koncový bod trasy
+     * @return Ukazatel na bod, kterým trasa končí
+     */
     PointModel* getEndPosition();
-    // přidá ulici na konec cesty
+
+    /**
+     * Metoda přidá ulici na konec trasy
+     * @param street Ukazatel na přidávanou ulici
+     */
     void addStreet(StreetModel* street);
+
+    /**
+     * Metoda vymaže všechny ulice v trase
+     */
     void clearStreets();
-    // zkontroluje, zda je cesta korektní
+
+    /**
+     * Metoda vyhodí výjimku, pokud je trasa špatně inicializována
+     */
     void isCorrect();
+
+    /**
+     * Funkce vrací délku trasy
+     * @return Délka všech ulic v trase
+     */
     double getLenght();
+
+    /**
+     * Metoda vymaže ulici na konci trasy
+     */
     void clearStreet();
+
+    /**
+     * Funkce vrací počet ulic, které tvoří trasu
+     * @return Počet ulic
+     */
     unsigned int getNumberOfStreets();
 
 private:
-    // seznam ulic, které tvoří cestu
+
+    /**
+     * Seznam ulic, které tvoří cestu
+     */
     vector<StreetModel*> streets;
-    // počáteční bod cesty
+
+    /**
+     * Ukazatel na bod, který trasa začíná
+     */
     PointModel* startPosition = NULL;
-    // koncový bod cesty
+
+    /**
+     * Ukazatel na bod, který trasa končí
+     */
     PointModel* endPosition = NULL;
 };
 

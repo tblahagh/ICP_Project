@@ -5,56 +5,56 @@
 //---------------------------------------------------------------------------------------
 
 //------------------------------------------------------------------
-// vytvoří linku z parametrů
+// Základní konstruktor
 BusLineModel::BusLineModel(unsigned int id, QString name, vector<BusStopModel*> busStops, vector<int> times, PathModel* path) : BaseModel(id)
 {
-    this->Path = path;
-    this->Times = times;
-    this->BusStops = busStops;
-    this->Name = name;
+    this->path = path;
+    this->times = times;
+    this->busStops = busStops;
+    this->name = name;
 
     isCorrect();
 }
 
 //----------------------------------------------------------------
-// vytvoří linku ze souboru xml
+// Konstruktor pro vytvoření modelu z XML uzlu
 BusLineModel::BusLineModel(TiXmlElement* xml, vector<BusStopModel*> busStops, vector<StreetModel*> streets) : BaseModel(xml)
 {
-    this->Name = xml->Attribute("name");
+    this->name = xml->Attribute("name");
     TiXmlNode* xmlBusStops = xml->FirstChild("busstops");
     TiXmlNode* xmlPath = xml->FirstChild("path");
     if (xmlBusStops == nullptr || xmlPath == nullptr)
         throw QString("Nepodařilo se načíst autobusovou linku.");
-    BusStops = GetByXml(xmlBusStops, busStops, "busstopid");
+    busStops = GetByXml(xmlBusStops, busStops, "busstopid");
 
-    Times = GetIntByXml(xmlBusStops, "time");
+    times = GetIntByXml(xmlBusStops, "time");
 
-    Path = new PathModel();
+    path = new PathModel();
     vector<StreetModel*> pathVector = GetByXml(xmlPath, streets, "streetid");
-    for(StreetModel* street : pathVector) Path->addStreet(street);
+    for(StreetModel* street : pathVector) path->addStreet(street);
 
     isCorrect();
 
 }
 
 //---------------------------------------------------------------
-// destruktor
+// Destruktor
 BusLineModel::~BusLineModel(){
-    if(Path != NULL) delete Path;
+    if(path != NULL) delete path;
 }
 
 //--------------------------------------------------------------
-// tisk
+// Ladící metoda pro výpis obsahu modelu na standartní výstup
 void BusLineModel::Print(int indent)
 {
     PrintIndent(indent);
     cout << "Bus Line " << id << "\n";
     PrintIndent(indent);
     cout << "Path:\n";
-    Path->Print(indent + 1);
+    path->Print(indent + 1);
     PrintIndent(indent);
     cout << "BusStops:\n";
-    for (BusStopModel * busStop : BusStops)
+    for (BusStopModel * busStop : busStops)
     {
         busStop->Print(indent + 1);
     }
@@ -66,53 +66,43 @@ void BusLineModel::Print(int indent)
 //------------------------------------------------------------------------------------
 
 //-------------------------------------------------------------
-// vrátí jméno linky
+// Funkce vrací název linky
 QString BusLineModel::getName(){
-    return this->Name;
+    return this->name;
 }
 
 //--------------------------------------------------------------
-// vrátí seznam zastávek
+// Funkce vrací zastávky linky
 vector<BusStopModel*> BusLineModel::getBusStops(){
-    return this->BusStops;
+    return this->busStops;
 }
 
 //---------------------------------------------------------------
-// vrátí seznam časů
+// Funkce vrací minuty mezi zastávkami
 vector<int> BusLineModel::getTimes(){
-    return this->Times;
+    return this->times;
 }
 
 //----------------------------------------------------------------
-// vrátí trasu
+// Funkce vrací trasu linky
 PathModel* BusLineModel::getPath(){
-    return this->Path;
+    return this->path;
 }
 
 //************************************************************************************
 // výpočetní metody
 //----------------------------------------------------------------------------------
 
-//--------------------------------------------------------------
-// vrátí autobusovou zastávku podle id
-BusStopModel* BusLineModel::GetBusStopById(int id)
-{
-    for (BusStopModel* busStop : BusStops)
-    {
-        if (busStop->getId() == id)
-            return busStop;
-    }
-    return nullptr;
-}
+
 
 //------------------------------------------------------------------
-// vrátí index autobusové zastávky
+// Funkce vrací index zastávky v autobusové lince
 unsigned int BusLineModel::GetIndexByBusStop(BusStopModel* busStop)
 {
     if(busStop == NULL) throw new QString("Nebyla vybrána žádná zastávky (buslinemodel, line: " + QString::number(id) + ")");
 
     unsigned int index = 0;
-    for (BusStopModel* _busStop : BusStops)
+    for (BusStopModel* _busStop : busStops)
     {
         if (_busStop->getId() == busStop->getId())
             return index;
@@ -122,10 +112,10 @@ unsigned int BusLineModel::GetIndexByBusStop(BusStopModel* busStop)
 }
 
 //-------------------------------------------------------------------
-// vrátí délku v minutách, jak dlouho trvá trasa
+// Funkce vrací jak dlouho trvá jízda linky v minutách
 int BusLineModel::getDurationInMinutes(){
     int i = 0;
-    for(int time : Times){
+    for(int time : times){
         i += time;
     }
     return i;
@@ -133,20 +123,20 @@ int BusLineModel::getDurationInMinutes(){
 
 
 //-----------------------------------------------------------------------
-// vrátí index ulice podle zastávky
+// Funkce vrací index ulice v cestě podle zastávky
 unsigned int BusLineModel::GetStreetIndexByBusStop(BusStopModel *busStop)
 {
     unsigned int index = 0;
-    for (index = 0; index < Path->getStreets().size(); index++)
+    for (index = 0; index < path->getStreets().size(); index++)
     {
-        if (Path->getStreets()[index]->getId() == busStop->getStreet()->getId())
+        if (path->getStreets()[index]->getId() == busStop->getStreet()->getId())
             return index;
     }
     return index;
 }
 
 //-------------------------------------------------------------------------
-// vrátí seznam ulic mezi zastávkami
+// Funkce vrací ulice mezi zastávkami
 vector<StreetModel*> BusLineModel::GetStreetsBetweenBusStops( BusStopModel *leftBusStop, BusStopModel *rightBusStop, bool skip)
 {
     vector<StreetModel*> streets = {};
@@ -156,7 +146,7 @@ vector<StreetModel*> BusLineModel::GetStreetsBetweenBusStops( BusStopModel *left
         streets.push_back(leftBusStop->getStreet());
     for (leftStreetIndex += 1; leftStreetIndex < rightStreetIndex; leftStreetIndex++)
     {
-        streets.push_back(Path->getStreets()[leftStreetIndex]);
+        streets.push_back(path->getStreets()[leftStreetIndex]);
     }
     if (skip == false)
         streets.push_back(rightBusStop->getStreet());
@@ -164,17 +154,17 @@ vector<StreetModel*> BusLineModel::GetStreetsBetweenBusStops( BusStopModel *left
 }
 
 //-------------------------------------------------------------------------
-// vrátí seznam bodů mezi zastávkami
+// Funkce vrací pole bodů, které jsou mezi zastávkami
 vector<PointModel*> BusLineModel::GetPointsBetweenBusStops(BusStopModel *leftBusStop, BusStopModel *rightBusStop)
 {
     vector<PointModel*> points = {};
     unsigned int leftBusStopIndex = GetIndexByBusStop(leftBusStop);
     unsigned int rightBusStopIndex = GetIndexByBusStop(rightBusStop);
     StreetModel* leftStreet = leftBusStop->getStreet();
-    points.push_back(BusStops[leftBusStopIndex]->getPosition());
+    points.push_back(busStops[leftBusStopIndex]->getPosition());
     for (; leftBusStopIndex < rightBusStopIndex; leftBusStopIndex++)
     {
-        for (StreetModel* street : GetStreetsBetweenBusStops(BusStops[leftBusStopIndex], BusStops[leftBusStopIndex + 1], true))
+        for (StreetModel* street : GetStreetsBetweenBusStops(busStops[leftBusStopIndex], busStops[leftBusStopIndex + 1], true))
         {
             PointModel* point = leftStreet->IsConnectedBy(street);
             if (point == nullptr)
@@ -182,29 +172,29 @@ vector<PointModel*> BusLineModel::GetPointsBetweenBusStops(BusStopModel *leftBus
             points.push_back(point);
             leftStreet = street;
         }
-        points.push_back(leftStreet->IsConnectedBy(BusStops[leftBusStopIndex+1]->getStreet()));
-        points.push_back(BusStops[leftBusStopIndex+1]->getPosition());
-        leftStreet = BusStops[leftBusStopIndex + 1]->getStreet();
+        points.push_back(leftStreet->IsConnectedBy(busStops[leftBusStopIndex+1]->getStreet()));
+        points.push_back(busStops[leftBusStopIndex+1]->getPosition());
+        leftStreet = busStops[leftBusStopIndex + 1]->getStreet();
     }
 
     return points;
 }
 
 //---------------------------------------------------------------------------
-// vrátí vzdálenost mezi zastávkami
+// Funkce vrací vzdálenost na cestě mezi zastávkami
 double BusLineModel::GetDistanceOfBusStops(unsigned int leftIndex, unsigned int rightIndex)
 {
 
-    if (leftIndex < BusStops.size() && rightIndex < BusStops.size() && leftIndex <= rightIndex)
+    if (leftIndex < busStops.size() && rightIndex < busStops.size() && leftIndex <= rightIndex)
     {
-        return GetDistanceOfBusStops(BusStops[leftIndex], BusStops[rightIndex]);
+        return GetDistanceOfBusStops(busStops[leftIndex], busStops[rightIndex]);
     }
     return 0;
 
 }
 
 //--------------------------------------------------------------------------
-// vrátí vzdálenost mezi zastávkami
+// Funkce vrací vzdálenost na cestě mezi zastávkami
 double BusLineModel::GetDistanceOfBusStops(BusStopModel *leftBusStop, BusStopModel *rightBusStop)
 {
     double distance = 0;
@@ -223,21 +213,21 @@ double BusLineModel::GetDistanceOfBusStops(BusStopModel *leftBusStop, BusStopMod
 //--------------------------------------------------------------------------------------
 
 //----------------------------------------------------------------------
-// kontrola, zda je linka korektní
+// Funkce vyhodí výjimku, pokud je linka špatně inicializována
 void BusLineModel::isCorrect(){
 
-    if(this->Name == NULL) Name = "";
+    if(this->name == NULL) name = "";
 
-    if(BusStops.size() != Times.size()) throw new QString("Každá zastávka musí mít čas dojezdu (buslinemodel, line: " + QString::number(id) + ")");
+    if(busStops.size() != times.size()) throw new QString("Každá zastávka musí mít čas dojezdu (buslinemodel, line: " + QString::number(id) + ")");
 
     int unsigned index = 0;
-    for(BusStopModel* busStop: BusStops){
+    for(BusStopModel* busStop: busStops){
 
-        while(index<Path->getStreets().size()){
-            if(busStop->getStreet() == Path->getStreets()[index]) break;
+        while(index<path->getStreets().size()){
+            if(busStop->getStreet() == path->getStreets()[index]) break;
             index++;
         }
-        if(index == Path->getStreets().size()) throw new QString("Některé zastávky neleží na trase linky. (buslinemodel, line: " + QString::number(id) + ")");
+        if(index == path->getStreets().size()) throw new QString("Některé zastávky neleží na trase linky. (buslinemodel, line: " + QString::number(id) + ")");
     }
 
 
