@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef BUSSTOPMODEL_H
 #define BUSSTOPMODEL_H
 #include "src/Models/streetmodel.h"

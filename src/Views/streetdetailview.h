@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef STREETDETAILVIEW_H
 #define STREETDETAILVIEW_H
 #include <QWidget>

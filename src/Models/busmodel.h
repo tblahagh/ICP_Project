@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef BUSMODEL_H
 #define BUSMODEL_H
 
@@ -87,28 +91,79 @@ public:
     int getNextStopIndex();
 
 private:
-    // pointer to bus line, which is related to this bus
+    /**
+     * Model autobusové linky
+     */
     BusLineModel* busLine = NULL;
 
+    /**
+     * Model hodin, podle kterých se autobus řídí
+     */
     ClockModel* clockModel = NULL;
+
+    /**
+     * Aktuální zpoždění autobusu
+     */
     int delay;
+
+    /**
+     * Čas, kdy autobus vyjel na trasu
+     */
     tm startTime;
 
+    /**
+     * Čas poslední aktualizace pozice autobusu
+     */
     tm lastActualizeTime;
-    double actualSpeed = 0; // in points / seconds
 
+    /**
+     * Aktuální rychlost autobusu (v bodech za sekundu)
+     */
+    double actualSpeed = 0;
+
+    /**
+     * Index následující zastávky
+     */
     unsigned int indexOfNextStop = 0;
+
+    /**
+     * Pozice na ulici, kterou autobus právě projíždí
+     */
     double positionOnActualStreet = 0;
-    bool directionStartToEnd = true; // direction on actual street
 
+    /**
+     * Směr, kterým autobus právě jede po ulici
+     */
+    bool directionStartToEnd = true;
 
+    /**
+     * Normální rychlost autobusu na trase
+     */
     vector<double> usualSpeedOnPath = {};
+
+    /**
+     * Index ulice, po ktere autobus právě jede
+     */
     vector<unsigned int> indexOfActualStreetOnPath = {};
+
+    /**
+     * Trasa, po které autobus právě jede
+     */
     vector<PathModel*> actualPaths = {};
+
+    /**
+     * Směr, kterým autobus po trase jede
+     */
     vector<bool> actualDirectionOnPath = {};
 
-
+    /**
+     * Informuje, zda je otevřený detail autobusu
+     */
     bool openedDetail = false;
+
+    /**
+     * Ladící proměnná
+     */
     bool qdebug = false;
 };
 

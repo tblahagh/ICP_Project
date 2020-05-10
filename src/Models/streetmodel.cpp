@@ -159,7 +159,9 @@ void StreetModel::SetDetour(PathModel *_detour){
 PointModel* StreetModel::IsConnectedBy(StreetModel *street)
 {
     if (street == nullptr) throw new QString("Nebyla vybrána žádná ulice.");
-    else if (street == this) throw new QString("Byla vybrána stejná ulice.");
+    else if (street == this) {
+        throw new QString("Byla vybrána stejná ulice.");
+    }
 
     if (StartPosition->getId() == street->StartPosition->getId() || StartPosition->getId() == street->EndPosition->getId())
         return StartPosition;

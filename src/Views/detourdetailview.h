@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef DETOURDETAILVIEW_H
 #define DETOURDETAILVIEW_H
 #include <QWidget>

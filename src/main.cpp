@@ -1,3 +1,7 @@
+/*
+ * Autor: Tomáš Blaha
+ * Datum: 9.5.2020
+ * */
 #include "mainwindow.h"
 #include "src/mapcreator.h"
 #include "src/Models/mapmodel.h"

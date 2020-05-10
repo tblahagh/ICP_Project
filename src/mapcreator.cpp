@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #include "mapcreator.h"
 
 //********************************************************************************
@@ -79,7 +83,7 @@ void MapCreator::CreateTimeTables(TiXmlNode* xml, MapModel* map)
 }
 
 //-------------------------------------------------------------------
-// vytvoří mapu
+// Funkce vytvoří model mapy z XML, vyhodí výjimku pokud nastane chyba
 MapModel *MapCreator::CreateMap(string filename, MainWindow* _mainWindow)
 {
     if(_mainWindow == NULL) throw new QString("Nepodařilo se vytvořit mapu");

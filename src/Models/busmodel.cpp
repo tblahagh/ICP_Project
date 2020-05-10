@@ -172,6 +172,9 @@ bool BusModel::actualizePosition(){
     // pokud je pocet ujetych bodu vetsi nez vzdalenost do konce ulice nebo do dalsi zastavky...
     while(passedInPoints > lenghtToEndOfStreet || passedInPoints > lenghtToNextStop){
 
+        if(qdebug) cout << "next stop: " << lenghtToNextStop << endl;
+        if(qdebug) cout << "next street: " << lenghtToEndOfStreet << endl;
+
         // pokud je dalsi zastavka bliz nez konec ulice
         if(lenghtToNextStop <= lenghtToEndOfStreet){
 
@@ -192,9 +195,9 @@ bool BusModel::actualizePosition(){
 
             // upravime vzdalenost do konce ulice podle smeru, kterym se jede
             if(directionStartToEnd)
-                lenghtToEndOfStreet = CurrentPosition().GetDistanceFrom(actualPaths.back()->getStreets().at(indexOfActualStreetOnPath.back())->getEndPosition());
+                lenghtToEndOfStreet = busLine->getBusStops().at(indexOfNextStop-1)->getPosition()->GetDistanceFrom(actualPaths.back()->getStreets().at(indexOfActualStreetOnPath.back())->getEndPosition());
             else
-                lenghtToEndOfStreet = CurrentPosition().GetDistanceFrom(actualPaths.back()->getStreets().at(indexOfActualStreetOnPath.back())->getStartPosition());
+                lenghtToEndOfStreet = busLine->getBusStops().at(indexOfNextStop-1)->getPosition()->GetDistanceFrom(actualPaths.back()->getStreets().at(indexOfActualStreetOnPath.back())->getStartPosition());
 
             // upravime vzdalenost do dalsi zastavky
             lenghtToNextStop = busLine->GetDistanceOfBusStops(indexOfNextStop-1, indexOfNextStop);

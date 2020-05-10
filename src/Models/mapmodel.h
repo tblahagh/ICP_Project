@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef MAPMODEL_H
 #define MAPMODEL_H
 #include <vector>
@@ -163,6 +167,14 @@ public:
      */
     void actualizeBuses(ClockModel* clock);
 
+
+    /**
+     * Funkce odstraní autobus, který ukončil trasu
+     * @param Seznam modelů, odkud je potřeba autobus odstranit
+     * @param Model autobusu, který je potřeba odstanit
+     */
+    void deleteBus(vector<BusModel*> *buses, BusModel* bus);
+
     /**
      * Funkce vrací ulici podle bodu
      * @param point Bod, podle kterého se ulice hledá
@@ -236,9 +248,11 @@ private:
      */
     vector<BusModel*> Buses;
 
+    /**
+      * Čas poslední aktualizace
+      */
     tm lastActualizeBuses = {};
 
-    void deleteBus(vector<BusModel*> *buses, BusModel* bus);
 };
 
 #endif // MAPMODEL_H

@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef STREETMODEL_H
 #define STREETMODEL_H
 #include "src/tinyxml/tinystr.h"
@@ -162,7 +166,6 @@ private:
      */
     int traffic = 3;
 
-    // delay of detour
     /**
      * Zpoždění při jízdě odbočkou
      */

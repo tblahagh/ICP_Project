@@ -1,3 +1,7 @@
+/*
+ * Autoři: Tomáš Blaha, Vojtěch Wawreczka
+ * Datum: 9.5.2020
+ * */
 #ifndef PATHMODEL_H
 #define PATHMODEL_H
 #include "pointmodel.h"
