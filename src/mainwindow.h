@@ -103,12 +103,11 @@ public:
     void selectStreetOnDetour(StreetView *view);
     /**
      * @brief Metoda odstraní ulici z vytvářené objíždky
-     * @param view Pohled ulice, která má být odstraněna
      */
     void deselectStreetsOnDetour();
     /**
      * @brief Metoda zavře detail autobusu
-     * @param view Autobus, jehož model má být zavřen
+     * @param bus Autobus, jehož model má být zavřen
      */
     void closeBusDetail(BusModel* bus);
     /**

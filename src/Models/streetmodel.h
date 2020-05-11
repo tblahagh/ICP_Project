@@ -65,7 +65,7 @@ public:
 
     /**
      * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
-     * @param počet tabulátorů před výpisem
+     * @param indent počet tabulátorů před výpisem
      */
     virtual void Print(int indent) override;
 

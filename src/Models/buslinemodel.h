@@ -31,7 +31,7 @@ public:
     /**
      * @brief Konstruktor pro vytvoření modelu z XML uzlu
      * @param xml XML uzel, ze kterého se model vytvoří
-     * @param points Pole již existujících zastávek, ze kterých se vyberou zastávky odpovídající dané lince
+     * @param busStops Pole již existujících zastávek, ze kterých se vyberou zastávky odpovídající dané lince
      * @param streets Pole již existujících ulic, ze kterých se vyberou ulice pro vytvoření cesty
      */
     BusLineModel(TiXmlElement* xml, vector<BusStopModel*> busStops, vector<StreetModel*> streets);

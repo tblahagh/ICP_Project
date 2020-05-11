@@ -31,6 +31,7 @@ public:
      * @param painter Plátno pro vykreslování
      * @param zoom Zvětšení mapy, které je třeba zohlednit
      * @param offset Offset od hrany mapy
+     * @param mode Mód ulice
      */
     void paint(QPainter *painter, double zoom, double offset, int mode);
     /**

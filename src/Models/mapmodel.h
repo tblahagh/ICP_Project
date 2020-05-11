@@ -49,7 +49,6 @@ public:
 
     /**
      * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
-     * @param Počet tabulátorů před výpisem
      */
     void Print();
 

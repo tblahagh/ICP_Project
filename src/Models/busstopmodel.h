@@ -1,6 +1,7 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ * Třída reprezentující autobusovou zastávku
  * */
 #ifndef BUSSTOPMODEL_H
 #define BUSSTOPMODEL_H
@@ -10,7 +11,7 @@
 #include "src/tinyxml/tinyxml.h"
 using namespace std;
 /**
- * Třída reprezentující autobusovou zástávku
+ * @brief Třída reprezentující autobusovou zástávku
  */
 class BusStopModel : public BaseModel
 {

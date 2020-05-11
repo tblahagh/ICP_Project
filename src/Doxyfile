@@ -1,0 +1,10 @@
+DOXYFILE_ENCODING = UTF-8
+PROJECT_NAME = "ICP"
+PROJECT_BRIEF = "Aplikace pro zobrazení autobusové dopravy v reálném čase"
+GENERATE_HTML = YES
+GENERATE_LATEX = NO
+INPUT = src/Models \
+	src/Views \
+	src
+FILE_PATTERNS = *.h
+
