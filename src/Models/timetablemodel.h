@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Třída reprezentující jízdní řád
  * */
 #ifndef TIMETABLEMODEL_H
 #define TIMETABLEMODEL_H
@@ -12,7 +14,7 @@
 
 using namespace std;
 /**
- * Třída reprezentující jízdní řád
+ * @brief Třída reprezentující jízdní řád
  */
 class TimeTableModel : public BaseModel
 {
@@ -20,7 +22,7 @@ public:
 
 
     /**
-     * Základní kostruktor
+     * @brief Základní kostruktor
      * @param id Identifikátor model
      * @param busLine Autobusová linka, které se řád týka
      * @param startTimes Časy příjezdu autobusu na zastávky
@@ -28,36 +30,36 @@ public:
     TimeTableModel(unsigned int id = 0, BusLineModel* busLine = nullptr, vector<tm> startTimes = {});
 
     /**
-     * Konstruktor pro vytvoření řádu z XML uzlu
+     * @brief Konstruktor pro vytvoření řádu z XML uzlu
      * @param xml XML uzel
      * @param busLines Ukazatele na autobusové linky
      */
     TimeTableModel(TiXmlElement* xml, vector<BusLineModel*> busLines);
 
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~TimeTableModel();
 
     /**
-     * Funkce vrací časy zastávek
+     * @brief Funkce vrací časy zastávek
      * @return Časy zastávek
      */
     vector<tm> getStartTimes();
 
     /**
-     * Funkce vrací autobusovou linku
+     * @brief Funkce vrací autobusovou linku
      * @return Ukazatel na autobusovou linku
      */
     BusLineModel* getBusLine();
 
     /**
-     * Funkce vyhodí výjimku, pokud je linka špatně inicializována
+     * @brief Funkce vyhodí výjimku, pokud je linka špatně inicializována
      */
     void isCorrect();
 
     /**
-     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
      * @param Počet tabulátorů před výpisem
      */
     virtual void Print(int indent) override;
@@ -65,11 +67,11 @@ public:
 private:
 
     /**
-     * Časy zastávek
+     * @brief Časy zastávek
      */
     vector<tm> StartTimes;
     /**
-     * Autobusová linka
+     * @brief Autobusová linka
      */
     BusLineModel* BusLine;
 };

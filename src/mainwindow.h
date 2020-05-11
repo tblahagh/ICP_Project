@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Hlavní okno aplikace
  * */
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
@@ -36,7 +38,7 @@ class ClockModel;
 class MapView;
 class MapCreator;
 /**
- * Hlavní okno aplikace
+ * @brief Hlavní okno aplikace
  */
 class MainWindow : public QMainWindow
 {
@@ -45,208 +47,207 @@ class MainWindow : public QMainWindow
 public:
 
     /**
-     * Konstruktor, provede inicializaci všech komponent okna
+     * @brief Konstruktor, provede inicializaci všech komponent okna
      * @param parent Rodič okna
      */
     MainWindow(QWidget *parent = 0);
 
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~MainWindow();
     /**
-     * Metoda zobrazí nový čas na hodinách po tiknutí
+     * @brief Metoda zobrazí nový čas na hodinách po tiknutí
      */
     void clockTicked();
     /**
-     * Metoda zavře všechny detaily
+     * @brief Metoda zavře všechny detaily
      */
     void closeDetail();
     /**
-     * Metoda aktualizuje všechny detaily
+     * @brief Metoda aktualizuje všechny detaily
      */
     void updateDetail();
     /**
-     * Metoda vyčistí plochu detailu
+     * @brief Metoda vyčistí plochu detailu
      */
     void clearWidget();
     /**
-     * Metoda otevře detail ulice
+     * @brief Metoda otevře detail ulice
      * @param view Pohled ulice která se má zobrazit
      */
     void openStreetDetail(StreetView *view);
     /**
-     * Metoda otevře detail objížďky
+     * @brief Metoda otevře detail objížďky
      * @param view Pohled ulice, které se objížďka týká
      */
     void openDetourDetail(StreetView *view);
     /**
-     * Metoda otevře detail autobusové zastávky
+     * @brief Metoda otevře detail autobusové zastávky
      * @param view Pohled autobusové zastávky, která se má zobrazit
      */
     void openBusStopDetail(BusStopView *view);
     /**
-     * Metoda otevře detail autobusu
+     * @brief Metoda otevře detail autobusu
      * @param view Pohled autobusu, který se má zobrazit
      */
     void openBusDetail(BusView *view);
     /**
-     * Metoda aktualizuje pohled mapy
+     * @brief Metoda aktualizuje pohled mapy
      */
     void mapUpdate();
     /**
-     * Metoda vloží ulici do vytvářené objíždky
+     * @brief Metoda vloží ulici do vytvářené objíždky
      * @param view Pohled ulice, která má být přidána
      */
     void selectStreetOnDetour(StreetView *view);
     /**
-     * Metoda odstraní ulici z vytvářené objíždky
+     * @brief Metoda odstraní ulici z vytvářené objíždky
      * @param view Pohled ulice, která má být odstraněna
      */
     void deselectStreetsOnDetour();
     /**
-     * Metoda zavře detail autobusu
+     * @brief Metoda zavře detail autobusu
      * @param view Autobus, jehož model má být zavřen
      */
     void closeBusDetail(BusModel* bus);
     /**
-     * Metoda zobrazí výjimku
+     * @brief Metoda zobrazí výjimku
      * @param text Text výjimky
      */
     void showException(const QString *text);
     /**
-     * Metoda provede akce po inicializaci hodin
+     * @brief Metoda provede akce po inicializaci hodin
      */
     void clockInitialized();
 
 public slots:
     /**
-     * Metoda zvýší zoom mapy
+     * @brief Metoda zvýší zoom mapy
      */
     void increaseMapZoom();
     /**
-     * Metoda sníží zoom mapy
+     * @brief Metoda sníží zoom mapy
      */
     void decreaseMapZoom();
     /**
-     * Metoda otevře detail hodin
+     * @brief Metoda otevře detail hodin
      */
     void openClockDetail();
     /**
-     * Metoda otevře průzkumník souborů pro výběr mapy
+     * @brief Metoda otevře průzkumník souborů pro výběr mapy
      */
     void openFileDialog();
 private:
 
 
     /**
-     * Centrální umístění
+     * @brief Centrální umístění
      */
     QWidget * central = NULL;
     /**
-     * Základní hbox
+     * @brief Základní hbox
      */
     QHBoxLayout *layout;
     /**
-     * Vbox pro detaily a nastavení
+     * @brief Vbox pro detaily a nastavení
      */
     QVBoxLayout *vbox;
 
     /**
-     * Widget pro nastaveni
+     * @brief Widget pro nastaveni
      */
     QWidget *widget;
-    //
+
     /**
-     * Widget - velikost pro scroll area
+     * @brief Widget - velikost pro scroll area
      */
     QWidget *scrollWidget;
-    //
+
     /**
-     * Scroll area pro mapu
+     * @brief Scroll area pro mapu
      */
     QScrollArea *scroll;
 
-    //
     /**
-     * Objekt pro vytvoření mapy
+     * @brief Objekt pro vytvoření mapy
      */
     MapCreator *creator = NULL;
-    //
+
     /**
-     * Model mapy
+     * @brief Model mapy
      */
     MapModel *mapModel = NULL;
-    //
+
     /**
-     * Pohled pro mapu
+     * @brief Pohled pro mapu
      */
     MapView *mapView;
     /**
-     * Popisek s názvem mapy
+     * @brief Popisek s názvem mapy
      */
     QLabel *labelMapFile;
     /**
-     * Tlačítko pro otevření průzkumníku souborů pro výběr mapy
+     * @brief Tlačítko pro otevření průzkumníku souborů pro výběr mapy
      */
     QPushButton* btnMapFileSelect;
     /**
-     * Model hodin
+     * @brief Model hodin
      */
     ClockModel *clockModel = NULL;
 
     /**
-     * Pohled hodin
+     * @brief Pohled hodin
      */
     ClockView *clockView;
     /**
-     * Tlačítko pro úpravu hodin
+     * @brief Tlačítko pro úpravu hodin
      */
     QPushButton *btnClockEdit;
 
     /**
-     * Zobrazení hodin
+     * @brief Zobrazení hodin
      */
     QLabel *labelClock;
 
     /**
-     * Zoom popisek
+     * @brief Zoom popisek
      */
     QLabel *labelZoom;
 
     /**
-     * Tlačítka pro zoom
+     * @brief Tlačítka pro zoom
      */
     QPushButton *btnZoomPlus;
     QPushButton *btnZoomMinus;
 
     /**
-     * Popisek pro hlášení chyb
+     * @brief Popisek pro hlášení chyb
      */
     QLabel *exceptionLabel = NULL;
 
     /**
-     * Detail hodin
+     * @brief Detail hodin
      */
     ClockDetailView *clockDetailView = NULL;
     /**
-     * Detail ulice
+     * @brief Detail ulice
      */
     StreetDetailView *streetDetailView = NULL;
     /**
-     * Detail objížďky
+     * @brief Detail objížďky
      */
     DetourDetailView *detourDetailView = NULL;
     /**
-     * Detail zastávky
+     * @brief Detail zastávky
      */
     BusStopDetailView *busStopDetailView = NULL;
     /**
-     * Detail autobusu
+     * @brief Detail autobusu
      */
     BusDetailView *busDetailView = NULL;
     /**
-     * Indikátor jestli je otevřena mapa
+     * @brief Indikátor jestli je otevřena mapa
      */
     bool mapSelected;
 };

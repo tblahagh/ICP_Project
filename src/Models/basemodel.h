@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Základni třída, ze které dědí ostatní modely
  * */
 #ifndef BASEMODEL_H
 #define BASEMODEL_H
@@ -12,43 +14,43 @@
 #include <QString>
 using namespace std;
 /**
-* Základni třída, ze které dědí ostatní modely
+* @brief Základni třída, ze které dědí ostatní modely
 */
 class BaseModel
 {
 public:
 
     /**
-    * Destruktor
+    * @brief Destruktor
     */
     virtual ~BaseModel();
 
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param id Identifikátor modelu
      */
     BaseModel(unsigned int id = 0);
 
     /**
-     * Konstruktor pro vytvoření modelu z XML uzlu
+     * @brief Konstruktor pro vytvoření modelu z XML uzlu
      * @param xml XML uzel, ze kterého se model vytvoří
      */
     BaseModel(TiXmlElement* xml);
 
     /**
-     * Funkce vrátí identifikátor modelu
+     * @brief Funkce vrátí identifikátor modelu
      * @return Hodnota vlastnosti id
      */
     int getId();
 
     /**
-     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
      * @param Počet tabulátorů před výpisem
      */
     virtual void Print(int indent) = 0;
 
     /**
-     * Šablonová funkce, která vybere ukazatel na model z pole podle identifikátoru
+     * @brief Šablonová funkce, která vybere ukazatel na model z pole podle identifikátoru
      * @tparam T Typ modelu
      * @param models Pole modelů
      * @param id Identifikátor modelu
@@ -69,7 +71,7 @@ public:
 
 
     /**
-     * Šablonová funkce, která vybere z pole models všechny modely, na které je odkazováno v XML uzlu xml
+     * @brief Šablonová funkce, která vybere z pole models všechny modely, na které je odkazováno v XML uzlu xml
      * @tparam T Typ modelů
      * @param xml XML uzel
      * @param models Pole již existujích modelů
@@ -97,7 +99,7 @@ public:
 
     // templated function that gets identifiers of models from XML and return vector of pointers to models given by these identifiers
     /**
-     * Šablonová funkce, která vybere z identifikátory modelů, na které je odkazováno v XML uzlu xml
+     * @brief Šablonová funkce, která vybere z identifikátory modelů, na které je odkazováno v XML uzlu xml
      * @tparam T Typ modelů
      * @param xml XML uzel
      * @param idAttribute Řetězec značící atribut v poduzlech obsahující identifikátor modelu
@@ -120,11 +122,11 @@ public:
 
 protected:
     /**
-     * Unikátní identifikátor modelu
+     * @brief Unikátní identifikátor modelu
      */
     unsigned int id;
     /**
-     * Ladící metoda výpis pro odsazení na standartní výstup
+     * @brief Ladící metoda výpis pro odsazení na standartní výstup
      * @param indent Počet tabulátorů
      */
     void PrintIndent(int indent);

@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Třída reprezentující bod ve dvourozměrném prostoru
  * */
 #ifndef POINTMODEL_H
 #define POINTMODEL_H
@@ -14,14 +16,14 @@
 
 
 /**
-* Třída reprezentující bod ve dvourozměrném prostoru
+* @brief Třída reprezentující bod ve dvourozměrném prostoru
 */
 class PointModel : public BaseModel
 {
 public:
 
     /**
-     * Základní konstruktor pro vytvoření bodu
+     * @brief Základní konstruktor pro vytvoření bodu
      * @param id identifikátor modelu
      * @param x Souřadnice X
      * @param y Souřadnice Y
@@ -29,32 +31,32 @@ public:
     PointModel(unsigned int id = 0, double x = 0, double y = 0);
 
     /**
-     * Konstruktor pro vytvoření modelu bodu z XML uzlu
+     * @brief Konstruktor pro vytvoření modelu bodu z XML uzlu
      * @param xml XML uzel, ze kterého se model vytvoří
      */
     PointModel(TiXmlElement* xml);
 
     /**
-     * Vrací souřadnici X
+     * @brief Vrací souřadnici X
      * @return Hodnota souřadnice X
      */
     double getX();
 
     /**
-     * Vrací souřadnici Y
+     * @brief Vrací souřadnici Y
      * @return Hodnota souřadnice Y
      */
     double getY();
 
     /**
-     * Funkce vypočte vzdálenost bodu od jiného
+     * @brief Funkce vypočte vzdálenost bodu od jiného
      * @param point Bod, od kterého se má vypočítat vzdálenost
      * @return Vzdálenost mezi body
      */
     double GetDistanceFrom(PointModel* point);
 
     /**
-     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
      * @param počet tabulátorů před výpisem
      */
     virtual void Print(int indent) override;
@@ -62,12 +64,12 @@ public:
 private:
 
     /**
-     * Souřadnice X
+     * @brief Souřadnice X
      */
     double X;
 
     /**
-     * Souřadnice Y
+     * @brief Souřadnice Y
      */
     double Y;
 

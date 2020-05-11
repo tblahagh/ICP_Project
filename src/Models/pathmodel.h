@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Třída reprezentující trasu vytvořenou z ulic
  * */
 #ifndef PATHMODEL_H
 #define PATHMODEL_H
@@ -19,70 +21,70 @@ using namespace std;
 class StreetModel;
 
 /**
-* Třída reprezentující trasu vytvořenou z ulic
+* @brief Třída reprezentující trasu vytvořenou z ulic
 */
 class PathModel : public BaseModel
 {
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param id Identifikátor modelu
      */
     PathModel(unsigned int id = 0);
 
     /**
-     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
      * @param počet tabulátorů před výpisem
      */
     virtual void Print(int indent);
 
     /**
-     * Funkce vrací seznam ulic, které tvoří trasu
+     * @brief Funkce vrací seznam ulic, které tvoří trasu
      * @return Hodnota vlastnosti streets
      */
     vector<StreetModel*> getStreets();
 
     /**
-     * Funkce vrací počáteční bod trasy
+     * @brief Funkce vrací počáteční bod trasy
      * @return Ukazatel na bod, kterým trasa začíná
      */
     PointModel* getStartPosition();
 
     /**
-     * Funkce vrací koncový bod trasy
+     * @brief Funkce vrací koncový bod trasy
      * @return Ukazatel na bod, kterým trasa končí
      */
     PointModel* getEndPosition();
 
     /**
-     * Metoda přidá ulici na konec trasy
+     * @brief Metoda přidá ulici na konec trasy
      * @param street Ukazatel na přidávanou ulici
      */
     void addStreet(StreetModel* street);
 
     /**
-     * Metoda vymaže všechny ulice v trase
+     * @brief Metoda vymaže všechny ulice v trase
      */
     void clearStreets();
 
     /**
-     * Metoda vyhodí výjimku, pokud je trasa špatně inicializována
+     * @brief Metoda vyhodí výjimku, pokud je trasa špatně inicializována
      */
     void isCorrect();
 
     /**
-     * Funkce vrací délku trasy
+     * @brief Funkce vrací délku trasy
      * @return Délka všech ulic v trase
      */
     double getLenght();
 
     /**
-     * Metoda vymaže ulici na konci trasy
+     * @brief Metoda vymaže ulici na konci trasy
      */
     void clearStreet();
 
     /**
-     * Funkce vrací počet ulic, které tvoří trasu
+     * @brief Funkce vrací počet ulic, které tvoří trasu
      * @return Počet ulic
      */
     unsigned int getNumberOfStreets();
@@ -90,17 +92,17 @@ public:
 private:
 
     /**
-     * Seznam ulic, které tvoří cestu
+     * @brief Seznam ulic, které tvoří cestu
      */
     vector<StreetModel*> streets;
 
     /**
-     * Ukazatel na bod, který trasa začíná
+     * @brief Ukazatel na bod, který trasa začíná
      */
     PointModel* startPosition = NULL;
 
     /**
-     * Ukazatel na bod, který trasa končí
+     * @brief Ukazatel na bod, který trasa končí
      */
     PointModel* endPosition = NULL;
 };

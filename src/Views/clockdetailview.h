@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled detailu hodin
  * */
 #ifndef CLOCKDETAILVIEW_H
 #define CLOCKDETAILVIEW_H
@@ -21,7 +23,7 @@ using namespace std;
 class MainWindow;
 class ClockModel;
 /**
- * Pohled detailu hodin
+ * @brief Pohled detailu hodin
  */
 class ClockDetailView : public QWidget
 {
@@ -29,54 +31,54 @@ class ClockDetailView : public QWidget
 
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param _clockModel Model hodin
      * @param _mainWindow Okno aplikace
      * @param parent Rodič pohledu
      */
     ClockDetailView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *parent = 0);
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~ClockDetailView();
     /**
-     * Metoda vykresli pohled do widgetu
+     * @brief Metoda vykresli pohled do widgetu
      * @param widget Widget, do kterého se má pohled vykreslit
      */
     void paint(QWidget *widget);
 
 public slots:
     /**
-     * Metoda se provede při kliknutí na tlačítko inicializace
+     * @brief Metoda se provede při kliknutí na tlačítko inicializace
      */
     void btnInitClicked();
     /**
-     * Metoda se provede při kliknutí na tlačítko uložení rychlosti
+     * @brief Metoda se provede při kliknutí na tlačítko uložení rychlosti
      */
     void btnSpeedClicked();
     /**
-     * Metoda zavření detailu
+     * @brief Metoda zavření detailu
      */
     void btnCloseClicked();
 
 private:
     /**
-     * okno aplikace
+     * @brief okno aplikace
      */
     MainWindow *mainWindow;
 
     /**
-     * Model hodin
+     * @brief Model hodin
      */
     ClockModel *clockModel;
 
     /**
-     * Layout
+     * @brief Layout
      */
     QGridLayout *layout = NULL;
 
     /**
-     * Textová pole
+     * @brief Textová pole
      */
     QLineEdit *fieldHour;
     QLineEdit *fieldMinute;
@@ -84,7 +86,7 @@ private:
     QLineEdit *fieldSpeed;
 
     /**
-     * Tlačítka
+     * @brief Tlačítka
      */
     QPushButton *btnInit;
     QPushButton *btnSpeed;

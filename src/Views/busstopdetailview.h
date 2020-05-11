@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled detailu autobusové zastávky
  * */
 #ifndef BUSSTOPDETAILVIEW_H
 #define BUSSTOPDETAILVIEW_H
@@ -17,7 +19,7 @@ using namespace std;
 
 class MainWindow;
 /**
- * Pohled detailu autobusové zastávky
+ * @brief Pohled detailu autobusové zastávky
  */
 class BusStopDetailView : public QWidget
 {
@@ -25,47 +27,47 @@ class BusStopDetailView : public QWidget
 
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param _busStopView Pohled zastávky jejíž se detail týká
      * @param _mainWindow Okno aplikace
      * @param parent Rodič pohledu
      */
     BusStopDetailView(BusStopView* _busStopView, MainWindow* _mainWindow, QWidget *parent = 0);
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~BusStopDetailView();
     /**
-     * Metoda vykreslí detail do widgetu
+     * @brief Metoda vykreslí detail do widgetu
      * @param widget Widget, do kterého se má detail vykreslit
      */
     void paint(QWidget *widget);
 
 public slots:
     /**
-     * Metoda zavření detailu
+     * @brief Metoda zavření detailu
      */
     void btnCloseClicked();
 
 
 private:
     /**
-     * Okno aplikace
+     * @brief Okno aplikace
      */
     MainWindow *mainWindow;
 
     /**
-     * Pohled zastávky
+     * @brief Pohled zastávky
      */
     BusStopView *busStopView;
 
     /**
-     * Layout
+     * @brief Layout
      */
     QGridLayout *layout = NULL;
 
     /**
-     * Tlačítko pro zavření detailu
+     * @brief Tlačítko pro zavření detailu
      */
     QPushButton *btnClose;
 

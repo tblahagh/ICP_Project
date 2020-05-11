@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled hodin
  * */
 #ifndef CLOCKVIEW_H
 #define CLOCKVIEW_H
@@ -16,7 +18,7 @@ using namespace std;
 class MainWindow;
 class ClockModel;
 /**
- * Pohled hodin
+ * @brief Pohled hodin
  */
 class ClockView : public QWidget
 {
@@ -24,7 +26,7 @@ class ClockView : public QWidget
 
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param _clockModel Model hodin
      * @param _mainWindow Okno aplikace
      * @param parent Rodič pohledu
@@ -32,17 +34,17 @@ public:
     ClockView(ClockModel* _clockModel, MainWindow* _mainWindow, QWidget *parent = nullptr);
 public slots:
     /**
-     * Tiknutí hodin
+     * @brief Tiknutí hodin
      */
     void ticked();
 
 private:
     /**
-     * Okno aplikace
+     * @brief Okno aplikace
      */
     MainWindow *mainWindow;
     /**
-     * Model hodin
+     * @brief Model hodin
      */
     ClockModel *clockModel;
 };

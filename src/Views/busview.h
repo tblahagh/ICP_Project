@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled autobusu vykreslující se do mapy
  * */
 #ifndef BUSVIEW_H
 #define BUSVIEW_H
@@ -15,42 +17,42 @@ using namespace std;
 
 class BusModel;
 /**
- * Pohled autobusu vykreslující se do mapy
+ * @brief Pohled autobusu vykreslující se do mapy
  */
 class BusView : public QWidget
 {
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param _busModel Autobus, které se pohled týká
      * @param parent Rodič pohledu
      */
     BusView(BusModel* _busModel, QWidget *parent = nullptr);
     /**
-     * Metoda vykreslí autobus
+     * @brief Metoda vykreslí autobus
      * @param painter Plátno pro vykreslování
      * @param zoom Zvětšení mapy, které je třeba zohlednit
      * @param offset Offset od hrany mapy
      */
     void paint(QPainter *painter, double zoom, double offset);
     /**
-     * Funkce vrací model autobusu, které se pohled týká
+     * @brief Funkce vrací model autobusu, které se pohled týká
      * @return Ukazatel na model autobusu
      */
     BusModel* getBusModel();
 
     /**
-     * Metoda nastaví autobus jako otevřený
+     * @brief Metoda nastaví autobus jako otevřený
      */
     void open();
     /**
-     * Metoda nastaví autobus jako uzavřený
+     * @brief Metoda nastaví autobus jako uzavřený
      */
     void close();
 
 private:
     /**
-     * Model autobusu
+     * @brief Model autobusu
      */
     BusModel* busModel;
 };

@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled celé mapy
  * */
 #ifndef MAPVIEW_H
 #define MAPVIEW_H
@@ -22,7 +24,7 @@ class MainWindow;
 class MapModel;
 class BusView;
 /**
- * Pohled celé mapy
+ * @brief Pohled celé mapy
  */
 class MapView : public QWidget
 {
@@ -30,119 +32,119 @@ class MapView : public QWidget
 
 public:
     /**
-     * Základní kontruktor
+     * @brief Základní kontruktor
      * @param _mainWindow Okno aplikace
      * @param parent Rodič pohledu
      */
     MapView(MainWindow* _mainWindow, QWidget *parent = nullptr);
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~MapView();
     /**
-     * Metoda vykreslí mapu
+     * @brief Metoda vykreslí mapu
      * @param event
      */
     void paintEvent(QPaintEvent *event);
     /**
-     * Funkce vrací model mapy
+     * @brief Funkce vrací model mapy
      * @return Ukazatel na model mapy
      */
     MapModel* getMapModel();
     /**
-     * Funkce vrací zoom mapy
+     * @brief Funkce vrací zoom mapy
      * @return Hodnota zoomu mapy
      */
     double getZoom();
     /**
-     * Funkce vrací offset mapy
+     * @brief Funkce vrací offset mapy
      * @return Hodnota offsetu mapy
      */
     double getOffset();
     /**
-     * Funkce vrací mód mapy
+     * @brief Funkce vrací mód mapy
      * @return Hodnota módu mapy
      */
     int getMode();
     /**
-     * Metoda nastaví mód mapy
+     * @brief Metoda nastaví mód mapy
      * @param _mode Nový mód
      */
     void setMode(int _mode);
     /**
-     * Funkce vrací pohled ulice
+     * @brief Funkce vrací pohled ulice
      * @param model Model ulice, jehož pohled chceme
      * @return Ukazatel na pohled ulice
      */
     StreetView* getStreetByModel(StreetModel* model);
     /**
-     * Metoda vybere všechny ulice z trasy
+     * @brief Metoda vybere všechny ulice z trasy
      * @param path trasa, jejíž ulice se mají vybrat
      */
     void selectPath(PathModel* path);
     /**
-     * Metoda vytvoří autobusy
+     * @brief Metoda vytvoří autobusy
      */
     void loadBuses();
     /**
-     * Metoda zavře všechny otevřené detaily ulic
+     * @brief Metoda zavře všechny otevřené detaily ulic
      */
     void closeStreets();
     /**
-     * Metoda inicializuje pohled na novou mapu
+     * @brief Metoda inicializuje pohled na novou mapu
      * @param map Nová mapa
      */
     void selectMap(MapModel* map);
 
 public slots:
     /**
-     * Metodá zvýší zoom
+     * @brief Metodá zvýší zoom
      */
     void increaseZoom();
     /**
-     * Metoda sníží zoom
+     * @brief Metoda sníží zoom
      */
     void decreaseZoom();
 
 
 protected:
     /**
-     * Metoda, která se provede při kliknutí na mapu
+     * @brief Metoda, která se provede při kliknutí na mapu
      * @param event
      */
     void mousePressEvent(QMouseEvent *event);
 
 private:
     /**
-     * Okno aplikace
+     * @brief Okno aplikace
      */
     MainWindow *mainWindow;
     /**
-     * Model mapy
+     * @brief Model mapy
      */
     MapModel* mapModel;
     /**
-     * Pohledy ulic
+     * @brief Pohledy ulic
      */
     vector<StreetView*> streets;
     /**
-     * Pohledy zastávek
+     * @brief Pohledy zastávek
      */
     vector<BusStopView*> busStops;
     /**
-     * Pohledy autobusů
+     * @brief Pohledy autobusů
      */
     vector<BusView*> buses;
     /**
-     * Zoom
+     * @brief Zoom
      */
     double zoom = 1;
     /**
-     * Offset
+     * @brief Offset
      */
     double offset = 10;
     /**
-     * Mód
+     * @brief Mód
      */
     int mode = 0;
 };

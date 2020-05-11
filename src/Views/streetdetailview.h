@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled detailu ulice
  * */
 #ifndef STREETDETAILVIEW_H
 #define STREETDETAILVIEW_H
@@ -17,7 +19,7 @@ using namespace std;
 
 class MainWindow;
 /**
- * Pohled detailu ulice
+ * @brief Pohled detailu ulice
  */
 class StreetDetailView : public QWidget
 {
@@ -25,53 +27,53 @@ class StreetDetailView : public QWidget
 
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param _streetView Ulice, které se detail týká
      * @param _mainWindow Okno aplikace
      * @param parent Rodič pohledu
      */
     StreetDetailView(StreetView* _streetView, MainWindow* _mainWindow, QWidget *parent = 0);
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~StreetDetailView();
     /**
-     * Metoda vykreslí objížďku na widget
+     * @brief Metoda vykreslí objížďku na widget
      * @param widget Widget na který se má objížďka vykreslit
      */
     void paint(QWidget *widget);
 
 public slots:
     /**
-     * Metoda volaná při stisku tlačítka uloží stav ulice
+     * @brief Metoda volaná při stisku tlačítka uloží stav ulice
      */
     void btnSaveClicked();
     /**
-     * Metoda volaná při stisku tlačítka zavře detail ulice
+     * @brief Metoda volaná při stisku tlačítka zavře detail ulice
      */
     void btnCloseClicked();
     /**
-     * Metoda volaná při stisku tlačítka otevře detail objížďky ulice
+     * @brief Metoda volaná při stisku tlačítka otevře detail objížďky ulice
      */
     void btnDetourDetailClicked();
 
 private:
     /**
-     * Okno aplikace
+     * @brief Okno aplikace
      */
     MainWindow *mainWindow;
     /**
-     * Model ulice
+     * @brief Model ulice
      */
     StreetView *streetView;
 
     /**
-     * Layout
+     * @brief Layout
      */
     QGridLayout *layout = NULL;
 
     /**
-     * Přepínače
+     * @brief Přepínače
      */
     QRadioButton *btnGreen;
     QRadioButton *btnOrange;
@@ -80,7 +82,7 @@ private:
     QButtonGroup *fieldTraffic;
 
     /**
-     * Tlačítka
+     * @brief Tlačítka
      */
     QPushButton *btnSave;
     QPushButton *btnClose;

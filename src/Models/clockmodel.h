@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Třída reprezentující hodiny v systému
  * */
 #ifndef CLOCKMODEL_H
 #define CLOCKMODEL_H
@@ -16,19 +18,19 @@ class ClockView;
 class ClockDetailView;
 class BusModel;
 /**
- * Třída reprezentující hodiny v systému
+ * @brief Třída reprezentující hodiny v systému
  */
 class ClockModel
 {
 public:
 
     /**
-     * Základní konstruktor, který nastaví hodiny na aktuální čas
+     * @brief Základní konstruktor, který nastaví hodiny na aktuální čas
      */
     ClockModel();
 
     /**
-     * Metoda inicializuje hodiny na zadaný čas
+     * @brief Metoda inicializuje hodiny na zadaný čas
      * @param Nové hodiny
      * @param Nové minuty
      * @param Nové sekundy
@@ -36,52 +38,52 @@ public:
     void initialize(int _hour, int _minute, int _second);
 
     /**
-     * Funkce převede hodiny na text
+     * @brief Funkce převede hodiny na text
      * @return Řetězec s časem hodin
      */
     QString getString();
 
     /**
-     * Metoda provede tiknutí hodin
+     * @brief Metoda provede tiknutí hodin
      */
     void tick();
 
     /**
-     * Metoda přičte sekundu
+     * @brief Metoda přičte sekundu
      */
     void increase();
 
     /**
-     * Metoda nastaví rychlost hodin
+     * @brief Metoda nastaví rychlost hodin
      */
     void setSpeed(int _speed);
 
     /**
-     * Funkce vrací rychlost hodin
+     * @brief Funkce vrací rychlost hodin
      * @return Rychlost hodin
      */
     int getSpeed();
 
     /**
-     * Funkce vrací počet hodin
+     * @brief Funkce vrací počet hodin
      * @return Počet hodin
      */
     int getHour();
 
     /**
-     * Funkce vrací počet sekund
+     * @brief Funkce vrací počet sekund
      * @return Počet minut
      */
     int getMinute();
 
     /**
-     * Funkce vrací počet sekund
+     * @brief Funkce vrací počet sekund
      * @return Počet sekund
      */
     int getSecond();
 
     /**
-     * Funkce vrátí čas převedený na typ tm
+     * @brief Funkce vrátí čas převedený na typ tm
      * @return Čas převedený na typ tm
      */
     tm getTime();
@@ -90,19 +92,19 @@ public:
 
 private:
     /**
-     * Hodiny
+     * @brief Hodiny
      */
     int hour = 1;
     /**
-     * Minuty
+     * @brief Minuty
      */
     int minute = 1;
     /**
-     * Sekundy
+     * @brief Sekundy
      */
     int second = 1;
     /**
-     * Rychlost
+     * @brief Rychlost
      */
     int speed = 1;
 };

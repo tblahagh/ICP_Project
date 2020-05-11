@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled detailu autobusu
  * */
 #ifndef BUSDETAILVIEW_H
 #define BUSDETAILVIEW_H
@@ -17,7 +19,7 @@ using namespace std;
 
 class MainWindow;
 /**
- * Pohled detailu autobusu
+ * @brief Pohled detailu autobusu
  */
 class BusDetailView : public QWidget
 {
@@ -25,50 +27,50 @@ class BusDetailView : public QWidget
 
 public:
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param _busView Pohled autobusu jehož se detail týká
      * @param _mainWindow Okno aplikace
      * @param parent Rodič pohledu
      */
     BusDetailView(BusView* _busView, MainWindow* _mainWindow, QWidget *parent = 0);
     /**
-     * Destruktor
+     * @brief Destruktor
      */
     ~BusDetailView();
     /**
-     * Metoda vykreslí detail do widgetu
+     * @brief Metoda vykreslí detail do widgetu
      * @param widget Widget, do kterého se má detail vykreslit
      */
     void paint(QWidget *widget);
     /**
-     * Funkce vrací pohled autobusu, jehož se detail týká
+     * @brief Funkce vrací pohled autobusu, jehož se detail týká
      * @return Ukazatel na pohled autobusu
      */
     BusView* getBusView();
 
 public slots:
     /**
-     * Metoda zavření detailu
+     * @brief Metoda zavření detailu
      */
     void btnCloseClicked();
 
 
 private:
     /**
-     * Okno aplikace
+     * @brief Okno aplikace
      */
     MainWindow *mainWindow;
     /**
-     * Pohled autobusu
+     * @brief Pohled autobusu
      */
     BusView *busView;
 
     /**
-     * Layout
+     * @brief Layout
      */
     QGridLayout *layout = NULL;
     /**
-     * Tlačítko pro zavření detailu
+     * @brief Tlačítko pro zavření detailu
      */
     QPushButton *btnClose;
 

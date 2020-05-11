@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Pohled ulice vykreslující se do mapy
  * */
 #ifndef STREETVIEW_H
 #define STREETVIEW_H

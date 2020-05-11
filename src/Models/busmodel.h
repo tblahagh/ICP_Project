@@ -1,6 +1,8 @@
 /*
  * Autoři: Tomáš Blaha, Vojtěch Wawreczka
  * Datum: 9.5.2020
+ *
+ * Třída reprezentující autobus
  * */
 #ifndef BUSMODEL_H
 #define BUSMODEL_H
@@ -16,14 +18,14 @@ using namespace std;
 
 class ClockModel;
 /**
-* Třídá reprezentující autobus
+* @brief Třída reprezentující autobus
 */
 class BusModel : public BaseModel
 {
 public:
 
     /**
-     * Základní konstruktor
+     * @brief Základní konstruktor
      * @param id Identifikátor modelu
      * @param _startTime Čas začátku jízdy autobusu
      * @param busLine Autobusová linka, po které autobus jede
@@ -32,137 +34,137 @@ public:
     BusModel(unsigned int id = 0, tm _startTime = {}, BusLineModel* _busLine = nullptr, ClockModel* _clockModel = nullptr);
 
     /**
-     * Funkce vrací bod, kde se autobus současně nachází
+     * @brief Funkce vrací bod, kde se autobus současně nachází
      * @return Bod, kde se autobus nachází
      */
     PointModel CurrentPosition();
 
     /**
-     * Ladící metoda pro výpis obsahu modelu na standartní výstup
+     * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
      * @param Počet tabulátorů před výpisem
      */
     void Print(int indent) override;
 
     /**
-     * Funkce aktualizuje pozici autobusu
+     * @brief Funkce aktualizuje pozici autobusu
      * @return True, pokud aktualizace proběhla úspěšně, jinak false
      */
     bool actualizePosition();
 
     /**
-     * Funkce posune autobus na další ulici
+     * @brief Funkce posune autobus na další ulici
      * @return True, pokud přechod proběhl úspěšně, jinak false
      */
     bool goToNextStreet();
 
     /**
-     * Metoda posune autobus na zastávku
+     * @brief Metoda posune autobus na zastávku
      */
     void goToNextStop();
 
     /**
-     * Funkce vrací autobusovou linku, po které autobus jede
+     * @brief Funkce vrací autobusovou linku, po které autobus jede
      * @return Ukazatel na autobusovou linku
      */
     BusLineModel* getBusLine();
 
     /**
-     * Funkce vrací jestli je otevřen detail autobusu
+     * @brief Funkce vrací jestli je otevřen detail autobusu
      * @return True, pokud je detail otevřen, jinak false
      */
     bool getOpenedDetail();
 
     /**
-     * Funkce vrací jestli je otevřen detail autobusu
+     * @brief Funkce vrací jestli je otevřen detail autobusu
      * @param op Nová hodnota
      */
     void setOpenedDetail(bool op);
 
     /**
-     * Funkce vrací startovní čas jízdy autobusu
+     * @brief Funkce vrací startovní čas jízdy autobusu
      * @return 4as začátku cesty autobusu
      */
     tm getStartTime();
 
     /**
-     * Funkce vrací index další zastávky
+     * @brief Funkce vrací index další zastávky
      * @return Index do pole zastávek linky
      */
     int getNextStopIndex();
 
 private:
     /**
-     * Model autobusové linky
+     * @brief Model autobusové linky
      */
     BusLineModel* busLine = NULL;
 
     /**
-     * Model hodin, podle kterých se autobus řídí
+     * @brief Model hodin, podle kterých se autobus řídí
      */
     ClockModel* clockModel = NULL;
 
     /**
-     * Aktuální zpoždění autobusu
+     * @brief Aktuální zpoždění autobusu
      */
     int delay;
 
     /**
-     * Čas, kdy autobus vyjel na trasu
+     * @brief Čas, kdy autobus vyjel na trasu
      */
     tm startTime;
 
     /**
-     * Čas poslední aktualizace pozice autobusu
+     * @brief Čas poslední aktualizace pozice autobusu
      */
     tm lastActualizeTime;
 
     /**
-     * Aktuální rychlost autobusu (v bodech za sekundu)
+     * @brief Aktuální rychlost autobusu (v bodech za sekundu)
      */
     double actualSpeed = 0;
 
     /**
-     * Index následující zastávky
+     * @brief Index následující zastávky
      */
     unsigned int indexOfNextStop = 0;
 
     /**
-     * Pozice na ulici, kterou autobus právě projíždí
+     * @brief Pozice na ulici, kterou autobus právě projíždí
      */
     double positionOnActualStreet = 0;
 
     /**
-     * Směr, kterým autobus právě jede po ulici
+     * @brief Směr, kterým autobus právě jede po ulici
      */
     bool directionStartToEnd = true;
 
     /**
-     * Normální rychlost autobusu na trase
+     * @brief Normální rychlost autobusu na trase
      */
     vector<double> usualSpeedOnPath = {};
 
     /**
-     * Index ulice, po ktere autobus právě jede
+     * @brief Index ulice, po ktere autobus právě jede
      */
     vector<unsigned int> indexOfActualStreetOnPath = {};
 
     /**
-     * Trasa, po které autobus právě jede
+     * @brief Trasa, po které autobus právě jede
      */
     vector<PathModel*> actualPaths = {};
 
     /**
-     * Směr, kterým autobus po trase jede
+     * @brief Směr, kterým autobus po trase jede
      */
     vector<bool> actualDirectionOnPath = {};
 
     /**
-     * Informuje, zda je otevřený detail autobusu
+     * @brief Informuje, zda je otevřený detail autobusu
      */
     bool openedDetail = false;
 
     /**
-     * Ladící proměnná
+     * @brief Ladící proměnná
      */
     bool qdebug = false;
 };
