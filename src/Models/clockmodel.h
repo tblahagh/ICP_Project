@@ -31,9 +31,9 @@ public:
 
     /**
      * @brief Metoda inicializuje hodiny na zadaný čas
-     * @param Nové hodiny
-     * @param Nové minuty
-     * @param Nové sekundy
+     * @param _hour Nové hodiny
+     * @param _minute Nové minuty
+     * @param _second Nové sekundy
      */
     void initialize(int _hour, int _minute, int _second);
 
@@ -55,6 +55,7 @@ public:
 
     /**
      * @brief Metoda nastaví rychlost hodin
+     * @param _speed Nová rychlost
      */
     void setSpeed(int _speed);
 

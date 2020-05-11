@@ -43,7 +43,7 @@ public:
 
     /**
      * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
-     * @param počet tabulátorů před výpisem
+     * @param indent počet tabulátorů před výpisem
      */
     virtual void Print(int indent) override;
 
@@ -95,8 +95,8 @@ public:
 
     /**
      * @brief Funkce vrací vzdálenost na cestě mezi zastávkami
-     * @param leftIndex Zastávka, která je v lince dříve
-     * @param rightIndex Zastávka, která je v lince později
+     * @param leftBusStop Zastávka, která je v lince dříve
+     * @param rightBusStop Zastávka, která je v lince později
      * @return Vzdálenost mezi zastávkami
      */
     double GetDistanceOfBusStops(BusStopModel* leftBusStop, BusStopModel* rightBusStop);

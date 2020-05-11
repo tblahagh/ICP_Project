@@ -15,58 +15,58 @@
 
 using namespace std;
 /**
- * Pohled ulice vykreslující se do mapy
+ * @brief Pohled ulice vykreslující se do mapy
  */
 class StreetView : public QWidget
 {
 public:
     /**
-     * Základní konstruktor
-     * @param _busModel ulice, které se pohled týká
+     * @brief Základní konstruktor
+     * @param _streetModel ulice, které se pohled týká
      * @param parent Rodič pohledu
      */
     StreetView(StreetModel* _streetModel, QWidget *parent = nullptr);
     /**
-     * Metoda vykreslí ulici
+     * @brief Metoda vykreslí ulici
      * @param painter Plátno pro vykreslování
      * @param zoom Zvětšení mapy, které je třeba zohlednit
      * @param offset Offset od hrany mapy
      */
     void paint(QPainter *painter, double zoom, double offset, int mode);
     /**
-     * Funkce vrací model ulice, které se pohled týká
+     * @brief Funkce vrací model ulice, které se pohled týká
      * @return Ukazatel na model ulice
      */
     StreetModel* getStreetModel();
 
     /**
-     * Metoda nastaví ulici jako otevřenou
+     * @brief Metoda nastaví ulici jako otevřenou
      */
     void open();
     /**
-     * Metoda nastaví ulici jako uzavřenou
+     * @brief Metoda nastaví ulici jako uzavřenou
      */
     void close();
     /**
-     * Metoda nastaví ulici jako vybranou
+     * @brief Metoda nastaví ulici jako vybranou
      */
     void select();
     /**
-     * Metoda nastaví ulici jako nevybranou
+     * @brief Metoda nastaví ulici jako nevybranou
      */
     void deselect();
 
 private:
     /**
-     * Model ulice
+     * @brief Model ulice
      */
     StreetModel* streetModel;
     /**
-     * Indikátor jestli je otevřený detail ulice
+     * @brief Indikátor jestli je otevřený detail ulice
      */
     bool opened = false;
     /**
-     * Indikátor jestli je ulice vybraná
+     * @brief Indikátor jestli je ulice vybraná
      */
     bool selected = false;
 };

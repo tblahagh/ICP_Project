@@ -172,8 +172,8 @@ public:
 
     /**
      * @brief Funkce odstraní autobus, který ukončil trasu
-     * @param Seznam modelů, odkud je potřeba autobus odstranit
-     * @param Model autobusu, který je potřeba odstanit
+     * @param buses Seznam modelů, odkud je potřeba autobus odstranit
+     * @param bus Model autobusu, který je potřeba odstanit
      */
     void deleteBus(vector<BusModel*> *buses, BusModel* bus);
 

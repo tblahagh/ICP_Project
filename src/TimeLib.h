@@ -59,7 +59,7 @@ bool IsTimeBetween(tm time1, tm time2, tm time);
 void IsCorrectTime(tm time);
 /**
  * @brief Funkce vrací čas jako řetězec
- * @param i
+ * @param i Čas
  * @return Čas převedený na řetězec
  */
 QString timeNumberToStr(int i);

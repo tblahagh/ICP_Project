@@ -28,7 +28,7 @@ public:
      * @brief Základní konstruktor
      * @param id Identifikátor modelu
      * @param _startTime Čas začátku jízdy autobusu
-     * @param busLine Autobusová linka, po které autobus jede
+     * @param _busLine Autobusová linka, po které autobus jede
      * @param _clockModel Hodiny, podle kterých se autobus řídí
      */
     BusModel(unsigned int id = 0, tm _startTime = {}, BusLineModel* _busLine = nullptr, ClockModel* _clockModel = nullptr);
@@ -41,7 +41,7 @@ public:
 
     /**
      * @brief Ladící metoda pro výpis obsahu modelu na standartní výstup
-     * @param Počet tabulátorů před výpisem
+     * @param indent Počet tabulátorů před výpisem
      */
     void Print(int indent) override;
 

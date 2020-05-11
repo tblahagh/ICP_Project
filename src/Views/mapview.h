@@ -43,7 +43,7 @@ public:
     ~MapView();
     /**
      * @brief Metoda vykreslí mapu
-     * @param event
+     * @param event Kreslící event
      */
     void paintEvent(QPaintEvent *event);
     /**
