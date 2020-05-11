@@ -15,5 +15,7 @@ Aplikace využívá volně dostupnou Third party knihovnu TinyXML pro parsován�
 Všechny zdrojové soubory knihovny jsou v podadresáři src/tinyxml.
 Více o knihovně na http://www.grinninglizard.com/tinyxml/.
 
+Při překladu se vypíší upozornění, které se vztahují na soubory v knihovně TinyXML a proto nebyly opraveny
 
+Adresář src neobsahuje Makefile, protože překlad v adresáři src vyhazoval chyby, které nebyl čas opravit a proto všechny make operace vykonává Makefile v kořenovém adresáři projektu.
 
